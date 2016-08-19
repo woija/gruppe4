@@ -102,10 +102,57 @@ models.rmse = models %>% mutate(error = KvindeAndOpt - pred,
 gen_crossv = function(pol, data = data3){
   data %>%
     crossv_kfold(10) %>% mutate(
-      mod = map(train, ~ lm(y ~ poly(x, pol), data = .)),
+      mod = map(train, ~ lm(KvindeAndOpt ~ poly(GnsIndT, pol), data = .)),
       rmse.test = map2_dbl(mod, test, rmse),
       rmse.train = map2_dbl(mod, train, rmse) )
 }
+
+set.seed(3000) 
+df.cv = 1:10 %>%
+  map_df(gen_crossv, .id = "degree")
+
+
+df.cv.sum = df.cv %>% group_by(degree) %>% summarise(
+  m.rmse.test = mean(rmse.test),
+  m.rmse.train = mean(rmse.train) )
+
+df.cv.sum = df.cv.sum %>% 
+  mutate(degree = as.numeric(degree)) %>% 
+  gather(var, value, -degree) %>% 
+  arrange(degree)
+
+p = ggplot(df.cv.sum, 
+           aes(x = degree, y = value,
+               color = var))
+p + geom_point() +
+  geom_line() +
+  scale_color_viridis(discrete = TRUE,
+                      name = NULL,
+                      labels = c("RMSE (test)",
+                                 "RMSE (train)")) +
+  theme(legend.position = "bottom") +
+  labs(x = "Degree", y = "RMSE") +
+  scale_x_continuous(breaks = 1:11)
+
+
+
+
+
+trainDTM <- data3 %>%
+  filter(Aar != '2016')
+
+testDTM <- data3 %>%
+  filter(Aar == '2016')
+
+library("rpart.plot")
+library("rpart")
+set.seed(1)
+model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM )
+KvindeAndOpt = predict(model, newdata = testDTM)
+
+rpart.plot(model)
+
+sqrt(mean(testDTM$KvindeAndOpt-KvindeAndOpt)^2)
 
 model.1
 library("ISLR")
