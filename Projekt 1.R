@@ -11,9 +11,10 @@ install.packages("ggrepel")
 library("ggrepel")
 library("knitr")
 
-londata <- read.csv("londata1.csv", sep = ";")
 
+londata <- read.csv("londata1.csv", sep = ";")
 uddannelse <- read.csv("optagelse3.csv", sep = ";")
+
 
 # samler data
 data <- uddannelse %>%
@@ -42,12 +43,6 @@ data2 = data %>%
 ## 
 fit <- lm(KvindeAndOpt ~ GnsIndkomst, data = data2)
 summary(fit)
-
-data3 = data2 %>%
-  mutate(KvotientSam = if(Kvotient == 0) {0}
-         else if(Kvotient )
-         )
-
 
 ## 
 p1 <- ggplot(data = data2, aes(x = GnsIndkomst, y = KvindeAndOpt)) + 
@@ -138,12 +133,36 @@ data6 = data.frame(
                rep("AAU", 2), rep("CBS", 2), rep("SDU", 2), rep("AU", 2), rep("KU", 2)),
   GnsAng = c(57, 193, 138, 172, 357, 99, 927, 394, 520, 970, 722, 1078, 2593, 2355, 2686, 2395,
              2546, 2934, 3780, 4542, 4642, 7332),
-  Sex = c(rep(c("M","K"), 11))
-  ) 
+  Koen = c(rep(c("Mand","Kvinde"), 11))
+) 
 
-ggplot(data=data6, aes(x=reorder(InstNavn, GnsAng), y=GnsAng, fill=Sex)) +
+ggplot(data=data6, aes(x=reorder(InstNavn, GnsAng), y=GnsAng, fill=Koen)) +
   geom_bar(stat="identity") +
-  coord_flip() + ylab("Total") + xlab("") 
+  coord_flip() + ylab("Total") + xlab("") +
+  scale_fill_manual(values=c("royalblue2", "royalblue4")) + # valgfrie farver se link: http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf 
+  ggtitle("Fordeling af ansøgere")
 
 
+## TOP 10 for hhv maend og kvinder i 2016 pba antal ansøgere
+dataTopK = data2 %>%
+  filter(Aar == "2016", AngKvinder > 400) %>%
+  arrange(-AngKvinder)
+
+dataTopM = data2 %>%
+  filter(Aar == "2016", AngMaend > 250) %>%
+  arrange(-AngMaend)
+
+ggplot(data = dataTopK, aes(x = reorder(OptNavn, AngKvinder), y = AngKvinder)) + 
+  geom_bar(stat = "identity", color="royalblue2", fill="royalblue2") +
+  coord_flip() + ggtitle("Top 10 uddannelser for kvinder") + 
+  ylab("Ansøgere") + xlab("")
+
+ggplot(data = dataTopM, aes(x=reorder(OptNavn, AngMaend), y = AngMaend)) +
+  geom_bar(stat = "identity", color = "royalblue4", fill="royalblue4") + 
+  coord_flip() + ggtitle("Top 10 uddannelser for mænd") + 
+  ylab("Ansøgere") + xlab("")
+
+#Måske "studiestart bla bla.." kan fjernes fra OptNavn variablen. 
+#Kan være top 10 skal laves for gennemsnit for de fire år, medmindre der er et
+#bestemt år, der er interessant. 
              
