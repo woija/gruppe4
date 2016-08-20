@@ -49,7 +49,7 @@ ggplot(data=Uni.4gather, aes(x=reorder(Kvotient, Køn), y=frequency, fill=Køn))
   geom_bar(stat="identity") +
   coord_flip() + ylab("Total") + xlab("") +
 scale_x_discrete(breaks=c("10.825", "10.85", "10.975", "11", "11.05", "11.15", "11.375", "11.675", "11.95", "12.125"), 
-                 labels=c("Statskundskab, KU, 10.83", "Medicin, AU, 10.85", "Antropologi, KU, 10.98", "Internation Shipping and Trade, CBS, 11", 
+                 labels=c("Statskundskab, KU, 10.83", "Medicin, AU, 10.85", "Antropologi, KU, 10.98", "Internation Shipping and Trade, CBS, 11.00", 
                           "Erhvervsøkonomi Projektledelse, CBS, 11.05", "Medicin, KU, 11.15 ", "Psykologi, KU, 11.38", "International Business and Politics, CBS, 11.68", 
                           "Cand.Scient u.n.a. Naturvidenskab , 11.95", "International Business, CBS, 12.13")) +
   ggtitle("Top 10 gennemsnitlig højest kvotient og ansøger fordelt på køn") + 

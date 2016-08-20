@@ -65,6 +65,7 @@ Uni.3gather = Uni.3 %>%
          value = frequency,
          -GnsIndkomst, - Uddannelse)
 
+png(file="plot1.png",width=400,height=350,res=45)
 ggplot(data=Uni.3gather, aes(x=reorder(GnsIndkomst, Uddannelse), y=frequency, fill=Køn)) +
   geom_bar(stat="identity") +
   coord_flip() + ylab("Total") + xlab("") +
@@ -72,14 +73,14 @@ scale_x_discrete(breaks=c("801156", "805757", "809791", "847594", "849602", "853
                  labels=c("Civil.ing.kemi, 801.156", "Civil.ing.elektro, 805.757", "Cand.oecon, 809.791", "Erhvervsøkonomi mat, 847.594", 
                           "Jura, 849.602", "Civil.ing.maskin, 853.619", "Matematikøkonomi, 909.823", "Læge , 926.244", 
                           "Cand.polit, 1.052.372", "Forsikringsmatematik, 1.180.098")) +
-  ggtitle("Top 10 af højeste lønninger og gennesnits ansøgertallet for disse 
+  ggtitle("Top 10 af højeste lønninger og gennesnits ansøger fordelingen for disse 
           uddannelser, 2013-2016") + 
   scale_fill_brewer(palette = "Set1")
 
 
 
 ### GNS. TOP 10 MEST SØGTE MÆND
-Uni.5 = Udddata.3 %>%
+Uni.5 = Udddata.2 %>%
   group_by(OptNr, Uddannelse) %>%
   summarise(Mænd =sum(round(AngMaend/4,0), na.rm =TRUE))
 
@@ -89,7 +90,8 @@ Uni.5 = Uni.5 %>%
 
 Uni.5$OptNr = factor(Uni.5$OptNr)
 
-ggplot(data=Uni.5, aes(x=reorder(OptNr, Mænd), y= Mænd)) + geom_point() +
+ggplot(data=Uni.5, aes(x=reorder(OptNr, Mænd), y= Mænd)) +  geom_bar(stat="identity") +
+  #geom_point() +
   coord_flip() + ylab("Total") + xlab("") + 
   scale_x_discrete(breaks=c("13045", "22415", "30010", "17115", "22010", "13060", "22610", "10110", "10410", "13010"),
                    labels=c("Erhversøkonomi Projektledelse, CBS", "Jura, AU", "Arkitekt", "Læge, SDU", "Læge, AU", 
@@ -99,7 +101,7 @@ ggtitle("Top 10 gennemsnitlig mest søgte uddannelse for
  
 
 ### GNS. TOP 10 MEST SØGTE KVINDER
-Uni.6 = Udddata.3 %>%
+Uni.6 = Udddata.2 %>%
   group_by(OptNr, Uddannelse) %>%
   summarise (Kvinder =sum(round(AngKvinder/4,0), na.rm=TRUE))
 
@@ -109,11 +111,13 @@ Uni.6 = Uni.6 %>%
 
 Uni.6$OptNr = factor(Uni.6$OptNr)
 
-ggplot(data=Uni.6, aes(x=reorder(OptNr, Kvinder), y= Kvinder)) + geom_point() + 
+ggplot(data=Uni.6, aes(x=reorder(OptNr, Kvinder), y= Kvinder)) +   geom_point() +
   coord_flip() + ylab("Total") + xlab("") +
 scale_x_discrete(breaks=c("22415", "16020", "22420", "17115", "10140", "22010", "32010", "10410", "10368", "10110"),
                  labels=c("Jura, AU", "Human/teologi, RUC", "Psykologi, AU", "Læge, SDU", "Veterinærmedicin, KU", "Læge, AU", 
                           "Designer Unika Design", "Jura, KU", "Psykologi, KU", "Læge, KU")) + 
 ggtitle("Top 10 gennemsnitlig mest søgte uddannelse for 
         kvinder, 2013-2016") 
+
+
 
