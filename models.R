@@ -93,4 +93,4 @@ Table <- relabel(Table,
                       GnsIndkomstHT = "Indkomst i 100.000 kr.",
                       TotalOpt = "Totalt optag",
                       Kvotient = "Adgangskvotient")
-pander(Table)
+
