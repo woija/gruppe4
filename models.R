@@ -30,6 +30,7 @@ data <- data %>%
 data.1 <- data %>%
   mutate(OptMK = round(OptMaend / OptKvinder,2),
          TotalOpt = OptMaend + OptKvinder,
+         TotalOptH = TotalOpt/100,
          TotalAng =AngMaend + AngKvinder,
          AngMK = round(AngMaend / AngKvinder,2),  
         KvindeAndOpt = round(OptKvinder / TotalOpt, 2),
@@ -78,19 +79,26 @@ modell3<-glm(KvindeAndOpt ~ GnsIndkomstHT + Retning + Kvotient, data = data.3, f
 logit3 <- mfx_me(modell3) ## Create "mfx" object to trick mtable()
 
 #Estimerer logit marginal effects for model 4
-modell4<-glm(KvindeAndOpt ~ GnsIndkomstHT + Retning + Kvotient + TotalOpt, data = data.3, family=binomial(link=logit), x=TRUE)
+modell4<-glm(KvindeAndOpt ~ GnsIndkomstHT + Retning + Kvotient + TotalOptH, data = data.3, family=binomial(link=logit), x=TRUE)
 logit4 <- mfx_me(modell4) ## Create "mfx" object to trick mtable()
 
-OLS<- mtable("(1)"=model1, "(2)"=model2, "(3)"=model3, "(4)"=model4, summary.stats="N")
-Logit<- mtable("(1)"=logit1,"(2)"=logit2,"(3)"=logit3,"(4)"=logit4, summary.stats="N") ## produces a table with nice output
-c(OLS,Logit) # not that this makes sense, but ...
-Table <- c("OLS"=OLS,
-  "Logit"=Logit)
 
-
-Table <- relabel(Table,
+Logit<- mtable("(1)"=logit1,"(2)"=logit2,"(3)"=logit3,"(4)"=logit4, summary.stats = c("McFadden R-sq.", "Deviance")) ## produces a table with nice output
+Logit <- relabel(Logit,
                       "(Intercept)" = "Konstant",
                       GnsIndkomstHT = "Indkomst i 100.000 kr.",
-                      TotalOpt = "Totalt optag",
-                      Kvotient = "Adgangskvotient")
+                      TotalOptH = "Totalt optag i hundrede",
+                      Kvotient = "Adgangskvotient",
+"Retning: Business/Bus/kom" = "Business",
+                 "Retning: Hum/Bus/kom" = "Humaniora",
+                 "Retning: Ing/Bus/kom" = "Ingenior",
+                 "Retning: Jur/Bus/kom" = "Jura",
+                 "Retning: Kom/Bus/kom" ="Kommunikation",
+                 "Retning: Natur/Bus/kom" = "Naturvidenskab",
+                 "Retning: Samf/Bus/kom" = "Samfundsvidenskab",
+                 "Retning: Science/Bus/kom" = "Science",
+                 "Retning: Sund/Bus/kom" = "Sundhedsvidenskab"                 
+                 )
+write.mtable(Logit, file = "delim", format = "delim")
+
 
