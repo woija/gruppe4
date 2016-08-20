@@ -45,8 +45,7 @@ data.1 <- data %>%
          TotalAng =AngMaend + AngKvinder,
          AngMK = round(AngMaend / AngKvinder,2),  
         KvindeAndOpt = round(OptKvinder / TotalOpt, 2),
-                   KvindeAndAng = round(AngKvinder / TotalAng, 2)) %>%
-  arrange(-TotalOpt, - AngMK, -OptMK)
+                   KvindeAndAng = round(AngKvinder / TotalAng, 2))
 
 data.2 <- data.1 %>% left_join(lon, by = "Placering") %>%
   mutate(GnsIndkomstHT = GnsIndkomst/100000)
@@ -54,6 +53,8 @@ data.2 <- data.1 %>% left_join(lon, by = "Placering") %>%
 
 
 ```
+sadas
+\newpage
 
 Investeringer i human kapital sker med forventninger til afkast i arbejdsmarkedet (Becker 1964). Grundet direkte samt indirekte diskrimination, i.e. lønforskelle, kønnene imellem, er kønnenes traditionelle specialisering, mænd i lønnet arbejde og kvinder i hjemmet, fremhævet som økonomisk optimal (Becker 1991; Becker 1985). Med forventning om denne kønsspecialisering forventes det yderligere, at kvinder investerer mindre i human kapital, i.e. løndiskrimination er cirkulær og selvforstærkende fra et human kapitalsynspunkt (Blackburn et al. 2002). På trods af den forudsete cirkularitet, er der gennem de seneste årtier sket dramatiske kønsforandringer i human kapital investeringer: kvinder udgør nu majoriteten af studerende på længere videregående uddannelser (Kilde). Igen, fra et human kapital perspektiv burde kvinders øgede investeringer i human kapital betyde mindre lønforskelle mellem kvinder og mænd. Markante lønforskelle kønnene imellem er dog fortsat observeret, endda også imellem kvinder og mænd med længerevarende videregående uddannelser, hvor mænd i 2014 havde en bruttoindkomst 36,54 % højere end kvinder (Danmarks Statistik - Kilde). 
 
@@ -75,7 +76,7 @@ Lange videregående uddannelser & 670.133 & 490.782
 
 
 
-## Viridis colors
+## Plot af køn på institutioner 
 
 ```{r}
 image(volcano, col = viridis(200))
