@@ -1,0 +1,120 @@
+---
+title: "Eksamens projekt"
+header-includes: 
+  - \usepackage{booktabs}
+  - \usepackage{longtable}
+  - \usepackage{floatrow}
+  - \usepackage{caption}
+  - \usepackage{threeparttablex}
+  - \usepackage{tabulary}
+  - \usepackage{tabularx}
+  - \usepackage{dcolumn}
+  - \floatsetup[table]{capposition=top}
+output: pdf_document
+linestretch: 1.5
+fontsize: 11pt
+geometry: margin=1in
+
+---
+
+```{r include = FALSE}
+library(viridis)
+library(pander)
+library(stargazer)
+library(dplyr)
+library(rio)
+library(splitstackshape)
+library(tonymisc)
+library(memisc)
+
+```
+
+```{r include = FALSE}
+setwd("/Users/simonharmat/Dropbox/Studie/Data_science/Gruppe4" ) ## Skriv stien
+
+data <- import("optagelse3.csv") # l??ser csv-filen 
+lon <- import("londata.csv") # l??ser csv-filen
+
+data <- data %>%
+  mutate(Kvotient = as.numeric(gsub(",",".",data$Kvotient))) %>%
+  filter(!is.na(AngMaend) | !is.na(AngKvinder) ) 
+
+data.1 <- data %>%
+  mutate(OptMK = round(OptMaend / OptKvinder,2),
+         TotalOpt = OptMaend + OptKvinder,
+         TotalAng =AngMaend + AngKvinder,
+         AngMK = round(AngMaend / AngKvinder,2),  
+        KvindeAndOpt = round(OptKvinder / TotalOpt, 2),
+                   KvindeAndAng = round(AngKvinder / TotalAng, 2)) %>%
+  arrange(-TotalOpt, - AngMK, -OptMK)
+
+data.2 <- data.1 %>% left_join(lon, by = "Placering") %>%
+  mutate(GnsIndkomstHT = GnsIndkomst/100000)
+
+
+
+```
+
+Investeringer i human kapital sker med forventninger til afkast i arbejdsmarkedet (Becker 1964). Grundet direkte samt indirekte diskrimination, i.e. lønforskelle, kønnene imellem, er kønnenes traditionelle specialisering, mænd i lønnet arbejde og kvinder i hjemmet, fremhævet som økonomisk optimal (Becker 1991; Becker 1985). Med forventning om denne kønsspecialisering forventes det yderligere, at kvinder investerer mindre i human kapital, i.e. løndiskrimination er cirkulær og selvforstærkende fra et human kapitalsynspunkt (Blackburn et al. 2002). På trods af den forudsete cirkularitet, er der gennem de seneste årtier sket dramatiske kønsforandringer i human kapital investeringer: kvinder udgør nu majoriteten af studerende på længere videregående uddannelser (Kilde). Igen, fra et human kapital perspektiv burde kvinders øgede investeringer i human kapital betyde mindre lønforskelle mellem kvinder og mænd. Markante lønforskelle kønnene imellem er dog fortsat observeret, endda også imellem kvinder og mænd med længerevarende videregående uddannelser, hvor mænd i 2014 havde en bruttoindkomst 36,54 % højere end kvinder (Danmarks Statistik - Kilde). 
+
+\begin{ThreePartTable}
+ \begin{TableNotes}[para,flushleft]Kilde: Danmarks Statistik\end{TableNotes}
+\begin{longtable}[c]{@{}rrlr@{}}
+ \caption{Bruttoløn fordelt på køn, 2014}\\
+\toprule\addlinespace
+ & Mænd & Kvinder
+\\\addlinespace
+\midrule\endhead
+Lange videregående uddannelser & 670.133 & 490.782
+\\\addlinespace
+\bottomrule
+  \insertTableNotes
+ \end{longtable}
+\end{ThreePartTable}
+
+
+
+
+## Viridis colors
+
+```{r}
+image(volcano, col = viridis(200))
+```
+
+## Magma colors
+
+```{r}
+image(volcano, col = viridis(200, option = "A"))
+```
+
+
+
+|                           |    OLS    |           |           |           |   Logit   |           |           |           |
+|---------------------------|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|
+|                           |    (1)    |    (2)    |    (3)    |    (4)    |    (1)    |    (2)    |    (3)    |    (4)    |
+| Konstant                  |  0.735*** |  0.828*** |  0.755*** |  0.758*** |  0.238*** |  0.350*** |  0.271*** |  0.274*** |
+|                           |  (0.002)  |  (0.003)  |  (0.003)  |  (0.003)  |  (0.005)  |  (0.010)  |  (0.010)  |  (0.010)  |
+| Indkomst i 100.000 kr.    | -0.035*** | -0.038*** | -0.037*** | -0.036*** | -0.035*** | -0.042*** | -0.040*** | -0.039*** |
+|                           |  (0.000)  |  (0.000)  |  (0.000)  |  (0.000)  |  (0.001)  |  (0.001)  |  (0.001)  |  (0.001)  |
+| Retning: Business/Bus/kom |           | -0.175*** | -0.169*** | -0.156*** |           | -0.174*** | -0.172*** | -0.157*** |
+|                           |           |  (0.002)  |  (0.002)  |  (0.002)  |           |  (0.008)  |  (0.008)  |  (0.008)  |
+| Retning: Hum/Bus/kom      |           | -0.038*** | -0.016*** | -0.013*** |           | -0.042*** |  -0.018*  |  -0.016*  |
+|                           |           |  (0.002)  |  (0.002)  |  (0.002)  |           |  (0.008)  |  (0.008)  |  (0.008)  |
+| Retning: Ing/Bus/kom      |           | -0.279*** | -0.250*** | -0.256*** |           | -0.291*** | -0.264*** | -0.270*** |
+|                           |           |  (0.003)  |  (0.003)  |  (0.003)  |           |  (0.009)  |  (0.009)  |  (0.009)  |
+| Retning: Jur/Bus/kom      |           |  0.100*** |  0.072*** |  0.104*** |           |  0.109*** |  0.077*** |  0.111*** |
+|                           |           |  (0.003)  |  (0.003)  |  (0.003)  |           |  (0.010)  |  (0.010)  |  (0.011)  |
+| Retning: Kom/Bus/kom      |           | -0.080*** | -0.060*** | -0.062*** |           | -0.085*** | -0.065*** | -0.067*** |
+|                           |           |  (0.003)  |  (0.003)  |  (0.002)  |           |  (0.008)  |  (0.009)  |  (0.009)  |
+| Retning: Natur/Bus/kom    |           | -0.056*** | -0.033*** | -0.035*** |           | -0.057*** | -0.034*** | -0.036*** |
+|                           |           |  (0.002)  |  (0.002)  |  (0.002)  |           |  (0.008)  |  (0.008)  |  (0.008)  |
+| Retning: Samf/Bus/kom     |           | -0.017*** | -0.018*** | -0.011*** |           |  -0.016*  |  -0.019*  |   -0.011  |
+|                           |           |  (0.002)  |  (0.002)  |  (0.002)  |           |  (0.008)  |  (0.008)  |  (0.008)  |
+| Retning: Science/Bus/kom  |           | -0.281*** | -0.249*** | -0.249*** |           | -0.295*** | -0.264*** | -0.264*** |
+|                           |           |  (0.003)  |  (0.003)  |  (0.003)  |           |  (0.009)  |  (0.009)  |  (0.009)  |
+| Retning: Sund/Bus/kom     |           |  0.167*** |  0.132*** |  0.145*** |           |  0.184*** |  0.142*** |  0.158*** |
+|                           |           |  (0.003)  |  (0.003)  |  (0.003)  |           |  (0.010)  |  (0.010)  |  (0.010)  |
+| Adgangskvotient           |           |           |  0.010*** |  0.011*** |           |           |  0.011*** |  0.011*** |
+|                           |           |           |  (0.000)  |  (0.000)  |           |           |  (0.000)  |  (0.000)  |
+| Totalt optag              |           |           |           | -0.000*** |           |           |           | -0.000*** |
+|                           |           |           |           |  (0.000)  |           |           |           |  (0.000)  |

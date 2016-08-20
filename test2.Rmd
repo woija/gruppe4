@@ -1,24 +1,122 @@
 ---
-title: "Opgave"
-author: "Group4"
-date: "20. august 2016"
+title: "Eksamens projekt"
+header-includes: 
+  - \usepackage{booktabs}
+  - \usepackage{longtable}
+  - \usepackage{floatrow}
+  - \usepackage{caption}
+  - \usepackage{threeparttablex}
+  - \usepackage{tabulary}
+  - \usepackage{tabularx}
+  - \usepackage{dcolumn}
+  -  \usepackage{array}
+  - \floatsetup[table]{capposition=top}
 output: pdf_document
+linestretch: 1.5
+fontsize: 11pt
+geometry: margin=1in
+
 ---
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+```{r include = FALSE}
+require(viridis)
+require(pander)
+require(stargazer)
+require(dplyr)
+require(rio)
+require(splitstackshape)
+require(tonymisc)
+require(memisc)
+require(mtable)
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-## Viridis colors
-
-```{r}
-summary(cars)
 ```
 
-You can also embed plots, for example:
+```{r echo = FALSE}
 
-```{r, echo=FALSE}
-plot(cars)
+setwd("/Users/simonharmat/Dropbox/Studie/Data_science/Gruppe4" ) ## Skriv stien
+
+data <- import("optagelse3.csv") # l??ser csv-filen 
+lon <- import("londata.csv") # l??ser csv-filen
+
+data <- data %>%
+  mutate(Kvotient = as.numeric(gsub(",",".",data$Kvotient))) %>%
+  filter(!is.na(AngMaend) | !is.na(AngKvinder) ) 
+
+data.1 <- data %>%
+  mutate(OptMK = round(OptMaend / OptKvinder,2),
+         TotalOpt = OptMaend + OptKvinder,
+         TotalAng =AngMaend + AngKvinder,
+         AngMK = round(AngMaend / AngKvinder,2),  
+        KvindeAndOpt = round(OptKvinder / TotalOpt, 2),
+                   KvindeAndAng = round(AngKvinder / TotalAng, 2)) %>%
+  arrange(-TotalOpt, - AngMK, -OptMK)
+
+data.2 <- data.1 %>% left_join(lon, by = "Placering") %>%
+  mutate(GnsIndkomstHT = GnsIndkomst/100000)
+
+#Expander per frequency i stedet for at vaegte - logit kan ikke regne vaegtede Marginal Effects
+data.3 <- expandRows(data.2, "TotalOpt") %>%
+  mutate(TotalOpt = OptMaend + OptKvinder)
+
+
+#Linear Probability Model
+#Linear Probability Model, Model 1
+model1 <- lm(KvindeAndOpt ~ GnsIndkomstHT, data = data.3)
+robust1 <- coeftest(model1, vcov = vcovHC(model1, "HC1"))    # robust; HC1 (Stata default)
+
+#Linear Probability Model, Model 2
+model2 <- lm(KvindeAndOpt ~ GnsIndkomstHT + Retning, data = data.3)
+coeftest(model2, vcov = vcovHC(model2, "HC1"))    # robust; HC1 (Stata default)
+
+
+#Linear Probability Model, Model 3
+model3 <- lm(KvindeAndOpt ~ GnsIndkomstHT + Retning + Kvotient, data = data.3)
+coeftest(model3, vcov = vcovHC(model3, "HC1"))    # robust; HC1 (Stata default)
+
+#Linear Probability Model, Model 4
+model4 <- lm(KvindeAndOpt ~ GnsIndkomstHT + Retning + Kvotient + TotalOpt, data = data.3)
+coeftest(model4, vcov = vcovHC(model4, "HC1"))    # robust; HC1 (Stata default)
+
+
+
+#LOGIT
+#Estimerer logit marginal effects for model 1
+modell1<-glm(KvindeAndOpt ~ GnsIndkomstHT, data = data.3, family=binomial(link=logit), x=TRUE)
+logit1 <- mfx_me(modell1) ## Create "mfx" object to trick mtable()
+
+#Estimerer logit marginal effects for model 2
+modell2<-glm(KvindeAndOpt ~ GnsIndkomstHT + Retning, data = data.3, family=binomial(link=logit), x=TRUE)
+logit2 <- mfx_me(modell2) ## Create "mfx" object to trick mtable()
+
+#Estimerer logit marginal effects for model 3
+modell3<-glm(KvindeAndOpt ~ GnsIndkomstHT + Retning + Kvotient, data = data.3, family=binomial(link=logit), x=TRUE)
+logit3 <- mfx_me(modell3) ## Create "mfx" object to trick mtable()
+
+#Estimerer logit marginal effects for model 4
+modell4<-glm(KvindeAndOpt ~ GnsIndkomstHT + Retning + Kvotient + TotalOpt, data = data.3, family=binomial(link=logit), x=TRUE)
+logit4 <- mfx_me(modell4) ## Create "mfx" object to trick mtable()
+
+OLS<- mtable("(1)"=model1, "(2)"=model2, "(3)"=model3, "(4)"=model4, summary.stats="N")
+Logit<- mtable("(1)"=logit1,"(2)"=logit2,"(3)"=logit3,"(4)"=logit4, summary.stats="N") ## produces a table with nice output
+c(OLS,Logit) # not that this makes sense, but ...
+Table <- c("OLS"=OLS,
+  "Logit"=Logit)
+
+
+Table <- relabel(Table,
+                      "(Intercept)" = "Konstant",
+                      GnsIndkomstHT = "Indkomst i 100.000 kr.",
+                      TotalOpt = "Totalt optag",
+                      Kvotient = "Adgangskvotient")
+
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Investeringer i human kapital sker med forventninger til afkast i arbejdsmarkedet (Becker 1964). Grundet direkte samt indirekte diskrimination, i.e. lønforskelle, kønnene imellem, er kønnenes traditionelle specialisering, mænd i lønnet arbejde og kvinder i hjemmet, fremhævet som økonomisk optimal (Becker 1991; Becker 1985). Med forventning om denne kønsspecialisering forventes det yderligere, at kvinder investerer mindre i human kapital, i.e. løndiskrimination er cirkulær og selvforstærkende fra et human kapitalsynspunkt (Blackburn et al. 2002). På trods af den forudsete cirkularitet, er der gennem de seneste årtier sket dramatiske kønsforandringer i human kapital investeringer: kvinder udgør nu majoriteten af studerende på længere videregående uddannelser (Kilde). Igen, fra et human kapital perspektiv burde kvinders øgede investeringer i human kapital betyde mindre lønforskelle mellem kvinder og mænd. Markante lønforskelle kønnene imellem er dog fortsat observeret, endda også imellem kvinder og mænd med længerevarende videregående uddannelser, hvor mænd i 2014 havde en bruttoindkomst 36,54 % højere end kvinder (Danmarks Statistik - Kilde). 
+
+
+
+```{r, results = "asis", echo = FALSE}
+stargazer::stargazer(OLS, header = FALSE,
+                     no.space = TRUE)
+```
