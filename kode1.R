@@ -50,12 +50,22 @@ df.rmse %>%
 
 data3 %>% summarise(round(mean(KvindeAndOpt), 3))
 
-my_model = function(pol, data = data3){ lm(KvindeAndOpt ~ poly(GnsIndT, pol), data = data)
+my_model = function(num, data = data3){ 
+  if (num == 1) { 
+    glm(KvindeAndOpt ~ GnsIndkomst, family=binomial(link=logit), data = data,weights =TotalOpt, x=TRUE)
+  } else if (num == 2) {
+    glm(KvindeAndOpt ~ GnsIndkomst + Retning, family=binomial(link=logit), data = data,weights =TotalOpt, x=TRUE)
+  } else if (num == 3) {
+    glm(KvindeAndOpt ~ GnsIndkomst+ Retning + Kvotient, family=binomial(link=logit), data = data3,weights =TotalOpt, x=TRUE)
+  } else 
+    glm(KvindeAndOpt ~ GnsIndkomst +TotalOpt + Retning + Kvotient, family=binomial(link=logit), data = data3,weights =TotalOpt, x=TRUE)
 }
 
-model.1 <- my_model(pol = 1)
 
-summary(model.1)
+
+model.1 <- my_model(pol = 1)
+models <- data.frame(mod1, mod2, mod3, mod4)
+summary(mod1)
 
 summary(lm(KvindeAndOpt ~ poly(GnsIndT,1), data = data3))
 
@@ -67,10 +77,10 @@ add_pred = function(mod, data = data3){
   data %>% add_predictions(mod, var = "pred")
 }
 
-df.1 = add_pred(model.1)
+df.1 = add_pred(mod1)
 
-models = 1:9 %>%
-  map(my_model) %>% map_df(add_pred, .id = "poly")
+models = 1:4 %>%
+  map(my_model) %>% map_df(add_pred, .id = "Model")
 
 p = ggplot(data = models,
            aes(GnsIndT, pred)) +
@@ -92,7 +102,7 @@ p = ggplot(data = models,
 
 
 models.rmse = models %>% mutate(error = KvindeAndOpt - pred,
-                                sq.error = error^2) %>% group_by(poly) %>%
+                                sq.error = error^2) %>% group_by(Model) %>%
   summarise(
     mse = mean(sq.error), rmse = sqrt(mse)
   ) %>% arrange(rmse)
