@@ -144,25 +144,154 @@ p + geom_point() +
   labs(x = "Degree", y = "RMSE") +
   scale_x_continuous(breaks = 1:11)
 
+dim(data3)[1]
 
+trainDTM <- data3[sample(nrow(data3), dim(data3)[1]/2), ]
 
-
+testDTM <- anti_join(data3,trainDTM, by = c("Aar" = "Aar", "OptNr" = "OptNr"))
 
 trainDTM <- data3 %>%
-  filter(Aar != '2016')
+  filter( Aar == '2013' )
 
 testDTM <- data3 %>%
-  filter(Aar == '2016')
+  filter(Aar == '2014'  | Aar == '2015' | Aar == '2016')
 
 library("rpart.plot")
 library("rpart")
-set.seed(1)
-model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM )
+library("purrr")
+library("tidyr")
+library("ggplot2")
+
+300 ser godt ud 
+
+
+
+
+set.seed(300)
+trainDTM <- data3[sample(nrow(data3), dim(data3)[1]/2), ]
+testDTM <- anti_join(data3,trainDTM, by = c("Aar" = "Aar", "OptNr" = "OptNr"))
+
+model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM, cp=10^(-6) )
+cptablenodes <- model$cptable[1:12, ]
+nodes <- cptablenodes[,2]
+treenodes = function(nodes){ prune(model, model$cptable[model$cptable[, 2] == nodes, 1])
+}
+add.pred.train = function(treenodes, data = trainDTM){
+  data %>% predict(treenodes,. )
+}
+add.pred.test = function(treenodes, data = testDTM){
+  data %>% predict(treenodes,. )
+}
+models.train = nodes %>%
+  map(treenodes) %>% map_df(add.pred.train)
+
+models.test = nodes %>%
+  map(treenodes) %>% map_df(add.pred.test)
+
+models.train.mse = colMeans((models.train-trainDTM$KvindeAndOpt)**2)
+models.test.mse = colMeans((models.test-testDTM$KvindeAndOpt)**2)
+
+models.train.rmse = sqrt(models.train.mse)
+models.test.rmse = sqrt(models.test.mse)
+
+
+rmse <- data.frame(cbind(nodes, models.train.rmse, models.test.rmse))
+
+
+rmse.graf <- rmse %>% gather(key = rmse, value = frequency, -nodes )
+
+ggplot(rmse.graf, aes(x=nodes, y =frequency, group = rmse )) + geom_line(aes(colour=rmse)) + geom_point(aes(colour=rmse))
+
+model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM)
+rpart.plot(model)
+p = ggplot(rmse, aes(nodes)) + geom_line(aes(y = models.train.rmse, colour = "var0")) 
++ geom_line(aes(y = models.test.rmse, colour = "var0"))
+
+p = ggplot(rmse, 
+           aes(x = degree, y = value,
+               color = var))
+p + geom_point() +
+  geom_line() +
+  scale_color_viridis(discrete = TRUE,
+                      name = NULL,
+                      labels = c("RMSE (test)",
+                                 "RMSE (train)")) +
+  theme(legend.position = "bottom") +
+  labs(x = "Degree", y = "RMSE") +
+  scale_x_continuous(breaks = 1:11)
+
 KvindeAndOpt = predict(model, newdata = testDTM)
 
-rpart.plot(model)
 
-sqrt(mean(testDTM$KvindeAndOpt-KvindeAndOpt)^2)
+names(model)
+
+
+
+ 
+
+nodes + 1
+
+for (i in nodes) {
+  cp.i = which(model$cptable[, 2] == i)
+  }
+
+
+
+
+
+
+
+
+
+
+models = models**2
+
+models.mse = colMeans(models)
+
+models.rmse = sqrt(models.mse)
+
+names(models) <- nodes
+
+cbind(nodes, models.mse)
+models.rmse <- models %>%
+  mutate_each()
+
+
+sqrt(mean((models.rmse[,1])^2))
+ 
+models.rmse <- mututa()
+
+test <- as.vector(models[,2])
+
+dim(models[,2])
+length(trainDTM$KvindeAndOpt)
+treenodes.0 = treenodes(nodes = 0)
+
+model$cptable[dim(model$cptable)[1] - 9:0, ]
+
+
+cp8 = which(model$cptable[, 2] == 8)
+cp12 = which(model$cptable[, 2] == 12)
+model8 = prune(model, model$cptable[cp8, 1])
+model12 = prune(model, model$cptable[cp12, 1])
+print(model8)
+summary(model8)
+rpart.plot(treenodes.0)
+KvindeAndOpt = predict(model8, newdata = trainDTM)
+KvindeAndOpt = predict(model8, newdata = testDTM)
+KvindeAndOpt = predict(model12, newdata = testDTM)
+
+plotcp(model)
+printcp(model)
+sqrt(mean(trainDTM$KvindeAndOpt-KvindeAndOpt)^2)
+
+
+which.min(model$cptable[, 4])
+
+cpstat = dim(trainDTM)[1] * model$cptable[, 3] + 2 * (model$cptable[, 2] + 1)
+
+round(model$cptable[which.min(cpstat), ], 3)
+
 
 model.1
 library("ISLR")
