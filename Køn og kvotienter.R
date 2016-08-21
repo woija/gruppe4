@@ -45,7 +45,7 @@ Uni.4gather = Uni.4 %>%
          value = frequency,
          -Kvotient, - OptNr)
 
-ggplot(data=Uni.4gather, aes(x=reorder(Kvotient, Køn), y=frequency, fill=Køn)) +
+l = ggplot(data=Uni.4gather, aes(x=reorder(Kvotient, Køn), y=frequency, fill=Køn)) +
   geom_bar(stat="identity") +
   coord_flip() + ylab("Total") + xlab("") +
 scale_x_discrete(breaks=c("10.825", "10.85", "10.975", "11", "11.05", "11.15", "11.375", "11.675", "11.95", "12.125"), 
@@ -53,7 +53,7 @@ scale_x_discrete(breaks=c("10.825", "10.85", "10.975", "11", "11.05", "11.15", "
                           "Erhvervsøkonomi Projektledelse, CBS, 11.05", "Medicin, KU, 11.15 ", "Psykologi, KU, 11.38", "International Business and Politics, CBS, 11.68", 
                           "Cand.Scient u.n.a. Naturvidenskab , 11.95", "International Business, CBS, 12.13")) +
   ggtitle("Top 10 gennemsnitlig højest kvotient og ansøger fordelt på køn") + 
-  scale_fill_brewer(palette = "Set1")
+  scale_fill_brewer(palette = "Dark2")
 
 
 

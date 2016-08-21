@@ -6,9 +6,9 @@ library(gridExtra)
 library(tidyr)
 library(ggplot2)
 library(magrittr)
-library(plyr)
 
 
+?gather
 ## Load data
 
 data <- import("optagelse3.csv") # l??ser csv-filen 
@@ -30,8 +30,7 @@ data.2 <- data.1 %>% left_join(lon, by = "Placering")
 
 data3 <-  data.2 %>%
   filter(!is.na(GnsIndkomst)) %>%
-  mutate(GnsIndT = GnsIndkomst/100000
-  )
+  mutate(GnsIndT = GnsIndkomst/100000)
 
 #Plot af køn på institutioner 
 
@@ -169,47 +168,6 @@ Kvinder <- ggplot(data=Uni.6, aes(x=reorder(OptNr, Kvinder), y= Kvinder)) + geom
 
 grid.arrange(Mænd, Kvinder, ncol=2)
 
-
-##NYT:
-
-#udregner vaegtede, forventede lonninger per kon og aar
-aarm <- ddply(data3, .(Aar),function(x) data.frame(Kvinder=weighted.mean(x$GnsIndkomst, x$OptKvinder, na.rm = TRUE)))
-aark <- ddply(data3, .(Aar),function(x) data.frame(Mænd=weighted.mean(x$GnsIndkomst, x$OptMaend, na.rm = TRUE)))
-gnsaar <- aark %>% left_join(aarm, by = "Aar")
-gnsaar[4,3]=weighted.mean(data3$GnsIndkomst, data3$OptKvinder, na.rm = TRUE)
-gnsaar[4,2]=weighted.mean(data3$GnsIndkomst, data3$OptMaend, na.rm = TRUE)
-
-gnsaar.gather = gnsaar %>%
-  gather(key = Køn, 
-         value = frequency,
-         -Aar)
-
-ggplot(data=gnsaar.gather, aes(x=Aar, y=frequency, group=Køn)) +
-  geom_line(aes(colour=Køn)) + geom_point(aes(colour=Køn)) +
-  ylab("Forventet løn") + xlab("") +
-  scale_color_manual(values=c("#1B9E77", "#D95F02")) + 
-  theme_minimal() + theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7), axis.text.x = element_text(size=7))
-
-
-#udregner vaegtede, forventede lonninger per kon og studieretning
-retningm <- ddply(data3, .(Retning),function(x) data.frame(Kvinder=weighted.mean(x$GnsIndkomst, x$OptKvinder, na.rm = TRUE)))
-retningk <- ddply(data3, .(Retning),function(x) data.frame(Maend=weighted.mean(x$GnsIndkomst, x$OptMaend, na.rm = TRUE)))
-gnsretning <- retningk %>% left_join(retningm, by = "Retning")
-gnsaar[5,1]="I alt"
-gnsretning[10,3]=weighted.mean(data3$GnsIndkomst, data3$OptKvinder, na.rm = TRUE)
-gnsretning[10,2]=weighted.mean(data3$GnsIndkomst, data3$OptMaend, na.rm = TRUE)
-gnsretning$Forskel <- gnsretning$Maend - gnsretning$Kvinder 
-
-
-gnsretning.gather = gnsretning %>%
-  gather(key = Køn, 
-         value = frequency,
-         -Retning, -Forskel)
-
-ggplot(data=gnsretning.gather, aes(x=reorder(Retning, Forskel), y=Forskel)) +
-  geom_bar(stat="identity", fill = "#7570B3") +
-  coord_flip() + ylab("Forskel i forventede løn") + xlab("") + 
-  theme_minimal() +theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7), axis.text.x = element_text(size=7))
 
 
 
