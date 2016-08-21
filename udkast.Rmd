@@ -20,27 +20,24 @@ geometry: margin=1in
 
 ```{r include = FALSE}
 library(viridis)
-#library(pander)
-#library(stargazer)
+library(pander)
+library(stargazer)
 library(dplyr)
 library(rio)
-#library(splitstackshape)
-#library(tonymisc)
-#library(memisc)
+library(splitstackshape)
+library(tonymisc)
+library(memisc)
 library(grid)
 library(gridExtra)
 library(tidyr)
 library(ggplot2)
 library(magrittr)
-<<<<<<< HEAD
 library(rpart.plot)
 library(rpart)
 library(purrr)
-=======
-#library(rpart.plot)
-#library(rpart)
-library(plyr)
->>>>>>> origin/master
+library(rpart.plot)
+library(rpart)
+
 
 ```
 
@@ -318,7 +315,6 @@ Hver knude viser
 
 ```{r, echo=FALSE, warning=FALSE }
 # Statistisk læring
-<<<<<<< HEAD
 set.seed(300)
 trainDTM <- data3[sample(nrow(data3), dim(data3)[1]/2), ]
 testDTM <- anti_join(data3,trainDTM, by = c("Aar" = "Aar", "OptNr" = "OptNr"))
@@ -336,28 +332,16 @@ add.pred.test = function(treenodes, data = testDTM){
 }
 models.train = nodes %>%
   map(treenodes) %>% map_df(add.pred.train)
-=======
-#trainDTM <- data3 %>%
- # filter(Aar != '2016')
-
-#testDTM <- data3 %>%
- # filter(Aar == '2016')
->>>>>>> origin/master
 
 models.test = nodes %>%
   map(treenodes) %>% map_df(add.pred.test)
 
-<<<<<<< HEAD
 models.train.mse = colMeans((models.train-trainDTM$KvindeAndOpt)**2)
 models.test.mse = colMeans((models.test-testDTM$KvindeAndOpt)**2)
-=======
-#model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM )
->>>>>>> origin/master
 
 models.train.rmse = sqrt(models.train.mse)
 models.test.rmse = sqrt(models.test.mse)
 
-<<<<<<< HEAD
 
 rmse <- data.frame(cbind(nodes, models.train.rmse, models.test.rmse))
 
@@ -368,9 +352,4 @@ ggplot(rmse.graf, aes(x=nodes, y =frequency, group = rmse )) + geom_line(aes(col
 
 model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM)
 rpart.plot(model)
-=======
-#KvindeAndOpt = predict(model, newdata = testDTM)
-
-#rpart.plot(model)
->>>>>>> origin/master
 ```
