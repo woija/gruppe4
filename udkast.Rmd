@@ -1,0 +1,299 @@
+---
+title: "Eksamens projekt"
+header-includes: 
+  - \usepackage{booktabs}
+  - \usepackage{longtable}
+  - \usepackage{floatrow}
+  - \usepackage{caption}
+  - \usepackage{threeparttablex}
+  - \usepackage{tabulary}
+  - \usepackage{tabularx}
+  - \usepackage{dcolumn}
+  - \floatsetup[table]{capposition=top}
+output: pdf_document
+linestretch: 1.5
+fontsize: 11pt
+geometry: margin=1in
+
+
+---
+
+```{r include = FALSE}
+library(viridis)
+library(pander)
+library(stargazer)
+library(dplyr)
+library(rio)
+library(splitstackshape)
+library(tonymisc)
+library(memisc)
+library(grid)
+library(gridExtra)
+library(tidyr)
+library(ggplot2)
+library(magrittr)
+library(rpart.plot)
+library(rpart)
+
+```
+
+```{r include = FALSE}
+setwd("/Users/simonharmat/Dropbox/Studie/Data_science/Gruppe4" ) ## Skriv stien
+
+data <- import("optagelse3.csv") # l??ser csv-filen 
+lon <- import("londata.csv") # l??ser csv-filen
+
+data <- data %>%
+  mutate(Kvotient = as.numeric(gsub(",",".",data$Kvotient))) %>%
+  filter(!is.na(AngMaend) | !is.na(AngKvinder) ) 
+
+data.1 <- data %>%
+  mutate(OptMK = round(OptMaend / OptKvinder,2),
+         TotalOpt = OptMaend + OptKvinder,
+         TotalAng =AngMaend + AngKvinder,
+         AngMK = round(AngMaend / AngKvinder,2),  
+        KvindeAndOpt = round(OptKvinder / TotalOpt, 2),
+                   KvindeAndAng = round(AngKvinder / TotalAng, 2))
+
+data.2 <- data.1 %>% left_join(lon, by = "Placering") 
+
+data3 <-  data.2 %>%
+  filter(!is.na(GnsIndkomst)) %>%
+  mutate(GnsIndT = GnsIndkomst/100000
+  )
+
+
+```
+# My Table of content
+- [Section 1](#id-section1)
+- [Section 2](#id-section2)
+
+
+
+\newpage
+
+<div id='id-section1'/>
+## Section 1
+
+Investeringer i human kapital sker med forventninger til afkast i arbejdsmarkedet (Becker 1964). Grundet direkte samt indirekte diskrimination, i.e. lønforskelle, kønnene imellem, er kønnenes traditionelle specialisering, mænd i lønnet arbejde og kvinder i hjemmet, fremhævet som økonomisk optimal (Becker 1991; Becker 1985). Med forventning om denne kønsspecialisering forventes det yderligere, at kvinder investerer mindre i human kapital, i.e. løndiskrimination er cirkulær og selvforstærkende fra et human kapitalsynspunkt (Blackburn et al. 2002). På trods af den forudsete cirkularitet, er der gennem de seneste årtier sket dramatiske kønsforandringer i human kapital investeringer: kvinder udgør nu majoriteten af studerende på længere videregående uddannelser (Kilde). Igen, fra et human kapital perspektiv burde kvinders øgede investeringer i human kapital betyde mindre lønforskelle mellem kvinder og mænd. Markante lønforskelle kønnene imellem er dog fortsat observeret, endda også imellem kvinder og mænd med længerevarende videregående uddannelser, hvor mænd i 2014 havde en bruttoindkomst 36,54 % højere end kvinder, jf. tabellen nedenfor.
+
+\begin{ThreePartTable}
+ \begin{TableNotes}[para,flushleft]Kilde: Danmarks Statistik\end{TableNotes}
+\begin{longtable}[c]{@{}rrlr@{}}
+ \caption{Bruttoløn fordelt på køn, 2014}\\
+\toprule\addlinespace
+ & Mænd & Kvinder
+\\\addlinespace
+\midrule\endhead
+Lange videregående uddannelser & 670.133 & 490.782
+\\\addlinespace
+\bottomrule
+  \insertTableNotes
+ \end{longtable}
+\end{ThreePartTable}
+
+En mulig forklaring for disse lønforskelle er divergerende afkast på investeringer i forskellige længerevarende uddannelser. Uddannelsesvalg er præget af segregering: kun få videregående uddannelser har et optag af studerende med lige andele af mænd af kvinder. Kønsforskelle i uddannelsesvalg kunne skyldes divergerende præferencer kønnene imellem (Hakim 2000),  men ‘…individual preferences (and thus choices) are always socially embedded and constrained, and may be shaped by unjust background conditions, as well as by habit and engrained normative assumptions.’ (Crompton 2007: 234). Socialt determinerede kønspræferencer i forhold til uddannelse har potentiale til at cementere lønforskelle kønnene imellem på trods af samme resulterende niveau af human kapital. Derfor bør det undersøges, hvorvidt der foreligger en tendens blandt kvinder til at søge mod længerevarende videregående uddannelser, der leder til relativt lavere lønninger, og en tendens blandt mænd til at søge mod længerevarende videregående uddannelser, der resulterer i relativt højere lønninger. Hvis uddannelser med overrepræsentation af kvinder generelt leder til lavere lønninger, kan det både skyldes kønsforskelle i socialt afgrænsede præferencer, i.e. kvinder søger aktivt mod disse lavere lønnet uddannelser, eller lønforskelle opstået grundet feminisering af bestemte faggrupper. Øget feminisering af faggrupper resulterer ofte i lavere lønninger for disse grupper, grundet for eksempel diskrimination eller over-crowding (Rubery 2015; Bergmann 1974).
+
+TJEK: Kønsopdeling indenfor specifikke fagområder, e.g. tekniske uddannelser: søger mænd også her mod bedre betalte uddannelser?
+
+Med kønsopdelt data for ansøgerantal samt optagne studerende på længere videregående uddannelse er det muligt at bestemme udstrækningen af kønssegregering i uddannelsesvalg. Ydermere, gør løndata for færdige kandidater det muligt at bestemme, hvorvidt der forefindes en sammenhæng mellem kønssegregering blandt optagne studerende og forventet løn efter afsluttet uddannelse. Sluttelig analyseres det, hvorvidt forventet lønniveau kan forudsige kønsfordelingen blandt ansøgere på længere videregående uddannelser.
+
+<div id='id-section2'/>
+## Data, metode og etik
+Data er let offentligt tilgængelig og ligger åbnet på UFM's hjemmeside, derved har der ikke været rettighedsproblemer. Dog kan det problematiseres, at nogle uddannelser har meget få optagne, således at man vil kunne finde frem til de studerendes identitet vha. universiteternes biblioteker med BA opgaver eller muligvist med  LinkedIn
+
+Metode
+Skrive her om hvilke datasæt vi har hentet og hvilke kilder:
+For hvert år har vi hentet: 
+1) ansøgninger fordelt på alle videregående uddannelser 
+2) optagne fordelt på alle videregående uddannelser
+3) Adgangskvotienter for alle videregående uddannelser
+4*3 
+
+Vi har hentet CEPOS undersøgelsen for bruttoløn opgjort efter uddannelse.
+
+Dernæst gennemgik vi et datasæt kvalitativt henholdvis, at finde matchet mellem BA og færdig uddannelse og give hver uddannelse en retningskategori.
+
+Vi joinerne alle uddannelserne sammen på deres unikke udannelsesnr. Dernæst joinet lønnen sammen fra CEPOS undersøgelsen ved benytte placeringsnr som nøgle.  
+
+ 
+
+
+
+###Gennemsnitlig antal ansøgere fordelt på køn ved danske uddannelse institutioner, 2013-16
+
+```{r, echo=FALSE, warning=FALSE, fig.width=7, fig.height=4}
+#Plot af køn på institutioner 
+Uni.2 = data3 %>%
+  group_by(InstNavn) %>%
+  summarise(Mænd =sum(round(AngMaend/4,0), na.rm =TRUE), Kvinder =sum(round(AngKvinder/4,0), na.rm=TRUE)) 
+
+Uni.2gather = Uni.2 %>%
+  gather(key = Køn, 
+         value = frequency,
+          -InstNavn)
+
+ggplot(data=Uni.2gather, aes(x=reorder(InstNavn, frequency), y=frequency, fill=Køn)) +
+  geom_bar(stat="identity") +
+  coord_flip() + ylab("Antal") + xlab("") +
+  scale_fill_brewer(palette = "Dark2") +  theme_minimal() + theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7), axis.text.x = element_text(size=7))
+```
+
+### Gennemsnitlige antal ansøgere fordelt på køn for top 10 uddannelser målt på bruttoløn, kr., 2013-16
+
+```{r, echo=FALSE, warning=FALSE, fig.width=7, fig.height=4 }
+#Plot af køn på institutioner 
+Uni.3 = data3 %>%
+  group_by(GnsIndkomst, Uddannelse) %>%
+  summarise(Mænd =sum(round(AngMaend/4,0), na.rm =TRUE), Kvinder =sum(round(AngKvinder/4,0), na.rm=TRUE)) 
+
+
+Uni.3 = Uni.3 %>%
+  arrange(desc(GnsIndkomst)) %>%
+  head(n=10)
+
+Uni.3gather = Uni.3 %>%
+  gather(key = Køn, 
+         value = frequency,
+         -GnsIndkomst, - Uddannelse)
+
+
+ggplot(data=Uni.3gather, aes(x=reorder(GnsIndkomst, Uddannelse), y=frequency, fill=Køn)) +
+  geom_bar(stat="identity") +
+  coord_flip() + ylab("Antal") + xlab("") +
+scale_x_discrete(breaks=c("801156", "805757", "809791", "847594", "849602", "853619", "909823", "926244", "1052373", "1180098"),
+                 labels=c("Civil.ing.kemi, 801.156", "Civil.ing.elektro, 805.757", "Cand.oecon, 809.791", "Erhvervsøkonomi mat, 847.594", 
+                          "Jura, 849.602", "Civil.ing.maskin, 853.619", "Matematikøkonomi, 909.823", "Læge , 926.244", 
+                          "Cand.polit, 1.052.372", "Forsikringsmatematik, 1.180.098")) + 
+   scale_fill_brewer(palette = "Dark2") +  theme_minimal() + theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7), axis.text.x = element_text(size=7))
+```
+
+###Top 10 gennemsnitlig højest kvotient og ansøger fordelt på køn
+
+```{r, echo=FALSE, warning=FALSE, fig.width=7, fig.height=4 }
+#Plot af køn og kvotienter 
+Uni.4 = data3 %>%
+  group_by(OptNr) %>%
+  summarise(Mænd =sum(round(AngMaend/4,0), na.rm =TRUE), Kvinder =sum(round(AngKvinder/4,0), na.rm=TRUE), Kvotient=mean(Kvotient)) 
+
+Uni.4 = Uni.4 %>%
+  arrange(desc(Kvotient)) %>%
+  head(n=10)
+
+
+Uni.4gather = Uni.4 %>%
+  gather(key = Køn, 
+         value = frequency,
+         -Kvotient, - OptNr)
+
+ggplot(data=Uni.4gather, aes(x=reorder(Kvotient, Køn), y=frequency, fill=Køn)) +
+  geom_bar(stat="identity") +
+  coord_flip() + ylab("Antal") + xlab("") +
+scale_x_discrete(breaks=c("10.825", "10.85", "10.975", "11", "11.05", "11.15", "11.375", "11.675", "11.95", "12.125"), 
+                 labels=c("Statskundskab, KU, 10.83", "Medicin, AU, 10.85", "Antropologi, KU, 10.98", "Internation Shipping and Trade, CBS, 11.00", 
+                          "Erhvervsøkonomi Projektledelse, CBS, 11.05", "Medicin, KU, 11.15 ", "Psykologi, KU, 11.38", "International Business and Politics, CBS, 11.68", 
+                          "Molekylærbiomedicin, KU, 11.95", "International Business, CBS, 12.13")) + 
+    scale_fill_brewer(palette = "Dark2") +  theme_minimal() + theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7), axis.text.x = element_text(size=7))
+```
+
+###Top 10 gennemsnitlig mest søgte uddannelse for mænd, 2013-2016
+```{r, echo=FALSE, warning=FALSE, fig.width=15, fig.height=8 }
+#Top 10 for mænd
+Uni.5 = data3 %>%
+  group_by(OptNr, Uddannelse) %>%
+  summarise(Mænd =sum(round(AngMaend/4,0), na.rm =TRUE))
+
+Uni.5 = Uni.5 %>%
+  arrange(desc(Mænd)) %>%
+  head(n=10)
+
+Uni.5$OptNr = factor(Uni.5$OptNr)
+
+Maend <- ggplot(data=Uni.5, aes(x=reorder(OptNr, Mænd), y= Mænd)) +  geom_bar(stat="identity", , fill = "#D95F02") +
+  #geom_point() +
+  coord_flip() + ylab("Antal") + xlab("") + 
+  scale_x_discrete(breaks=c("13045", "22415", "30010", "17115", "22010", "13060", "22610", "10110", "10410", "13010"),
+                   labels=c("HA Projektledelse, CBS", "Jura, AU", "Arkitekt", "Læge, SDU", "Læge, AU", 
+                            "International Business, CBS", "HA, AU", "Læge, KU", "Jura, KU", "HA, CBS")) +  theme_minimal() + theme(axis.title=element_text(size=20), axis.text.y = element_text(size=15), axis.text.x = element_text(size=20))
+
+
+#Top 10 for kvinder
+Uni.6 = data3 %>%
+  group_by(OptNr, Uddannelse) %>%
+  summarise (Kvinder =sum(round(AngKvinder/4,0), na.rm=TRUE))
+
+Uni.6 = Uni.6 %>%
+  arrange(desc(Kvinder)) %>%
+  head(n=10)
+
+Uni.6$OptNr = factor(Uni.6$OptNr)
+
+Kvinder <- ggplot(data=Uni.6, aes(x=reorder(OptNr, Kvinder), y= Kvinder)) + geom_bar(stat="identity", fill = "#1B9E77") +
+  coord_flip() + ylab("Antal") + xlab("") +
+scale_x_discrete(breaks=c("22415", "16020", "22420", "17115", "10140", "22010", "32010", "10410", "10368", "10110"),
+                 labels=c("Jura, AU", "Human/teologi, RUC", "Psykologi, AU", "Læge, SDU", "Veterinærmedicin, KU", "Læge, AU", 
+                          "Designer Unika Design", "Jura, KU", "Psykologi, KU", "Læge, KU")) +  theme_minimal() + theme(axis.title=element_text(size=20), axis.text.y = element_text(size=15),
+          axis.text.x = element_text(size=20))
+
+grid.arrange(Maend, Kvinder, ncol=2)
+```
+
+\newpage
+</center>
+|Tabel 2: Logit-modeller, marginal effekter| 
+|-------------------------|:---------:|:---------:|:---------:|:---------:|
+| **Model**                |    (1)    |    (2)    |    (3)    |    (4)    |
+| Konstant                |  0.238*** |  0.350*** |  0.271*** |  0.274*** |
+|                         |  (0.005)  |  (0.010)  |  (0.010)  |  (0.010)  |
+| Indkomst i 100.000 kr.  | -0.035*** | -0.042*** | -0.040*** | -0.039*** |
+|                         |  (0.001)  |  (0.001)  |  (0.001)  |  (0.001)  |
+| Business                |           | -0.174*** | -0.172*** | -0.157*** |
+|                         |           |  (0.008)  |  (0.008)  |  (0.008)  |
+| Humaniora               |           | -0.042*** |  -0.018*  |  -0.016*  |
+|                         |           |  (0.008)  |  (0.008)  |  (0.008)  |
+| IngeniĂ¸r               |           | -0.291*** | -0.264*** | -0.270*** |
+|                         |           |  (0.009)  |  (0.009)  |  (0.009)  |
+| Jura                    |           |  0.109*** |  0.077*** |  0.111*** |
+|                         |           |  (0.010)  |  (0.010)  |  (0.011)  |
+| Kommunikation           |           | -0.085*** | -0.065*** | -0.067*** |
+|                         |           |  (0.008)  |  (0.009)  |  (0.009)  |
+| Naturvidenskab          |           | -0.057*** | -0.034*** | -0.036*** |
+|                         |           |  (0.008)  |  (0.008)  |  (0.008)  |
+| Samfundsvidenskab       |           |  -0.016*  |  -0.019*  |   -0.011  |
+|                         |           |  (0.008)  |  (0.008)  |  (0.008)  |
+| Science                 |           | -0.295*** | -0.264*** | -0.264*** |
+|                         |           |  (0.009)  |  (0.009)  |  (0.009)  |
+| Sundhedsvidenskab       |           |  0.184*** |  0.142*** |  0.158*** |
+|                         |           |  (0.010)  |  (0.010)  |  (0.010)  |
+| Adgangskvotient         |           |           |  0.011*** |  0.011*** |
+|                         |           |           |  (0.000)  |  (0.000)  |
+| Totalt optag i hundrede |           |           |           | -0.009*** |
+|                         |           |           |           |  (0.001)  |
+| McFadden R-sq.          |    0.1    |    0.4    |    0.4    |    0.4    |
+| Deviance                |  19854.7  |  12942.2  |  12271.8  |  12206.5  |
+
+</center>
+
+# Beslutningstræer 
+
+Kan bruges deskriptivt og  
+Hver knude viser
+- Den forudsagte andel af kvinder
+- Hvor procent af observationerne det gælder.
+
+```{r, echo=FALSE, warning=FALSE }
+# Statistisk læring
+trainDTM <- data3 %>%
+  filter(Aar != '2016')
+
+testDTM <- data3 %>%
+  filter(Aar == '2016')
+
+
+model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM )
+
+
+KvindeAndOpt = predict(model, newdata = testDTM)
+
+rpart.plot(model)
+```
