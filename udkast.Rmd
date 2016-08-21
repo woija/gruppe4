@@ -20,26 +20,32 @@ geometry: margin=1in
 
 ```{r include = FALSE}
 library(viridis)
-library(pander)
-library(stargazer)
+#library(pander)
+#library(stargazer)
 library(dplyr)
 library(rio)
-library(splitstackshape)
-library(tonymisc)
-library(memisc)
+#library(splitstackshape)
+#library(tonymisc)
+#library(memisc)
 library(grid)
 library(gridExtra)
 library(tidyr)
 library(ggplot2)
 library(magrittr)
+<<<<<<< HEAD
 library(rpart.plot)
 library(rpart)
 library(purrr)
+=======
+#library(rpart.plot)
+#library(rpart)
+library(plyr)
+>>>>>>> origin/master
 
 ```
 
 ```{r include = FALSE}
-setwd("/Users/simonharmat/Dropbox/Studie/Data_science/Gruppe4" ) ## Skriv stien
+#setwd("/Users/simonharmat/Dropbox/Studie/Data_science/Gruppe4" ) ## Skriv stien
 
 data <- import("optagelse3.csv") # l??ser csv-filen 
 lon <- import("londata.csv") # l??ser csv-filen
@@ -121,9 +127,9 @@ Vi joinerne alle uddannelserne sammen på deres unikke udannelsesnr. Dernæst jo
 
 
 
-###Gennemsnitlig antal ansøgere fordelt på køn ved danske uddannelse institutioner, 2013-16
+###Gennemsnitlig antal ansøgere fordelt på køn ved danske uddannelse institutioner og retninger, 2013-16
 
-```{r, echo=FALSE, warning=FALSE, fig.width=7, fig.height=4}
+```{r, echo=FALSE, warning=FALSE, fig.width=15, fig.height=8}
 #Plot af køn på institutioner 
 Uni.2 = data3 %>%
   group_by(InstNavn) %>%
@@ -134,15 +140,39 @@ Uni.2gather = Uni.2 %>%
          value = frequency,
           -InstNavn)
 
-ggplot(data=Uni.2gather, aes(x=reorder(InstNavn, frequency), y=frequency, fill=Køn)) +
+institution = ggplot(data=Uni.2gather, aes(x=reorder(InstNavn, frequency), y=frequency, fill=Køn)) +
   geom_bar(stat="identity") +
-  coord_flip() + ylab("Antal") + xlab("") +
-  scale_fill_brewer(palette = "Dark2") +  theme_minimal() + theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7), axis.text.x = element_text(size=7))
+  coord_flip() + ylab("Antal") + xlab("") + guides(fill=FALSE) +
+  scale_fill_brewer(palette = "Dark2") +  theme_minimal() + theme(axis.title=element_text(size=15), axis.text.y = element_text(size=15),
+                                                                  axis.text.x = element_text(size=15))
+
+
+#Plot af køn og retninger på retninger på uddannelser
+
+Uni.7 = data3 %>%
+  group_by(Retning) %>%
+  summarise(Mænd =sum(round(AngMaend/4,0), na.rm =TRUE), Kvinder =sum(round(AngKvinder/4,0), na.rm=TRUE)) 
+
+Uni.7gather = Uni.7 %>%
+  gather(key = Køn, 
+         value = frequency,
+         -Retning)
+
+retning = ggplot(data=Uni.7gather, aes(x=reorder(Retning, frequency), y=frequency, fill=Køn)) +
+  geom_bar(stat="identity") +
+  coord_flip() + ylab("Antal") + xlab("") + 
+  scale_fill_brewer(palette = "Dark2") +  theme_minimal() + theme(axis.title=element_text(size=15), axis.text.y = element_text(size=15),
+                                                                  axis.text.x = element_text(size=15))
+
+# Samler de to ovenstående plots
+
+grid.arrange(institution, retning, ncol=2)
+
 ```
 
-### Gennemsnitlige antal ansøgere fordelt på køn for top 10 uddannelser målt på bruttoløn, kr., 2013-16
+### Gennemsnitlige antal ansøgere fordelt på køn for top 10 uddannelser målt på bruttoløn, kr. og top 10 gennemsntlig højst kvotient, 2013-16
 
-```{r, echo=FALSE, warning=FALSE, fig.width=7, fig.height=4 }
+```{r, echo=FALSE, warning=FALSE, fig.width=15, fig.height=8 }
 #Plot af køn på institutioner 
 Uni.3 = data3 %>%
   group_by(GnsIndkomst, Uddannelse) %>%
@@ -159,19 +189,17 @@ Uni.3gather = Uni.3 %>%
          -GnsIndkomst, - Uddannelse)
 
 
-ggplot(data=Uni.3gather, aes(x=reorder(GnsIndkomst, Uddannelse), y=frequency, fill=Køn)) +
+indkomst = ggplot(data=Uni.3gather, aes(x=reorder(GnsIndkomst, Uddannelse), y=frequency, fill=Køn)) +
   geom_bar(stat="identity") +
-  coord_flip() + ylab("Antal") + xlab("") +
+  coord_flip() + ylab("Antal") + xlab("") + guides(fill=FALSE) + 
 scale_x_discrete(breaks=c("801156", "805757", "809791", "847594", "849602", "853619", "909823", "926244", "1052373", "1180098"),
                  labels=c("Civil.ing.kemi, 801.156", "Civil.ing.elektro, 805.757", "Cand.oecon, 809.791", "Erhvervsøkonomi mat, 847.594", 
                           "Jura, 849.602", "Civil.ing.maskin, 853.619", "Matematikøkonomi, 909.823", "Læge , 926.244", 
                           "Cand.polit, 1.052.372", "Forsikringsmatematik, 1.180.098")) + 
-   scale_fill_brewer(palette = "Dark2") +  theme_minimal() + theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7), axis.text.x = element_text(size=7))
+   scale_fill_brewer(palette = "Dark2") +  theme_minimal() + theme(axis.title=element_text(size=15), axis.text.y = element_text(size=15), axis.text.x = element_text(size=15))
 ```
 
-###Top 10 gennemsnitlig højest kvotient og ansøger fordelt på køn
-
-```{r, echo=FALSE, warning=FALSE, fig.width=7, fig.height=4 }
+```{r, echo=FALSE, warning=FALSE, fig.width=15, fig.height=8 }
 #Plot af køn og kvotienter 
 Uni.4 = data3 %>%
   group_by(OptNr) %>%
@@ -187,17 +215,21 @@ Uni.4gather = Uni.4 %>%
          value = frequency,
          -Kvotient, - OptNr)
 
-ggplot(data=Uni.4gather, aes(x=reorder(Kvotient, Køn), y=frequency, fill=Køn)) +
+kvotient = ggplot(data=Uni.4gather, aes(x=reorder(Kvotient, Køn), y=frequency, fill=Køn)) +
   geom_bar(stat="identity") +
   coord_flip() + ylab("Antal") + xlab("") +
 scale_x_discrete(breaks=c("10.825", "10.85", "10.975", "11", "11.05", "11.15", "11.375", "11.675", "11.95", "12.125"), 
-                 labels=c("Statskundskab, KU, 10.83", "Medicin, AU, 10.85", "Antropologi, KU, 10.98", "Internation Shipping and Trade, CBS, 11.00", 
-                          "Erhvervsøkonomi Projektledelse, CBS, 11.05", "Medicin, KU, 11.15 ", "Psykologi, KU, 11.38", "International Business and Politics, CBS, 11.68", 
-                          "Molekylærbiomedicin, KU, 11.95", "International Business, CBS, 12.13")) + 
-    scale_fill_brewer(palette = "Dark2") +  theme_minimal() + theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7), axis.text.x = element_text(size=7))
+                 labels=c("Statskundskab, KU, 10.83", "Medicin, AU, 10.85", "Antropologi, KU, 10.98", "Shipping, CBS, 11.00", 
+                          "HA Projektledelse, CBS, 11.05", "Medicin, KU, 11.15 ", "Psykologi, KU, 11.38", "IBP, CBS, 11.68", 
+                          "Molekylærbiomedicin, KU, 11.95", "IB, CBS, 12.13")) + 
+    scale_fill_brewer(palette = "Dark2") +  theme_minimal() + theme(axis.title=element_text(size=15), axis.text.y = element_text(size=15), axis.text.x = element_text(size=15))
+
+#Samler de to ovenstående plots
+
+grid.arrange(indkomst, kvotient, ncol=2)
 ```
 
-###Top 10 gennemsnitlig mest søgte uddannelse for mænd, 2013-2016
+###Top 10 gennemsnitlig mest søgte uddannelse for kønnene, 2013-2016
 ```{r, echo=FALSE, warning=FALSE, fig.width=15, fig.height=8 }
 #Top 10 for mænd
 Uni.5 = data3 %>%
@@ -212,7 +244,7 @@ Uni.5$OptNr = factor(Uni.5$OptNr)
 
 Maend <- ggplot(data=Uni.5, aes(x=reorder(OptNr, Mænd), y= Mænd)) +  geom_bar(stat="identity", , fill = "#D95F02") +
   #geom_point() +
-  coord_flip() + ylab("Antal") + xlab("") + 
+  coord_flip() + ylab("Antal mænd") + xlab("") + 
   scale_x_discrete(breaks=c("13045", "22415", "30010", "17115", "22010", "13060", "22610", "10110", "10410", "13010"),
                    labels=c("HA Projektledelse, CBS", "Jura, AU", "Arkitekt", "Læge, SDU", "Læge, AU", 
                             "International Business, CBS", "HA, AU", "Læge, KU", "Jura, KU", "HA, CBS")) +  theme_minimal() + theme(axis.title=element_text(size=20), axis.text.y = element_text(size=15), axis.text.x = element_text(size=20))
@@ -230,7 +262,7 @@ Uni.6 = Uni.6 %>%
 Uni.6$OptNr = factor(Uni.6$OptNr)
 
 Kvinder <- ggplot(data=Uni.6, aes(x=reorder(OptNr, Kvinder), y= Kvinder)) + geom_bar(stat="identity", fill = "#1B9E77") +
-  coord_flip() + ylab("Antal") + xlab("") +
+  coord_flip() + ylab("Antal kvinder") + xlab("") +
 scale_x_discrete(breaks=c("22415", "16020", "22420", "17115", "10140", "22010", "32010", "10410", "10368", "10110"),
                  labels=c("Jura, AU", "Human/teologi, RUC", "Psykologi, AU", "Læge, SDU", "Veterinærmedicin, KU", "Læge, AU", 
                           "Designer Unika Design", "Jura, KU", "Psykologi, KU", "Læge, KU")) +  theme_minimal() + theme(axis.title=element_text(size=20), axis.text.y = element_text(size=15),
@@ -238,6 +270,8 @@ scale_x_discrete(breaks=c("22415", "16020", "22420", "17115", "10140", "22010", 
 
 grid.arrange(Maend, Kvinder, ncol=2)
 ```
+
+
 
 \newpage
 </center>
@@ -252,7 +286,7 @@ grid.arrange(Maend, Kvinder, ncol=2)
 |                         |           |  (0.008)  |  (0.008)  |  (0.008)  |
 | Humaniora               |           | -0.042*** |  -0.018*  |  -0.016*  |
 |                         |           |  (0.008)  |  (0.008)  |  (0.008)  |
-| IngeniĂ¸r               |           | -0.291*** | -0.264*** | -0.270*** |
+| Ingeniør                |           | -0.291*** | -0.264*** | -0.270*** |
 |                         |           |  (0.009)  |  (0.009)  |  (0.009)  |
 | Jura                    |           |  0.109*** |  0.077*** |  0.111*** |
 |                         |           |  (0.010)  |  (0.010)  |  (0.011)  |
@@ -284,6 +318,7 @@ Hver knude viser
 
 ```{r, echo=FALSE, warning=FALSE }
 # Statistisk læring
+<<<<<<< HEAD
 set.seed(300)
 trainDTM <- data3[sample(nrow(data3), dim(data3)[1]/2), ]
 testDTM <- anti_join(data3,trainDTM, by = c("Aar" = "Aar", "OptNr" = "OptNr"))
@@ -301,16 +336,28 @@ add.pred.test = function(treenodes, data = testDTM){
 }
 models.train = nodes %>%
   map(treenodes) %>% map_df(add.pred.train)
+=======
+#trainDTM <- data3 %>%
+ # filter(Aar != '2016')
+
+#testDTM <- data3 %>%
+ # filter(Aar == '2016')
+>>>>>>> origin/master
 
 models.test = nodes %>%
   map(treenodes) %>% map_df(add.pred.test)
 
+<<<<<<< HEAD
 models.train.mse = colMeans((models.train-trainDTM$KvindeAndOpt)**2)
 models.test.mse = colMeans((models.test-testDTM$KvindeAndOpt)**2)
+=======
+#model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM )
+>>>>>>> origin/master
 
 models.train.rmse = sqrt(models.train.mse)
 models.test.rmse = sqrt(models.test.mse)
 
+<<<<<<< HEAD
 
 rmse <- data.frame(cbind(nodes, models.train.rmse, models.test.rmse))
 
@@ -321,4 +368,9 @@ ggplot(rmse.graf, aes(x=nodes, y =frequency, group = rmse )) + geom_line(aes(col
 
 model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM)
 rpart.plot(model)
+=======
+#KvindeAndOpt = predict(model, newdata = testDTM)
+
+#rpart.plot(model)
+>>>>>>> origin/master
 ```
