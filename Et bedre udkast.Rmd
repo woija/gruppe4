@@ -23,31 +23,16 @@ library(stargazer)
 library(dplyr)
 library(rio)
 library(splitstackshape)
-library(tonymisc)
-library(memisc)
+#library(tonymisc)
+#library(memisc)
 library(grid)
 library(gridExtra)
 library(tidyr)
 library(ggplot2)
 library(magrittr)
-<<<<<<< HEAD
-<<<<<<< HEAD
-#library(rpart.plot)
-#library(rpart)
-=======
-=======
->>>>>>> origin/master
-library(rpart.plot)
 library(rpart)
 library(purrr)
 library(rpart.plot)
-library(rpart)
-
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
-
 ```
 
 ```{r include = FALSE}
@@ -130,10 +115,35 @@ Dernæst gennemgik vi et datasæt kvalitativt henholdvis, at finde matchet melle
 Vi joinerne alle uddannelserne sammen på deres unikke udannelsesnr. Dernæst joinet lønnen sammen fra CEPOS undersøgelsen ved benytte placeringsnr som nøgle.  
 
  
+```{r echo=FALSE, warning=FALSE}
+load("/Users/sabineverning13/Desktop/gruppe4/gnsaar.RData")
+gaar = gnsaar[1:4, 1:3]
+
+```
 
 
 
-###Gennemsnitlig antal ansøgere fordelt på køn ved danske uddannelse institutioner og retninger, 2013-16
+
+\begin{TableNotes}[para,flushleft]\end{TableNotes}
+\begin{longtable}[c]{@{}crrrr@{}}
+\caption{Vægtede, forventede lønninger pr. køn og år, 2013-2016}\\
+\toprule\addlinespace
+ & 2013 & 2014 & 2015 & 2016 
+\\\addlinespace
+\midrule\endhead
+Mænd & 612.272 & 614.439 & 617.768 & 619.243 
+\\
+Kvinder & 567.313 & 568.562 & 572.960 & 572.933 
+\\
+Forskel & 44.959 & 45.877 & 44.809 & 46.310 
+\\\addlinespace
+\bottomrule
+\insertTableNotes
+\end{longtable}
+
+
+
+###Figur 1: Gennemsnitlig antal ansøgere fordelt på køn ved danske uddannelse institutioner og retninger, 2013-16
 
 ```{r, echo=FALSE, warning=FALSE, fig.width=15, fig.height=8}
 
@@ -176,7 +186,7 @@ grid.arrange(institution, retning, ncol=2)
 
 ```
 
-### Gennemsnitlige antal ansøgere fordelt på køn for top 10 uddannelser målt på bruttoløn, kr. og top 10 gennemsntlig højst kvotient, 2013-16
+###Figur 2: Gennemsnitlige antal ansøgere fordelt på køn for top 10 uddannelser målt på bruttoløn, kr. og top 10 gennemsntlig højst kvotient, 2013-16
 
 ```{r, echo=FALSE, warning=FALSE, fig.width=15, fig.height=8 }
 #Plot af køn på institutioner 
@@ -235,7 +245,7 @@ scale_x_discrete(breaks=c("10.825", "10.85", "10.975", "11", "11.05", "11.15", "
 grid.arrange(indkomst, kvotient, ncol=2)
 ```
 
-###Top 10 gennemsnitlig mest søgte uddannelse for kønnene, 2013-2016
+###Figur 3: Top 10 gennemsnitlig mest søgte uddannelse for kønnene, 2013-2016
 ```{r, echo=FALSE, warning=FALSE, fig.width=15, fig.height=8 }
 #Top 10 for mænd
 Uni.5 = data3 %>%
@@ -248,7 +258,7 @@ Uni.5 = Uni.5 %>%
 
 Uni.5$OptNr = factor(Uni.5$OptNr)
 
-Maend <- ggplot(data=Uni.5, aes(x=reorder(OptNr, Mænd), y= Mænd)) +  geom_bar(stat="identity", , fill = "#D95F02") +
+Maend <- ggplot(data=Uni.5, aes(x=reorder(OptNr, Mænd), y= Mænd)) +  geom_bar(stat="identity", fill = "#D95F02") +
   #geom_point() +
   coord_flip() + ylab("Antal mænd") + xlab("") + 
   scale_x_discrete(breaks=c("13045", "22415", "30010", "17115", "22010", "13060", "22610", "10110", "10410", "13010"),
@@ -277,11 +287,38 @@ scale_x_discrete(breaks=c("22415", "16020", "22420", "17115", "10140", "22010", 
 grid.arrange(Maend, Kvinder, ncol=2)
 ```
 
+###Figur 4: Forskel i forventede, vægtede lønninger pr. studieretning
+
+```{r echo=FALSE, warning=FALSE, fig.width=7, fig.height=5}
+load("/Users/sabineverning13/Desktop/gruppe4/gnsretning.RData")
+gretning = gnsretning [1:10, 1:4]
+
+
+gretning.gather = gretning %>%
+  gather(key = Køn, 
+         value = frequency,
+         -Retning, -Forskel)
+
+ggplot(data=gretning.gather, aes(x=reorder(Retning, Forskel), y=Forskel)) +
+  geom_bar(stat="identity", aes(fill = Forskel > 0 )) +
+  scale_fill_manual(values = c("#1B9E77", "#D95F02") ) +
+  coord_flip() + ylab("Forskel i forventede løn") + xlab("") + guides(fill=FALSE) + 
+  expand_limits(y=-50000) +
+  theme_minimal() +theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7), axis.text.x = element_text(size=7)) +
+  scale_x_discrete(breaks=c("Ing", "Bus/kom", "Jur", "Natur", "Kom", "Business", "Hum", "Science", "Sund", "Samf"),
+                   labels=c("Ingeniør", "Business/Kommunikation", "Jura", "Naturvidenskab", "Kommunikation", "Business", 
+                            "Humaniora", "Science", "Sundhedsvidenskab", "Samfundsvidenskab")) +
+   theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7),
+          axis.text.x = element_text(size=7))
+
+ 
+
+```
 
 
 \newpage
 </center>
-|Tabel 2: Logit-modeller, marginal effekter| 
+|Tabel 3: Logit-modeller, marginal effekter| 
 |-------------------------|:---------:|:---------:|:---------:|:---------:|
 | **Model**                |    (1)    |    (2)    |    (3)    |    (4)    |
 | Konstant                |  0.238*** |  0.350*** |  0.271*** |  0.274*** |
@@ -315,29 +352,22 @@ grid.arrange(Maend, Kvinder, ncol=2)
 
 </center>
 
-# Machine learning 
-I forrige afsnit var formålet at opstille en model, som kan give indsigt i kausale sammenhænge mellem kvindeandelen af de optagne studerende og de valgte forklarende variable. I kontrast til det, er formålet med dette afsnit at opstille en model, som kan forudsige kvindeandelen af de optagne studerende på baggrund af udvalgte inputvariable.
+# Beslutningstræer 
 
-Ved brug af en *machine learning* algoritme udarbejdes et regressionstræ. Denne type regressionstræ benytter en delmængde af de tilgængelige data, kaldet træningssættet, til at klassificere studierne ved at “lære” forskelle i strukturer mellem uddannelser, og dermed forudsige udfaldet af kvindeandel. Metoden kaldes *supervised learning*, da algoritmen udregner og dernæst viser, hvilke karakteristika, der bestemmer divergerende niveauer af kvindeandele på uddannelser i træningssættet. I dette tilfælde benyttes inputvariablene forventet gennemsnitsindkomst, studieretning, adgangskvotient samt uddannelsesstørrelse i et forsøg på at forudsige kvindeandelen af de optagene studerende på en given uddannelse.
+Kan bruges deskriptivt og  
+Hver knude viser
+- Den forudsagte andel af kvinder
+- Hvor procent af observationerne det gælder.
 
-Intuitionen bag regressionstræet er, at træningsdata gentagne gange opdeles i mindre dele. De enkelte knuder i træet illustrerer denne opdelingsproces. Til de enkelte knuder hører en mindre model, som igen splitter data op i mindre dele ved at fremsætte nye “spørgsmål”, der besvares binært. Processen kaldes segmentering og er relativ simpel ift. andre algoritmer, dermed kan segmenteringsmodellen fortolkes intuitivt og nemt illustreres grafisk. Samtidig er det muligt at udarbejde et beslutningstræ med lige så mange knuder, som der findes observationer i træningsdatasættet og derved lade RMSE konvergere mod 0. Mange knuder gør modellens beskrivelse af træningsdata meget nøjagtig, men de gør samtidig modellen ude af stand til at give præcise forudsigelser på nye data på grund af overfit. Derfor er valget af et optimalt antal knuder centralt.
 
-##Validering
-Der findes forskellige metoder til udvælgelsen af antallet knuder, heriblandt kryds-valideringsmetoden, som ofte giver mere robuste resultater end simpel validering. På trods af dette, og at kryds-validering er standardmetoden i algoritmepakken, benyttes her simpel validering. Årsagen til dette er, at simpel validering giver mulighed for grafisk, at forstå udvælgelsen af knuder. 
-
-Indledningsvist udtrækkes halvdelen af observationerne, på tilfældigvis, i det oprindelige datasæt. Udtrækket bliver brugt som træningsdata, mens den resterende del af data benyttes til validitets, også kaldes testdata. Dernæst udarbejdes et stort regressionstræ, som beskæres indtil det optimale under-træ opnås. Det optimale under-træ er det under-træ, som mindsker RMSE mellem forudsigelserne og observationerne i testdata. I dette tilfæde, frembringes, ved denne process, et regressionstræ som består af 8 knuder. Dette fremgår af grafen nedenfor, hvor RMSE er en funktion af knuder. For testdata har RMSE har globalt minimum i 8, mens RMSE for træningsdata konvergere mod 0, præcis som ventet. Det udtrykker altså en balancen mellem bias ved lille et træ og overfitting ved et stort træ. 
-
-```{r, echo=FALSE, warning=FALSE }
-# Statistisk læring
+###Figur 5: 
+```{r, echo=FALSE, warning=FALSE, fig.width=6, fig.height=3}
+ #Statistisk læring
 set.seed(300)
 trainDTM <- data3[sample(nrow(data3), dim(data3)[1]/2), ]
 testDTM <- anti_join(data3,trainDTM, by = c("Aar" = "Aar", "OptNr" = "OptNr"))
 
-<<<<<<< HEAD
 model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM, cp=10^(-6) )
-=======
-model = rpart(KvindeAndOpt ~ GnsIndT + Kvotient + TotalOpt + Retning, data = trainDTM, cp=10^(-6))
->>>>>>> origin/master
 cptablenodes <- model$cptable[1:12, ]
 nodes <- cptablenodes[,2]
 treenodes = function(nodes){ prune(model, model$cptable[model$cptable[, 2] == nodes, 1])
@@ -349,64 +379,35 @@ add.pred.test = function(treenodes, data = testDTM){
   data %>% predict(treenodes,. )
 }
 models.train = nodes %>%
-  map(treenodes) %>% map_df(add.pred.train)
+ map(treenodes) %>% map_df(add.pred.train)
 
 models.test = nodes %>%
-  map(treenodes) %>% map_df(add.pred.test)
+ map(treenodes) %>% map_df(add.pred.test)
 
 models.train.mse = colMeans((models.train-trainDTM$KvindeAndOpt)**2)
 models.test.mse = colMeans((models.test-testDTM$KvindeAndOpt)**2)
-<<<<<<< HEAD
 
 models.train.rmse = sqrt(models.train.mse)
 models.test.rmse = sqrt(models.test.mse)
 
-=======
-
-models.train.rmse = sqrt(models.train.mse)
-models.test.rmse = sqrt(models.test.mse)
->>>>>>> origin/master
 
 rmse <- data.frame(cbind(nodes, models.train.rmse, models.test.rmse))
 
-<<<<<<< HEAD
-=======
-rmse <- data.frame(cbind(nodes, models.train.rmse, models.test.rmse))
->>>>>>> origin/master
 
-rmse.graf <- rmse %>% gather(key = rmse, value = frequency, -nodes )
+rmse.graf <- rmse %>% gather(key = RMSE, value = frequency, -nodes )
 
-<<<<<<< HEAD
-ggplot(rmse.graf, aes(x=nodes, y =frequency, group = rmse )) + geom_line(aes(colour=rmse)) + geom_point(aes(colour=rmse))
+ggplot(rmse.graf, aes(x=nodes, y =frequency, group = RMSE )) + geom_line(aes(colour=RMSE)) + geom_point(aes(colour=RMSE)) + theme_minimal() + scale_color_manual(values = c("#66A61E", "#E6AB02")) + 
+  ylab("RMSE") + xlab("Knuder") + 
+  theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7),
+          axis.text.x = element_text(size=7))
 
+```
+
+
+###Figur 6: Beslutningstræ
+```{r echo=FALSE, warning=FALSE}
 model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM)
 rpart.plot(model)
-=======
-rmse.graf <- rmse %>% gather(key = rmse, value = frequency, -nodes )
 
-ggplot(rmse.graf, aes(x=nodes, y =frequency, group = rmse )) + geom_line(aes(colour=rmse)) + geom_point(aes(colour=rmse))
-
->>>>>>> origin/master
 ```
 
-Den alternative valideringsmetode, krydsvalidering, minder meget om ovenstående simple valideringsmetode - dog betyder krydsvalidering at træningsdata opdeles i flere undersæt, og derved skal flere modeller estimeres og beskæres.  Denne process er beregningstung, og derfor opstilles en cost-funktion for RMSE, hvori et kompleksitetsled formuleres. Kompleksitetsleddet er produktet af en positiv strafkoefficient og antal af knuder. Givet en række udvalgte strafkoefficienter estimeres blot en sekvens af de ellers mange kombinationer af modeller. Gennem en rekursiv krydsningsprocess vælges efterfølgende den strafkoefficient, der minimerer cost-funktionen for modellen i træningssættet. En fordel ved krydsvalidering er en lavere risiko for stikprøve-bias,  da træningsdata opsplittes i flere tilfældige undersæt. Udover krydsvalidering kunne bootstraaping også benyttes til at lave syntetetiske stikprøver. Den grafiske fortolkning bag model- eller knudevalg - som vist i Figur X7 -  er dog kun mulig ved simpel validering.
-
-## Regressionstræet
-Ved den første knude i træet tages udgangspunkt i hele datasættet. Det ses her, at modellen på baggrund af alle data for de fire inputvariable beregner et gennemsnit for kvindeandelen af optagede til 0,52. Modellen fremsætter i første knude spørgsmålet ”Retning = business, ingeniør eller science”, og data opdeles dermed efter svaret på dette. Ydermere beregnes en ny værdi for den forventede kvindeandel af de optagede studerende, givet de nye oplysninger om, hvilke uddannelsesretninger under de to undertræer fokuserer på.  Allerede ved dette skridt i træet er modellens forudsigelser interessante. Det fremgår, at i tilfældet hvor retningen for uddannelserne er business, ingeniør eller science vil den forventede værdi af kvindeandelen af de optagede studerende falde fra 0,52 til 0,32. Er der derimod tale om de resterende retninger for uddannelserne som eksempelvis samfundsvidenskab, sundhed eller humaniora vil den forventede kvindeandel stige til 0,6. Dette viser, at vi ved at indskræn-ke fokus til bestemte retninger inden for uddannelsesudvalget kan se en forskel i fordelingen af mænd og kvinder i uddannelsessystemet. Ser vi nu på de 28 % af data, hvor retningen er business, ingeniør eller sci-ence, vil modellen forudsige kvindeandelen af de optagede studerende til at være 0,4 hvis retningen er busi-ness og 0,29 for ingeniør eller science. Dermed ser vi, at retningerne ingeniør og science umiddelbart er nog-le af de uddannelseskategorier, der ikke tiltrækker mange kvinder. 
-
-Det er interessant at se på knude… 
-
-
-Træet viser at det i beslutningsprocessen er inputvariablen retning der er den vigtigste, efterfulgt af gennem-snitsindkomst og afsluttende uddannelsesinstitution. 
-
-
-Kan bruges deskriptivt og  
-Hver knude viser
-- Den forudsagte andel af kvinder
-- Hvor procent af observationerne det gælder.
-
-```{r, echo=FALSE, warning=FALSE }
-# Statistisk læring
-optimal.model <- prune(model, model$cptable[model$cptable[, 2] == 8, 1])
-rpart.plot(optimal.model)
-```
