@@ -18,36 +18,23 @@ fontsize: 11pt
 
 ```{r include = FALSE}
 library(viridis)
-library(pander)
-library(stargazer)
+#library(pander)
+#library(stargazer)
 library(dplyr)
 library(rio)
-library(splitstackshape)
-library(tonymisc)
-library(memisc)
+#library(splitstackshape)
+#library(tonymisc)
+#library(memisc)
 library(grid)
 library(gridExtra)
 library(tidyr)
 library(ggplot2)
 library(magrittr)
-<<<<<<< HEAD
-<<<<<<< HEAD
-#library(rpart.plot)
-#library(rpart)
-=======
-=======
->>>>>>> origin/master
 library(rpart.plot)
 library(rpart)
 library(purrr)
 library(rpart.plot)
 library(rpart)
-
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
-
 ```
 
 ```{r include = FALSE}
@@ -77,18 +64,28 @@ data3 <-  data.2 %>%
 
 
 ```
-# My Table of content
-- [Section 1](#id-section1)
-- [Section 2](#id-section2)
+\newpage
+# Indholdsfortegnelse
+
+
+- [Indledning](#id-section1)
+
+- [Data, metode og etik](#id-section2)
+
+- [Analyse](#id-section3)
+
+- [Modeller](#id-section4)
+
+- [Konklusion](#id-section5)
 
 
 
 \newpage
 
 <div id='id-section1'/>
-## Section 1
+# Indledning
 
-Investeringer i human kapital sker med forventninger til afkast i arbejdsmarkedet (Becker 1964). Grundet direkte samt indirekte diskrimination, i.e. lønforskelle, kønnene imellem, er kønnenes traditionelle specialisering, mænd i lønnet arbejde og kvinder i hjemmet, fremhævet som økonomisk optimal (Becker 1991; Becker 1985). Med forventning om denne kønsspecialisering forventes det yderligere, at kvinder investerer mindre i human kapital, i.e. løndiskrimination er cirkulær og selvforstærkende fra et human kapitalsynspunkt (Blackburn et al. 2002). På trods af den forudsete cirkularitet, er der gennem de seneste årtier sket dramatiske kønsforandringer i human kapital investeringer: kvinder udgør nu majoriteten af studerende på længere videregående uddannelser (Kilde). Igen, fra et human kapital perspektiv burde kvinders øgede investeringer i human kapital betyde mindre lønforskelle mellem kvinder og mænd. Markante lønforskelle kønnene imellem er dog fortsat observeret, endda også imellem kvinder og mænd med længerevarende videregående uddannelser, hvor mænd i 2014 havde en bruttoindkomst 36,54 % højere end kvinder, jf. tabellen nedenfor.
+Investeringer i human kapital sker med forventninger til afkast i arbejdsmarkedet (Becker 1964). Grundet direkte samt indirekte diskrimination, i.e. lønforskelle, kønnene imellem, er kønnenes traditionelle specialisering, mænd i lønnet arbejde og kvinder i hjemmet, fremhævet som økonomisk optimal (Becker 1991; Becker 1985). Med forventning om denne kønsspecialisering forventes det yderligere, at kvinder investerer mindre i human kapital, i.e. løndiskrimination er cirkulær og selvforstærkende fra et human kapitalsynspunkt (Blackburn et al. 2002). På trods af den forudsete cirkularitet, er der gennem de seneste årtier sket dramatiske kønsforandringer i human kapital investeringer: kvinder udgør nu majoriteten af studerende på længere videregående uddannelser (se nedenfor). Igen, fra et human kapital perspektiv burde kvinders øgede investeringer i human kapital betyde mindre lønforskelle mellem kvinder og mænd. Markante lønforskelle kønnene imellem er dog fortsat observeret, endda også imellem kvinder og mænd med længerevarende videregående uddannelser, hvor mænd i 2014 havde en bruttoindkomst 36,54 % højere end kvinder , jf. Tabel 1. 
 
 \begin{ThreePartTable}
  \begin{TableNotes}[para,flushleft]Kilde: Danmarks Statistik\end{TableNotes}
@@ -105,35 +102,48 @@ Lange videregående uddannelser & 670.133 & 490.782
  \end{longtable}
 \end{ThreePartTable}
 
-En mulig forklaring for disse lønforskelle er divergerende afkast på investeringer i forskellige længerevarende uddannelser. Uddannelsesvalg er præget af segregering: kun få videregående uddannelser har et optag af studerende med lige andele af mænd af kvinder. Kønsforskelle i uddannelsesvalg kunne skyldes divergerende præferencer kønnene imellem (Hakim 2000),  men ‘…individual preferences (and thus choices) are always socially embedded and constrained, and may be shaped by unjust background conditions, as well as by habit and engrained normative assumptions.’ (Crompton 2007: 234). Socialt determinerede kønspræferencer i forhold til uddannelse har potentiale til at cementere lønforskelle kønnene imellem på trods af samme resulterende niveau af human kapital. Derfor bør det undersøges, hvorvidt der foreligger en tendens blandt kvinder til at søge mod længerevarende videregående uddannelser, der leder til relativt lavere lønninger, og en tendens blandt mænd til at søge mod længerevarende videregående uddannelser, der resulterer i relativt højere lønninger. Hvis uddannelser med overrepræsentation af kvinder generelt leder til lavere lønninger, kan det både skyldes kønsforskelle i socialt afgrænsede præferencer, i.e. kvinder søger aktivt mod disse lavere lønnet uddannelser, eller lønforskelle opstået grundet feminisering af bestemte faggrupper. Øget feminisering af faggrupper resulterer ofte i lavere lønninger for disse grupper, grundet for eksempel diskrimination eller over-crowding (Rubery 2015; Bergmann 1974).
+En mulig forklaring for disse lønforskelle er divergerende afkast på investeringer i forskellige længerevarende uddannelser. Uddannelsesvalg er præget af segregering: kun få videregående uddannelser har et optag af studerende med lige andele af mænd af kvinder. Kønsforskelle i uddannelsesvalg kunne skyldes divergerende præferencer kønnene imellem (Hakim 2000),  men *‘…individual preferences (and thus choices) are always socially embedded and constrained, and may be shaped by unjust background conditions, as well as by habit and engrained normative assumptions.’* (Crompton 2007: 234). Socialt determinerede kønspræferencer i forhold til uddannelse har potentiale til at cementere lønforskelle kønnene imellem på trods af samme resulterende niveau af human kapital. Derfor bør det undersøges, hvorvidt der foreligger en tendens blandt kvinder til at søge mod længerevarende videregående uddannelser, der leder til relativt lavere lønninger, og en tendens blandt mænd til at søge mod længerevarende videregående uddannelser, der resulterer i relativt højere lønninger. Hvis uddannelser med overrepræsentation af kvinder generelt leder til lavere lønninger, kan det både skyldes kønsforskelle i socialt afgrænsede præferencer, i.e. kvinder søger aktivt mod disse lavere lønnet uddannelser, eller lønforskelle opstået grundet feminisering af bestemte faggrupper. Øget feminisering af faggrupper resulterer ofte i lavere lønninger for disse grupper, grundet for eksempel diskrimination eller over-crowding (Rubery 2015; Bergmann 1974). Sagt på en anden måde, kan lavere lønninger for kandidater fra uddannelser med en overrepræsentation af kvinder skyldes, at kvinder søger mod uddannelser med lavere lønninger, samt at kvinder generelt modtager lavere løn, og lønniveauet for uddannelser med overrepræsentation af kvinder derfor er faldet. Uanset forklaringen, er det klart at lønulighed kønnene imellem allerede initieres ved kvinder og mænds valg af uddannelse.
 
-TJEK: Kønsopdeling indenfor specifikke fagområder, e.g. tekniske uddannelser: søger mænd også her mod bedre betalte uddannelser?
+Som det bevises nedenfor, kan uddannelsesvalg alene forklare omkring en fjerdedel af lønforskellen blandt kvinder og mænd med længerevarende videregående uddannelser. Dette kan skyldes en række faktorer, blandt andet kønspræferencer for uddannelsesretninger. Specifikke uddannelsesretninger leder til arbejde i højtlønnede faggrupper, såsom mandsdominerede business og tekniske uddannelser. Uddannelsesretninger kan forklare en del af lønforskellen kvinder og mænd imellem, men selv inden for disse specifikke uddannelsesretninger segregeres kønnene – mænd søger også her i højere grad mod uddannelser med højere lønafkast. 
 
-Med kønsopdelt data for ansøgerantal samt optagne studerende på længere videregående uddannelse er det muligt at bestemme udstrækningen af kønssegregering i uddannelsesvalg. Ydermere, gør løndata for færdige kandidater det muligt at bestemme, hvorvidt der forefindes en sammenhæng mellem kønssegregering blandt optagne studerende og forventet løn efter afsluttet uddannelse. Sluttelig analyseres det, hvorvidt forventet lønniveau kan forudsige kønsfordelingen blandt ansøgere på længere videregående uddannelser.
+Med kønsopdelt data for ansøgerantal samt optagne studerende på alle længerevarende videregående uddannelser i Danmark er det muligt at bestemme omfanget af kønssegregering i uddannelsesvalg. Ydermere, gør løndata for færdige kandidater det muligt at bestemme, hvorvidt der forefindes en sammenhæng mellem kønssegregering blandt optagne studerende og forventet løn efter afsluttet kandidatuddannelse. Sluttelig analyseres det, hvorvidt forventet lønniveau kan forudsige kønsfordelingen blandt ansøgere på længere videregående uddannelser.
+
 
 <div id='id-section2'/>
-## Data, metode og etik
-Data er let offentligt tilgængelig og ligger åbnet på UFM's hjemmeside, derved har der ikke været rettighedsproblemer. Dog kan det problematiseres, at nogle uddannelser har meget få optagne, således at man vil kunne finde frem til de studerendes identitet vha. universiteternes biblioteker med BA opgaver eller muligvist med  LinkedIn
+# Data, metode og etik
+Danske universiteters data for antal ansøgere samt optagne på bacheloruddannelser og er offentligt tilgængeligt gennem Uddannelses- og Forskningsministeriet. Data for årene 2013-2016 benyttes for at sikre et stort, repræsentativt sample, samt for at påvise eventuelle nylige forandringer i uddannelsesvalg. Antal af ansøgere og optagne er opdelt efter køn, og desuden indeholder datasættene bachelorstudiernes adgangskvotienter.
 
-Metode
-Skrive her om hvilke datasæt vi har hentet og hvilke kilder:
-For hvert år har vi hentet: 
-1) ansøgninger fordelt på alle videregående uddannelser 
-2) optagne fordelt på alle videregående uddannelser
-3) Adgangskvotienter for alle videregående uddannelser
-4*3 
+Løndata opgjort per uddannelse for alle færdige kandidater er produceret af CEPOS og ligger ligeledes offentligt tilgængeligt. CEPOS har udarbejdet et datasæt for gennemsnitlige bruttolønninger opgjort efter færdiggjort længerevarende videregående uddannelse for alle danskere mellem 25-59 år, men disse data er ikke opdelt efter køn. Da disse løndata er gennemsnitlige og inkluderer både mandlige og kvindelige kandidater fra de respektive uddannelser, mistes dimensionen af kønsforskelle i løn inden for de individuelle uddannelser. På den anden side gør dette løngennemsnit det muligt at isolere den del af lønforskelle, der opstår alene som resultat af kønsforskelle i uddannelsesvalg, hvilket netop er formålet med dette studie. 
 
-Vi har hentet CEPOS undersøgelsen for bruttoløn opgjort efter uddannelse.
+De to datakilder er forskellige i den forstand, at universiteternes ansøgninger og optag er opgjort for bacheloruddannelser, men løndata for færdige kandidater, i.e. for færdige længerevarende videregående uddannelser. I denne analyse indgår derfor kun bacheloruddannelser, der direkte leder til en kandidatuddannelse, e.g. gennem retskrav på optagelse på en specifik kandidatuddannelse. De to datasæt er derfor forenet ved at identificere par af bachelor- og kandidatuddannelser, e.g. bachelor- og kandidatstudierne i medicin. Dette udelukker for eksempel professionsbacheloruddannelser, der kunne lede til en kandidatuddannelse, og introducerer en bias, da sammenhængen mellem disse bachelor- og kandidatuddannelser ikke er perfekt, e.g. grundet frafald og uddannelsesskift. Ydermere identificeredes 10 uddannelsesretninger, såsom sundhedsvidenskab og samfundsvidenskab. Denne kategorivariabel er essentiel for en vurdering af uddannelsesretningers indflydelse på lønforskelle.
 
-Dernæst gennemgik vi et datasæt kvalitativt henholdvis, at finde matchet mellem BA og færdig uddannelse og give hver uddannelse en retningskategori.
+De anvendte data er offentligt tilgængelige, og derfor forefindes ikke rettighedsproblemer. Etisk kan det problematiseres, at nogle uddannelser har meget få optagne, især efter opdeling af køn, således at det er muligt identificere enkelte studerende i datasæt. Dog indgår ingen data på individniveau, hverken i datasættene eller i analysen, og etiske problemer er derfor ikke eksisterende.
 
-Vi joinerne alle uddannelserne sammen på deres unikke udannelsesnr. Dernæst joinet lønnen sammen fra CEPOS undersøgelsen ved benytte placeringsnr som nøgle.  
+<div id='id-section3'/> 
+#Analyse
 
- 
+For perioden 2013-2016 viser data fra de danske universitet klart, at kvinder nu udgør majoriteten af både ansøgere (54,22 %) og optagne (53,10 %) på bacheloruddannelser, der giver direkte adgang til en kandidatuddannelse. På trods af dette, findes der i arbejdsmarkedet fortsat store lønforskelle kønnene imellem, og uddannelsesvalg alene kan forklare en stor del af disse lønforskelle. Det er muligt at forudsige gennemsnitlige lønninger for optagne kvinder og mænd i perioden 2013-2016, ved hjælp af antallet af optagne kvinder og mænd på de individuelle uddannelser samt forventede lønninger efter endt uddannelse. 
+
+\begin{TableNotes}[para,flushleft]\end{TableNotes}
+\begin{longtable}[c]{@{}crrrr@{}}
+\caption{Vægtede, forventede lønninger pr. køn og år, 2013-2016}\\
+\toprule\addlinespace
+ & 2013 & 2014 & 2015 & 2016 
+\\\addlinespace
+\midrule\endhead
+Mænd & 612.272 & 614.439 & 617.768 & 619.243 
+\\
+Kvinder & 567.313 & 568.562 & 572.960 & 572.933 
+\\
+Forskel & 44.959 & 45.877 & 44.809 & 46.310 
+\\\addlinespace
+\bottomrule
+\insertTableNotes
+\end{longtable}
+De vægtede gennemsnit er vist i Tabel 2. Der er stor forskel i de forudsagte gennemsnitslønninger for kvinder og mænd, og uddannelsesvalg alene har derfor stor betydning for senere lønforskelle i arbejdsmarkedet. Ydermere viser Tabel 2, at de forudsagte lønforskelle har været meget stabile gennem de seneste fire år. 
 
 
-
-###Gennemsnitlig antal ansøgere fordelt på køn ved danske uddannelse institutioner og retninger, 2013-16
+###Figur 1: Gennemsnitlig antal ansøgere fordelt på køn ved danske uddannelse institutioner og retninger, 2013-16
 
 ```{r, echo=FALSE, warning=FALSE, fig.width=15, fig.height=8}
 
@@ -176,7 +186,9 @@ grid.arrange(institution, retning, ncol=2)
 
 ```
 
-### Gennemsnitlige antal ansøgere fordelt på køn for top 10 uddannelser målt på bruttoløn, kr. og top 10 gennemsntlig højst kvotient, 2013-16
+Figur 1 viser de absolutte antal af kvindelige og mandlige ansøgere fordelt på de relevante uddannelsesinstitutioner. Kvinder udgør majoriteten på de fleste traditionelle universiteter, men billedet er anderledes på CBS, DTU og ITU. Desuden kan det også ses, at studieretninger som ingeniør, science og business er domineret af mandlige ansøgere. Dette giver sig  også til udtryk i de gennemsnitlige antal af kvindelige og mandlige ansøger på det højest lønnede uddannelser, Figur 2. 
+
+###Figur 2: Gennemsnitlige antal ansøgere fordelt på køn for top 10 uddannelser målt på bruttoløn, kr. og top 10 gennemsntlig højst kvotient, 2013-16
 
 ```{r, echo=FALSE, warning=FALSE, fig.width=15, fig.height=8 }
 #Plot af køn på institutioner 
@@ -204,6 +216,7 @@ scale_x_discrete(breaks=c("801156", "805757", "809791", "847594", "849602", "853
                           "Cand.polit, 1.052.372", "Forsikringsmatematik, 1.180.098")) + 
    scale_fill_brewer(palette = "Dark2") +  theme_minimal() + theme(axis.title=element_text(size=15), axis.text.y = element_text(size=15), axis.text.x = element_text(size=15))
 ```
+
 
 ```{r, echo=FALSE, warning=FALSE, fig.width=15, fig.height=8 }
 #Plot af køn og kvotienter 
@@ -235,7 +248,9 @@ scale_x_discrete(breaks=c("10.825", "10.85", "10.975", "11", "11.05", "11.15", "
 grid.arrange(indkomst, kvotient, ncol=2)
 ```
 
-###Top 10 gennemsnitlig mest søgte uddannelse for kønnene, 2013-2016
+De højest lønnede uddannelser er alle dominerede af mandlige ansøgere, med undtagelse af to: professionerne lægevidenskab og jura. Dette replicerer det velkendte – og internationale – billede af kvinders koncentration på længerevarende videregående uddannelser, der giver adgang til professioner (Connolly and Gregory 2007). Inden for professionerne, såsom lægevidenskab, jura og psykologi, er det klart defineret, hvilke niveauer af human kapital, der er nødvendige for at praktisere. I professionerne er kvinder og mænd med de samme kvalifikationer derfor i høj grad ansat i lignende stillinger – der er mindre rum for diskrimination (Connolly and Gregory 2007). 
+
+###Figur 3: Top 10 gennemsnitlig mest søgte uddannelse for kønnene, 2013-2016
 ```{r, echo=FALSE, warning=FALSE, fig.width=15, fig.height=8 }
 #Top 10 for mænd
 Uni.5 = data3 %>%
@@ -248,7 +263,7 @@ Uni.5 = Uni.5 %>%
 
 Uni.5$OptNr = factor(Uni.5$OptNr)
 
-Maend <- ggplot(data=Uni.5, aes(x=reorder(OptNr, Mænd), y= Mænd)) +  geom_bar(stat="identity", , fill = "#D95F02") +
+Maend <- ggplot(data=Uni.5, aes(x=reorder(OptNr, Mænd), y= Mænd)) +  geom_bar(stat="identity", fill = "#D95F02") +
   #geom_point() +
   coord_flip() + ylab("Antal mænd") + xlab("") + 
   scale_x_discrete(breaks=c("13045", "22415", "30010", "17115", "22010", "13060", "22610", "10110", "10410", "13010"),
@@ -277,11 +292,49 @@ scale_x_discrete(breaks=c("22415", "16020", "22420", "17115", "10140", "22010", 
 grid.arrange(Maend, Kvinder, ncol=2)
 ```
 
+Denne søgen mod professionerne afspejler sig tydeligt i kvinders uddannelsesvalg, både i forhold til de top 10 mest søgte uddannelser og i forhold til de 10 uddannelser med de højeste adgangskvotienter, Figur 3. Her ses en tydelig tendens: mænd søger mod højtlønnede businessuddannelser, hvor kvinder i langt højere grad søger mod professionerne lægevidenskab, psykologi, jura samt veterinærvidenskab. 
 
+Figur 2 viser ligeledes, at de 10 uddannelser med højest lønnede kandidater alle er tekniske og matematiske, med undtagelse af de to professioner, lægevidenskab og jura, hvor kvinder udgør majoriteten af ansøgerne. Mænds dominans i de højest lønnede tekniske og matematiske fag, beviser at kønsstereotype antagelser bliver cementeret i både i uddannelsesvalg og i arbejdsmarkedet: traditionelle, mandsdominerede faggrupper oplever højere lønninger, og disse faggrupper tiltrækker en stor overvægt af mandelige ansøgere – lønulighed er dermed med en cirkulær proces. Grundet store lønforskelle på tværs uddannelsesretninger, e.g. ingeniørvidenskab og jura, kan lønforskelle kønnene imellem derfor potentielt forklares gennem divergerende kønspræferencer for uddannelsesretninger, e.g. flere mænd søger mod de højtlønnede uddannelsesretninger business og ingeniørvidenskab. På den anden side er det muligt, at mænd også koncentrerer sig i de højest lønnede uddannelser inden for de forskellige uddannelsesretninger, og uddannelsesretning dermed kun er en lille del af forklaringen. 
+
+###Figur 4: Forskel i forventede, vægtede lønninger pr. studieretning
+
+```{r echo=FALSE, warning=FALSE, fig.width=6, fig.height=3}
+load("/Users/sabineverning13/Desktop/gruppe4/gnsretning.RData")
+gretning = gnsretning [1:10, 1:4]
+
+
+gretning.gather = gretning %>%
+  gather(key = Køn, 
+         value = frequency,
+         -Retning, -Forskel)
+
+ggplot(data=gretning.gather, aes(x=reorder(Retning, Forskel), y=Forskel)) +
+  geom_bar(stat="identity", aes(fill = Forskel > 0 )) +
+  scale_fill_manual(values = c("#1B9E77", "#D95F02") ) +
+  coord_flip() + ylab("Forskel i forventede løn") + xlab("") + guides(fill=FALSE) + 
+  expand_limits(y=-50000) +
+  theme_minimal() +theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7), axis.text.x = element_text(size=7)) +
+  scale_x_discrete(breaks=c("Ing", "Bus/kom", "Jur", "Natur", "Kom", "Business", "Hum", "Science", "Sund", "Samf"),
+                   labels=c("Ingeniør", "Business/Kommunikation", "Jura", "Naturvidenskab", "Kommunikation", "Business", 
+                            "Humaniora", "Science", "Sundhedsvidenskab", "Samfundsvidenskab")) +
+   theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7),
+          axis.text.x = element_text(size=7))
+
+ 
+
+```
+
+
+Figur 4 viser, at dette faktisk er tilfældet: med undtagelse af business/kommunikation samt ingeniørvidenskab koncentrerer mænd sig i de bedst lønnede uddannelser, også inden for specifikke uddannelsesretninger. Dermed er kønsspecialisering og -koncentration i specifikke uddannelsesretninger kun en delvis forklaring af lønforskelle mellem kvinder og mænd med videregående uddannelser. For at finde et mere robust billede af kønsforskelle i uddannelsesvalg, introduceres udvidede modeller i det følgende afsnit.
+
+<div id='id-section4'/> 
+#Modeller
+I et forsøg på at forklare kønsfordelingen på længere videregående uddannelser udregnes andelen af kvinder optaget på alle de forskellige længere videregående uddannelser i Danmark. Disse kvindeandele benyttes herefter som afhængig variabel i en række økonometriske modeller. Først benyttes en logit-regressionsmodel, da den afhængige variabel, kvindeandele er proportionel. Dernæst anvendes en statistisk læringsmodel til at opstille et decision tree for processen bag de kønsspecifikke uddannelsesvalg.
 
 \newpage
+
 </center>
-|Tabel 2: Logit-modeller, marginal effekter| 
+|Tabel 3: Logit-modeller, marginal effekter| 
 |-------------------------|:---------:|:---------:|:---------:|:---------:|
 | **Model**                |    (1)    |    (2)    |    (3)    |    (4)    |
 | Konstant                |  0.238*** |  0.350*** |  0.271*** |  0.274*** |
@@ -327,17 +380,16 @@ Der findes forskellige metoder til udvælgelsen af antallet knuder, heriblandt k
 
 Indledningsvist udtrækkes halvdelen af observationerne, på tilfældigvis, i det oprindelige datasæt. Udtrækket bliver brugt som træningsdata, mens den resterende del af data benyttes til validitets, også kaldes testdata. Dernæst udarbejdes et stort regressionstræ, som beskæres indtil det optimale under-træ opnås. Det optimale under-træ er det under-træ, som mindsker RMSE mellem forudsigelserne og observationerne i testdata. I dette tilfæde, frembringes, ved denne process, et regressionstræ som består af 8 knuder. Dette fremgår af grafen nedenfor, hvor RMSE er en funktion af knuder. For testdata har RMSE har globalt minimum i 8, mens RMSE for træningsdata konvergere mod 0, præcis som ventet. Det udtrykker altså en balancen mellem bias ved lille et træ og overfitting ved et stort træ. 
 
+###Figur 5:
+
 ```{r, echo=FALSE, warning=FALSE }
-# Statistisk læring
+ #Statistisk læring
 set.seed(300)
 trainDTM <- data3[sample(nrow(data3), dim(data3)[1]/2), ]
 testDTM <- anti_join(data3,trainDTM, by = c("Aar" = "Aar", "OptNr" = "OptNr"))
 
-<<<<<<< HEAD
 model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM, cp=10^(-6) )
-=======
-model = rpart(KvindeAndOpt ~ GnsIndT + Kvotient + TotalOpt + Retning, data = trainDTM, cp=10^(-6))
->>>>>>> origin/master
+
 cptablenodes <- model$cptable[1:12, ]
 nodes <- cptablenodes[,2]
 treenodes = function(nodes){ prune(model, model$cptable[model$cptable[, 2] == nodes, 1])
@@ -349,50 +401,33 @@ add.pred.test = function(treenodes, data = testDTM){
   data %>% predict(treenodes,. )
 }
 models.train = nodes %>%
-  map(treenodes) %>% map_df(add.pred.train)
+ map(treenodes) %>% map_df(add.pred.train)
 
 models.test = nodes %>%
-  map(treenodes) %>% map_df(add.pred.test)
+ map(treenodes) %>% map_df(add.pred.test)
 
 models.train.mse = colMeans((models.train-trainDTM$KvindeAndOpt)**2)
 models.test.mse = colMeans((models.test-testDTM$KvindeAndOpt)**2)
-<<<<<<< HEAD
 
 models.train.rmse = sqrt(models.train.mse)
 models.test.rmse = sqrt(models.test.mse)
 
-=======
-
-models.train.rmse = sqrt(models.train.mse)
-models.test.rmse = sqrt(models.test.mse)
->>>>>>> origin/master
 
 rmse <- data.frame(cbind(nodes, models.train.rmse, models.test.rmse))
 
-<<<<<<< HEAD
-=======
-rmse <- data.frame(cbind(nodes, models.train.rmse, models.test.rmse))
->>>>>>> origin/master
 
-rmse.graf <- rmse %>% gather(key = rmse, value = frequency, -nodes )
+rmse.graf <- rmse %>% gather(key = RMSE, value = frequency, -nodes )
 
-<<<<<<< HEAD
-ggplot(rmse.graf, aes(x=nodes, y =frequency, group = rmse )) + geom_line(aes(colour=rmse)) + geom_point(aes(colour=rmse))
-
-model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM)
-rpart.plot(model)
-=======
-rmse.graf <- rmse %>% gather(key = rmse, value = frequency, -nodes )
-
-ggplot(rmse.graf, aes(x=nodes, y =frequency, group = rmse )) + geom_line(aes(colour=rmse)) + geom_point(aes(colour=rmse))
-
->>>>>>> origin/master
+ggplot(rmse.graf, aes(x=nodes, y =frequency, group = RMSE )) + geom_line(aes(colour=RMSE)) + geom_point(aes(colour=RMSE)) + theme_minimal() + scale_color_manual(values = c("#66A61E", "#E6AB02")) + 
+  ylab("RMSE") + xlab("Knuder") + 
+  theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7),
+          axis.text.x = element_text(size=7))
 ```
 
 Den alternative valideringsmetode, krydsvalidering, minder meget om ovenstående simple valideringsmetode - dog betyder krydsvalidering at træningsdata opdeles i flere undersæt, og derved skal flere modeller estimeres og beskæres.  Denne process er beregningstung, og derfor opstilles en cost-funktion for RMSE, hvori et kompleksitetsled formuleres. Kompleksitetsleddet er produktet af en positiv strafkoefficient og antal af knuder. Givet en række udvalgte strafkoefficienter estimeres blot en sekvens af de ellers mange kombinationer af modeller. Gennem en rekursiv krydsningsprocess vælges efterfølgende den strafkoefficient, der minimerer cost-funktionen for modellen i træningssættet. En fordel ved krydsvalidering er en lavere risiko for stikprøve-bias,  da træningsdata opsplittes i flere tilfældige undersæt. Udover krydsvalidering kunne bootstraaping også benyttes til at lave syntetetiske stikprøver. Den grafiske fortolkning bag model- eller knudevalg - som vist i Figur X7 -  er dog kun mulig ved simpel validering.
 
 ## Regressionstræet
-Ved den første knude i træet tages udgangspunkt i hele datasættet. Det ses her, at modellen på baggrund af alle data for de fire inputvariable beregner et gennemsnit for kvindeandelen af optagede til 0,52. Modellen fremsætter i første knude spørgsmålet ”Retning = business, ingeniør eller science”, og data opdeles dermed efter svaret på dette. Ydermere beregnes en ny værdi for den forventede kvindeandel af de optagede studerende, givet de nye oplysninger om, hvilke uddannelsesretninger under de to undertræer fokuserer på.  Allerede ved dette skridt i træet er modellens forudsigelser interessante. Det fremgår, at i tilfældet hvor retningen for uddannelserne er business, ingeniør eller science vil den forventede værdi af kvindeandelen af de optagede studerende falde fra 0,52 til 0,32. Er der derimod tale om de resterende retninger for uddannelserne som eksempelvis samfundsvidenskab, sundhed eller humaniora vil den forventede kvindeandel stige til 0,6. Dette viser, at vi ved at indskræn-ke fokus til bestemte retninger inden for uddannelsesudvalget kan se en forskel i fordelingen af mænd og kvinder i uddannelsessystemet. Ser vi nu på de 28 % af data, hvor retningen er business, ingeniør eller sci-ence, vil modellen forudsige kvindeandelen af de optagede studerende til at være 0,4 hvis retningen er busi-ness og 0,29 for ingeniør eller science. Dermed ser vi, at retningerne ingeniør og science umiddelbart er nog-le af de uddannelseskategorier, der ikke tiltrækker mange kvinder. 
+Ved den første knude i træet tages udgangspunkt i hele datasættet. Det ses her, at modellen på baggrund af alle data for de fire inputvariable beregner et gennemsnit for kvindeandelen af optagede til 0,52. Modellen fremsætter i første knude spørgsmålet ”Retning = business, ingeniør eller science”, og data opdeles dermed efter svaret på dette. Ydermere beregnes en ny værdi for den forventede kvindeandel af de optagede studerende, givet de nye oplysninger om, hvilke uddannelsesretninger under de to undertræer fokuserer på.  Allerede ved dette skridt i træet er modellens forudsigelser interessante. Det fremgår, at i tilfældet hvor retningen for uddannelserne er business, ingeniør eller science vil den forventede værdi af kvindeandelen af de optagede studerende falde fra 0,52 til 0,32. Er der derimod tale om de resterende retninger for uddannelserne som eksempelvis samfundsvidenskab, sundhed eller humaniora vil den forventede kvindeandel stige til 0,6. Dette viser, at vi ved at indskræn-ke fokus til bestemte retninger inden for uddannelsesudvalget kan se en forskel i fordelingen af mænd og kvinder i uddannelsessystemet. Ser vi nu på de 28 % af data, hvor retningen er business, ingeniør eller sci-ence, vil modellen forudsige kvindeandelen af de optagede studerende til at være 0,4 hvis retningen er business og 0,29 for ingeniør eller science. Dermed ser vi, at retningerne ingeniør og science umiddelbart er nogle af de uddannelseskategorier, der ikke tiltrækker mange kvinder. 
 
 Det er interessant at se på knude… 
 
@@ -405,8 +440,13 @@ Hver knude viser
 - Den forudsagte andel af kvinder
 - Hvor procent af observationerne det gælder.
 
+
+###Figur 6: Regressionstræ
 ```{r, echo=FALSE, warning=FALSE }
 # Statistisk læring
 optimal.model <- prune(model, model$cptable[model$cptable[, 2] == 8, 1])
 rpart.plot(optimal.model)
 ```
+
+<div id='id-section5'/> 
+#Konklusion
