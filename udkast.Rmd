@@ -31,15 +31,21 @@ library(tidyr)
 library(ggplot2)
 library(magrittr)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #library(rpart.plot)
 #library(rpart)
 =======
+=======
+>>>>>>> origin/master
 library(rpart.plot)
 library(rpart)
 library(purrr)
 library(rpart.plot)
 library(rpart)
 
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 
 ```
@@ -309,12 +315,17 @@ grid.arrange(Maend, Kvinder, ncol=2)
 
 </center>
 
-# Beslutningstræer 
+# Machine learning: Regressionsstræer 
 
-Kan bruges deskriptivt og  
-Hver knude viser
-- Den forudsagte andel af kvinder
-- Hvor procent af observationerne det gælder.
+I forrige afsnit var formålet, at opstille en model som kan give indsigt i kausale sammenhæng mellem kvindeandelen af de optagede studerende og de valgte forklarende variable. I kontrast til det, er formålet med dette med dette afsnit, at opstille en model som kan forudsige kvindeandelen af de optagede studerende på baggrund af udvalgte inputvariable.  
+
+Ved brug af en *machine learning* algoritme udarbejdes et regressionstræ. Denne type regressionstræ vil på baggrund af en delmægnde af den tilgænglige data, kaldet træningssættet, forsøge at klassificere studierne, ved at "lære" hvordan strukturen mellem forskellige studier er, og dermed forudsige udfaldet af kvindeandel. Metoden kaldes *supervised learning*, hvilket betyder at algoritmen for vist hvilke karaktariska der hører til forskellige niveau af kvindeandelene på studierne i træningsættet. I dette tilfælde benyttes variablene forventede gennemsnitsindkomst, studieretning, adgangskvotient og studiet størrelse som inputvariable til at forsøge at forudsige kvindeandelen af de optagede studerende på et givent studie. 
+
+
+Intuitionen bag regressionstræet er, at træningsdata gentagne gange opdeles i mindre dele. De enkelte knuder i træet illustrerer denne opdelingsproces idet der til de enkelte knuder hører en mindre model, som netop splitter data op i mindre dele ved at fremsætte nye "spørgsmål", der skal besvares binært. Denne proces kaldes segmentering, og er relativ simpel ift. andre algoritmer. Segmentering  giver intutiv fortolkning af modellen, og kan nemt fremstilles grafisk. Det er naturligvis muligt at udarbejde et beslutningstræ med lige så mange knuder, som der findes observationer i træningsdata. Dette svarer til at forudsigelserne og observationerne i træningsdata konvergere mod 0 mål ved kvadratroden af kvadratafvigelsesgennemsnittet (RMSE). Dette vil gøre modellens beskrivelse af træningsdata meget nøjagtigt, men vil dog gøre modellen ude af stand til at give præcise forudsigelser på ny data, da modellen ville være overfittet. Derfor er det vigtigt, at vælge et optimalt antal knuder. Der findes forskellige metoder til udvælgelsen af knuder, heriblandt kryds-valideringsmetoden, som ofte giver mere robuste resultatter end den mere simple valideringsmetode. På trods af dette, og at kryds-validering er standardmetoden i algoritmepakken, benyttes her den mere simple validering. Årsagen til dette er valideringsmetoden giver mulighed for grafisk, at forstå udvælgelsen af knuder.
+
+##Validering
+Indledningsvist udtrækkes halvdelen af observationerne, på tilfældigvis, i det oprindelige datasæt. Udtrækket bliver brugt som træningsdata, mens den resterende del af data benyttes til validitets, også kaldes testdata. Dernæst udarbejdes et stort regressionstræ, som beskæres indtil det optimale under-træ opnås. Det optimale under-træ er det under-træ, som mindsker RMSE mellem forudsigelserne og observationerne i testdata. Ved denne process frembringes et regressionstræ som består af 8 knuder. Dette fremgår af grafen nedenfor, hvor RMSE er en funktion af knuder. For testdata har RMSE har globalt minimum i 8, mens RMSE for træningsdata konvergere mod 0, præcis som ventet. Det udtrykker altså en balancen mellem bias ved lille et træ og overfitting ved et stort træ. 
 
 ```{r, echo=FALSE, warning=FALSE }
 # Statistisk læring
@@ -322,7 +333,11 @@ set.seed(300)
 trainDTM <- data3[sample(nrow(data3), dim(data3)[1]/2), ]
 testDTM <- anti_join(data3,trainDTM, by = c("Aar" = "Aar", "OptNr" = "OptNr"))
 
+<<<<<<< HEAD
 model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM, cp=10^(-6) )
+=======
+model = rpart(KvindeAndOpt ~ GnsIndT + Kvotient + TotalOpt + Retning, data = trainDTM, cp=10^(-6))
+>>>>>>> origin/master
 cptablenodes <- model$cptable[1:12, ]
 nodes <- cptablenodes[,2]
 treenodes = function(nodes){ prune(model, model$cptable[model$cptable[, 2] == nodes, 1])
@@ -341,18 +356,61 @@ models.test = nodes %>%
 
 models.train.mse = colMeans((models.train-trainDTM$KvindeAndOpt)**2)
 models.test.mse = colMeans((models.test-testDTM$KvindeAndOpt)**2)
+<<<<<<< HEAD
 
 models.train.rmse = sqrt(models.train.mse)
 models.test.rmse = sqrt(models.test.mse)
 
+=======
+
+models.train.rmse = sqrt(models.train.mse)
+models.test.rmse = sqrt(models.test.mse)
+>>>>>>> origin/master
 
 rmse <- data.frame(cbind(nodes, models.train.rmse, models.test.rmse))
 
+<<<<<<< HEAD
+=======
+rmse <- data.frame(cbind(nodes, models.train.rmse, models.test.rmse))
+>>>>>>> origin/master
 
 rmse.graf <- rmse %>% gather(key = rmse, value = frequency, -nodes )
 
+<<<<<<< HEAD
 ggplot(rmse.graf, aes(x=nodes, y =frequency, group = rmse )) + geom_line(aes(colour=rmse)) + geom_point(aes(colour=rmse))
 
 model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM)
 rpart.plot(model)
+=======
+rmse.graf <- rmse %>% gather(key = rmse, value = frequency, -nodes )
+
+ggplot(rmse.graf, aes(x=nodes, y =frequency, group = rmse )) + geom_line(aes(colour=rmse)) + geom_point(aes(colour=rmse))
+
+>>>>>>> origin/master
 ```
+
+Kryds-valideringmetoden minder meget om ovenstående metode, dog betyder kryds-validering at træningdata opdeles til flere undersæt, og derved skal flere modeller estimeres og beskæres. Dette kan være beregningstungt, derfor opstilles en cost-funktion for RMSE, hvor et kompleksitetsled formuleres. Kompleksitetsleddet er produktet af en positivt staf-koefficient og antal af knuder. Ved kryds-validering estimeres blot en sekvens af modellerne, givet en række forskellige staf-koefficienter. For hver staf-keofficient vælges det  under-træ, som minimere cost-funktionen  
+
+En af fordelene ved krydsvalidering er, at mindske risikoen stikprøve-bias når data tilfældigt opdeles til træning og test. Udover krydsvalidering kan bootstraaping også benyttes til at lave syntetetiske stikprøver 
+
+## Regressionstræet
+Vi ser altså, at der ved den første knude i træet tages udgangspunkt i hele datasættet. Vi kan herfra se, at modellen på baggrund af alle data for de tre inputvariable beregner et gennemsnit for kvindeandelen af optagede til 0,52. Modellen fremsætter i første knude spørgsmålet ”Retning = business, ingeniør eller science” og data opdeles dermed efter svaret på dette. Ydermere beregnes en ny værdi for den forventede kvindeandel af de optagede stude-rende, givet de nye oplysninger om hvilke retninger der fokuseres på. Det er allerede ved dette skridt i træet interessant at se modellens forudsigelser. Vi ser, at i tilfældet hvor retningen for uddannelserne er business, ingeniør eller science vil den forventede værdi af kvindeandelen af de optagede studerende falde fra 0,52 til 0,32. Er der derimod tale om de resterende retninger for uddannelserne som eksempelvis samfundsviden-skab, sundhed eller humaniora vil den forventede kvindeandel stige til 0,6. Dette viser, at vi ved at indskræn-ke fokus til bestemte retninger inden for uddannelsesudvalget kan se en forskel i fordelingen af mænd og kvinder i uddannelsessystemet. Ser vi nu på de 28 % af data, hvor retningen er business, ingeniør eller sci-ence, vil modellen forudsige kvindeandelen af de optagede studerende til at være 0,4 hvis retningen er busi-ness og 0,29 for ingeniør eller science. Dermed ser vi, at retningerne ingeniør og science umiddelbart er nog-le af de uddannelseskategorier, der ikke tiltrækker mange kvinder. 
+
+Det er interessant at se på knude… 
+
+
+Træet viser at det i beslutningsprocessen er inputvariablen retning der er den vigtigste, efterfulgt af gennem-snitsindkomst og afsluttende uddannelsesinstitution. 
+
+
+Kan bruges deskriptivt og  
+Hver knude viser
+- Den forudsagte andel af kvinder
+- Hvor procent af observationerne det gælder.
+
+```{r, echo=FALSE, warning=FALSE }
+# Statistisk læring
+optimal.model <- prune(model, model$cptable[model$cptable[, 2] == 8, 1])
+rpart.plot(optimal.model)
+```
+
+
