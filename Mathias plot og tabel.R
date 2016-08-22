@@ -1,8 +1,11 @@
+load("/Users/sabineverning13/Desktop/gruppe4/gnsaar.RData")
+load("/Users/sabineverning13/Desktop/gruppe4/gnsretning.RData")
 gaar = gnsaar[1:4, 1:3]
 gretning = gnsretning [1:10, 1:4]
 
 # TABEL 1
 
+?import
 
 \begin{ThreePartTable}
 \begin{TableNotes}[para,flushleft]Kilde: Danmarks Statistik\end{TableNotes}
@@ -39,6 +42,6 @@ ggplot(data=gretning.gather, aes(x=reorder(Retning, Forskel), y=Forskel)) +
   expand_limits(y=-50000) +
   theme_minimal() +theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7), axis.text.x = element_text(size=7)) +
   scale_x_discrete(breaks=c("Ing", "Bus/kom", "Jur", "Natur", "Kom", "Business", "Hum", "Science", "Sund", "Samf"),
-                   labels=c("Ingeniør", "Business-Kommunikation", "Jura", "Naturvidenskab", "Kommunikation", "Business", 
+                   labels=c("Ingeniør", "Business/Kommunikation", "Jura", "Naturvidenskab", "Kommunikation", "Business", 
                             "Humaniora", "Science", "Sundhedsvidenskab", "Samfundsvidenskab")) 
   
