@@ -318,8 +318,6 @@ Intuitionen bag regressionstræet er, at træningsdata gentagne gange opdeles i 
 ##Validering
 Indledningsvist udtrækkes halvdelen af observationerne, på tilfældigvis, i det oprindelige datasæt. Udtrækket bliver brugt som træningsdata, mens den resterende del af data benyttes til validitets, også kaldes testdata. Dernæst udarbejdes et stort regressionstræ, som beskæres indtil det optimale under-træ opnås. Det optimale under-træ er det under-træ, som mindsker RMSE mellem forudsigelserne og observationerne i testdata. Ved denne process frembringes et regressionstræ som består af 8 knuder. Dette fremgår af grafen nedenfor, hvor RMSE er en funktion af knuder. For testdata har RMSE har globalt minimum i 8, mens RMSE for træningsdata konvergere mod 0, præcis som ventet. Det udtrykker altså en balancen mellem bias ved lille et træ og overfitting ved et stort træ. 
 
-Kryds-valideringmetoden minder meget om ovenstående metode, dog betyder kryds-validering at træningdata opdeles til flere undersæt, og derved skal flere modeller estimeres og beskæres. Dette kan være beregningstungt, derfor opstilles en cost-funktion for RMSE, hvor et kompleksitetsled formuleres. Kompleksitetsleddet er produktet af en positivt staf-koefficient og antal af knuder. Ved kryds-validering estimeres blot en sekvens af modellerne, givet en række forskellige staf-koefficienter. For hver staf-keofficient vælges det  under-træ, som minimere cost-funktionen  
-
 ```{r, echo=FALSE, warning=FALSE }
 # Statistisk læring
 set.seed(300)
@@ -359,20 +357,14 @@ ggplot(rmse.graf, aes(x=nodes, y =frequency, group = rmse )) + geom_line(aes(col
 
 ```
 
-Dette betyder at beslutningstræet udarbejdes på baggrund af træningsdatasættet og derefter testes på testdata, således at vi kan vurdere modellen.  cross validation og benyttes    
+Kryds-valideringmetoden minder meget om ovenstående metode, dog betyder kryds-validering at træningdata opdeles til flere undersæt, og derved skal flere modeller estimeres og beskæres. Dette kan være beregningstungt, derfor opstilles en cost-funktion for RMSE, hvor et kompleksitetsled formuleres. Kompleksitetsleddet er produktet af en positivt staf-koefficient og antal af knuder. Ved kryds-validering estimeres blot en sekvens af modellerne, givet en række forskellige staf-koefficienter. For hver staf-keofficient vælges det  under-træ, som minimere cost-funktionen  
 
-Det kan dog ske at træet passer for godt til det datasæt der ligger til grund for dette, hvormed det risikeres at modellens forudsigelser ikke vil være gode. (http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Fourth%20Printing.pdf, s. 307-311) 
+En af fordelene ved krydsvalidering er, at mindske risikoen stikprøve-bias når data tilfældigt opdeles til træning og test. Udover krydsvalidering kan bootstraaping også benyttes til at lave syntetetiske stikprøver 
 
-
-Der findes 
-
-
+## Regressionstræet
 Vi ser altså, at der ved den første knude i træet tages udgangspunkt i hele datasættet. Vi kan herfra se, at modellen på baggrund af alle data for de tre inputvariable beregner et gennemsnit for kvindeandelen af optagede til 0,52. Modellen fremsætter i første knude spørgsmålet ”Retning = business, ingeniør eller science” og data opdeles dermed efter svaret på dette. Ydermere beregnes en ny værdi for den forventede kvindeandel af de optagede stude-rende, givet de nye oplysninger om hvilke retninger der fokuseres på. Det er allerede ved dette skridt i træet interessant at se modellens forudsigelser. Vi ser, at i tilfældet hvor retningen for uddannelserne er business, ingeniør eller science vil den forventede værdi af kvindeandelen af de optagede studerende falde fra 0,52 til 0,32. Er der derimod tale om de resterende retninger for uddannelserne som eksempelvis samfundsviden-skab, sundhed eller humaniora vil den forventede kvindeandel stige til 0,6. Dette viser, at vi ved at indskræn-ke fokus til bestemte retninger inden for uddannelsesudvalget kan se en forskel i fordelingen af mænd og kvinder i uddannelsessystemet. Ser vi nu på de 28 % af data, hvor retningen er business, ingeniør eller sci-ence, vil modellen forudsige kvindeandelen af de optagede studerende til at være 0,4 hvis retningen er busi-ness og 0,29 for ingeniør eller science. Dermed ser vi, at retningerne ingeniør og science umiddelbart er nog-le af de uddannelseskategorier, der ikke tiltrækker mange kvinder. 
 
 Det er interessant at se på knude… 
-
-
- 
 
 
 Træet viser at det i beslutningsprocessen er inputvariablen retning der er den vigtigste, efterfulgt af gennem-snitsindkomst og afsluttende uddannelsesinstitution. 
@@ -388,3 +380,5 @@ Hver knude viser
 optimal.model <- prune(model, model$cptable[model$cptable[, 2] == 8, 1])
 rpart.plot(optimal.model)
 ```
+
+
