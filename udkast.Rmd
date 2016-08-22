@@ -306,7 +306,22 @@ grid.arrange(Maend, Kvinder, ncol=2)
 
 </center>
 
-# Beslutningstræer 
+# Automatisk læring: Beslutningstræer 
+
+I forrige afsnit var formålet, at opstille modeller som kunne give indsigt i kausale sammenhæng mellem kvindeandelen af de optagede studerende og de valgte forklarende variable.  I kontrast til det, er formålet med dette med dette afsnit, at opstille en model som kan forudsige kvindeandelen af de optagede studerende på baggrund af udvalgte inputvariable.  
+
+Ved brug af en *machine learning* algoritme udarbejdes et *regression tree*. Denne type regressionstræ vil på baggrund af en delmægnde af den tilgænglige data, kaldet træningssættet, forsøge at klassificere studierne, ved at "lære" hvordan strukturen mellem forskellige studier er, og dermed forudsige udfaldet af kvindeandel. Metoden kaldes *supervised learning*, hvilket betyder at algoritmen lære hvilke karaktariska der hører til forskellige niveau af kvindeandel i træningsættet. I dette tilfælde benyttes variablene forventede gennemsnitsindkomst, studieretning, adgangskvotient og studiet størrelse som inputvariable til at forsøge at forudsige kvindeandelen af de optagede studerende på et givent studie. 
+
+Idéen bag beslutningstræet, er at datasættet gentagne gange opdeles i mindre dele. De enkelte knuder i træet illustrerer denne opdelingsproces idet der til de enkelte knuder hører en mindre model, som netop splitter data op i mindre dele ved at fremsætte et spørgsmål, der skal besvares med ja eller nej. Vi ser altså, at der ved den første knude i træet tages udgangspunkt i hele datasættet. Vi kan herfra se, at modellen på baggrund af alle data for de tre inputvariable beregner et gennemsnit for kvindeandelen af optagede til 0,52. Modellen fremsætter i første knude spørgsmålet ”Retning = business, ingeniør eller science” og data opdeles dermed efter svaret på dette. Ydermere beregnes en ny værdi for den forventede kvindeandel af de optagede stude-rende, givet de nye oplysninger om hvilke retninger der fokuseres på. Det er allerede ved dette skridt i træet interessant at se modellens forudsigelser. Vi ser, at i tilfældet hvor retningen for uddannelserne er business, ingeniør eller science vil den forventede værdi af kvindeandelen af de optagede studerende falde fra 0,52 til 0,32. Er der derimod tale om de resterende retninger for uddannelserne som eksempelvis samfundsviden-skab, sundhed eller humaniora vil den forventede kvindeandel stige til 0,6. Dette viser, at vi ved at indskræn-ke fokus til bestemte retninger inden for uddannelsesudvalget kan se en forskel i fordelingen af mænd og kvinder i uddannelsessystemet. Ser vi nu på de 28 % af data, hvor retningen er business, ingeniør eller sci-ence, vil modellen forudsige kvindeandelen af de optagede studerende til at være 0,4 hvis retningen er busi-ness og 0,29 for ingeniør eller science. Dermed ser vi, at retningerne ingeniør og science umiddelbart er nog-le af de uddannelseskategorier, der ikke tiltrækker mange kvinder. 
+
+Det er interessant at se på knude… 
+
+Det er naturligvis muligt at udarbejde et beslutningstræ med utrolig mange knuder i den tro, at dette vil gøre modellens forudsigelser mere præcise. Det kan dog ske at træet passer for godt til det datasæt der ligger til grund for dette, hvormed det risikeres at modellens forudsigelser ikke vil være gode. (http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Fourth%20Printing.pdf, s. 307-311) 
+I udarbejdelsen af beslutningstræet udtrak vi tilfældigt halvdelen af observationerne i det oprindelige data-sæt, hvilke blev brugt som training set og den resterende del af data fungerede således som validation set. Dette betyder at beslutningstræet udarbejdes på baggrund af træningsdatasættet og derefter testes på testdata, således at vi kan vurdere modellen.  cross validation og benyttes     
+
+
+Træet viser at det i beslutningsprocessen er inputvariablen retning der er den vigtigste, efterfulgt af gennem-snitsindkomst og afsluttende uddannelsesinstitution. 
+
 
 Kan bruges deskriptivt og  
 Hver knude viser
@@ -319,7 +334,7 @@ set.seed(300)
 trainDTM <- data3[sample(nrow(data3), dim(data3)[1]/2), ]
 testDTM <- anti_join(data3,trainDTM, by = c("Aar" = "Aar", "OptNr" = "OptNr"))
 
-model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM, cp=10^(-6) )
+model = rpart(KvindeAndOpt ~ GnsIndT + Kvotient + TotalOpt + Retning, data = trainDTM, cp=10^(-6))
 cptablenodes <- model$cptable[1:12, ]
 nodes <- cptablenodes[,2]
 treenodes = function(nodes){ prune(model, model$cptable[model$cptable[, 2] == nodes, 1])
@@ -350,6 +365,7 @@ rmse.graf <- rmse %>% gather(key = rmse, value = frequency, -nodes )
 
 ggplot(rmse.graf, aes(x=nodes, y =frequency, group = rmse )) + geom_line(aes(colour=rmse)) + geom_point(aes(colour=rmse))
 
-model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM)
-rpart.plot(model)
+#model = rpart(KvindeAndOpt ~ GnsIndT + Kvotient  + TotalOpt +Retning, data = trainDTM)
+optimal.model <- prune(model, model$cptable[model$cptable[, 2] == 8, 1])
+rpart.plot(optimal.model)
 ```
