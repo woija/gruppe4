@@ -547,20 +547,10 @@ ggplot(rmse.graf, aes(x=nodes, y =frequency, group = RMSE )) +
 
 Den alternative valideringsmetode, krydsvalidering, minder meget om ovenstående simple valideringsmetode - dog betyder krydsvalidering at træningsdata opdeles i flere undersæt, og derved skal flere modeller estimeres og beskæres.  Denne process er beregningstung, og derfor opstilles en cost-funktion for RMSE, hvori et kompleksitetsled formuleres. Kompleksitetsleddet er produktet af en positiv strafkoefficient og antal af knuder. Givet en række udvalgte strafkoefficienter estimeres blot en sekvens af de ellers mange kombinationer af modeller. Gennem en rekursiv krydsningsprocess vælges efterfølgende den strafkoefficient, der minimerer cost-funktionen for modellen i træningssættet. En fordel ved krydsvalidering er en lavere risiko for stikprøve-bias,  da træningsdata opsplittes i flere tilfældige undersæt. Udover krydsvalidering kunne bootstraaping også benyttes til at lave syntetetiske stikprøver. Den grafiske fortolkning bag model- eller knudevalg - som vist i Figur X7 -  er dog kun mulig ved simpel validering.
 
-## Regressionstræet
-Ved den første knude i træet tages udgangspunkt i hele datasættet. Det ses her, at modellen på baggrund af alle data for de fire inputvariable beregner et gennemsnit for kvindeandelen af optagede til 0,52. Modellen fremsætter i første knude spørgsmålet ”Retning = business, ingeniør eller science”, og data opdeles dermed efter svaret på dette. Ydermere beregnes en ny værdi for den forventede kvindeandel af de optagede studerende, givet de nye oplysninger om, hvilke uddannelsesretninger under de to undertræer fokuserer på.  Allerede ved dette skridt i træet er modellens forudsigelser interessante. Det fremgår, at i tilfældet hvor retningen for uddannelserne er business, ingeniør eller science vil den forventede værdi af kvindeandelen af de optagede studerende falde fra 0,52 til 0,32. Er der derimod tale om de resterende retninger for uddannelserne som eksempelvis samfundsvidenskab, sundhed eller humaniora vil den forventede kvindeandel stige til 0,6. Dette viser, at vi ved at indskræn-ke fokus til bestemte retninger inden for uddannelsesudvalget kan se en forskel i fordelingen af mænd og kvinder i uddannelsessystemet. Ser vi nu på de 28 % af data, hvor retningen er business, ingeniør eller sci-ence, vil modellen forudsige kvindeandelen af de optagede studerende til at være 0,4 hvis retningen er business og 0,29 for ingeniør eller science. Dermed ser vi, at retningerne ingeniør og science umiddelbart er nogle af de uddannelseskategorier, der ikke tiltrækker mange kvinder. 
+## Regressionstræ
+Ved den første knude i træet tages udgangspunkt i hele datasættet. Det ses her, at modellen på baggrund af alle data for de fire inputvariable beregner et gennemsnit for kvindeandelen af optagede til 0,53. Modellen fremsætter i første knude spørgsmålet ”Retning = business, ingeniør eller science”, og data opdeles dernæst efter svaret på dette spørgsmål. Efterfølgende beregnes en ny værdi for den forventede kvindeandel af de optagne studerende med de nye oplysninger om uddannelsesretninger under de to undertræer in mente. Allerede ved dette skridt i træet er modellens forudsigelser interessante. Det fremgår, at i tilfældet, hvor retningen for uddannelserne er business, ingeniør eller science, vil den forventede kvindeandel af de optagne studerende falde fra 0,53 til 0,32. Er der derimod tale om de resterende uddannelsesretninger, såsom samfundsvidenskab, sundhed eller humaniora, vil den forventede kvindeandel stige til 0,61. 
 
-Det er interessant at se på knude… 
-
-
-Træet viser at det i beslutningsprocessen er inputvariablen retning der er den vigtigste, efterfulgt af gennem-snitsindkomst og afsluttende uddannelsesinstitution. 
-
-
-Kan bruges deskriptivt og  
-Hver knude viser
-- Den forudsagte andel af kvinder
-- Hvor procent af observationerne det gælder.
-
+Ved at indskrænke fokus til bestemte uddannelsesretninger ses dermed en store variationer i fordelingen af mænd og kvinder i uddannelsessystemet. Ud fra de 26 % af data, hvor retningen er business, ingeniør eller science, vil modellen forudsige kvindeandelen af de optagne studerende til at være 0,41, hvis retningen er business, og 0,28, hvis den er ingeniør eller science. Dermed ser vi, at retningerne ingeniør og science umiddelbart er nogle af de uddannelsesretninger med meget lave kvindeandele. I den modsatte side af træet ses vigtigheden af forventede lønninger. Kvindeandelen falder fra 0.61 til 0.51 på uddannelser med forventede lønninger over 600.000 kroner, og stiger fra 0.61 til 0.64 på uddannelser med forventede lønninger under 600.000 kroner. Efter spørgsmålet om forventet lønniveau fokuseres på uddannelsesretninger og adgangskvotienter i træet. Her falder kvindeandele for uddannelser med lavere adgangskvotienter. 
 
 ###Figur 6: Regressionstræ
 ```{r, echo=FALSE, warning=FALSE }
@@ -569,11 +559,17 @@ optimal.model <- prune(model, model$cptable[model$cptable[, 2] == 8, 1])
 rpart.plot(optimal.model)
 ```
 
+Regressionstræet bekræfter dermed resultaterne fra logit-modellerne; inputvariablerne uddannelsesretning og gennemsnitsindkomst har den største betydning for variation i kønsfordeling på de forskellige uddannelser. 
+
+
 <div id='id-section5'/> 
 #Konklusion
-Ved brug af grafisk analyse, logit-modeller og regressionstræer, viser de undersøgte data tydeligt, at uddannelsesvalg har stor betydning for fremtidige lønninger. Men lønninger har samtidig også stor betydning for uddannelsesvalg. Mænd vælger, aktivt eller passivt, uddannelser, der leder til bedre lønnet arbejde. Dermed kan kønsfordelingen på lange videregående uddannelser forklare en stor del af lønforskelle imellem kønnene, som observeres i arbejdsmarkedet. Kønsforskelle i uddannelsesvalg afhænger i høj grad af uddannelsesretning, men selv efter justering for uddannelsesretning vælger kvinder uddannelser, der leder til lavere lønninger sammenlignet med mænd. Dermed starter kønsuligheden observeret i arbejdsmarkedet allerede, når studenter vælger deres bacheloruddannelse. Denne konklusion betyder at policy målrettet kønsulighed skal starte allerede her: Mindre kønsforskelle i uddannelsesvalg giver mindre ulighed på arbejdsmarkedet. 
+De undersøgte data viser tydeligt, at uddannelsesvalg har stor betydning for fremtidige lønninger. Men lønninger har samtidig også stor betydning for uddannelsesvalg. Mænd vælger, aktivt eller passivt, uddannelser, der leder til bedre lønnet arbejde. Dermed kan kønsfordelingen på lange videregående uddannelser forklare en stor del af lønforskelle imellem kønnene, som observeres i arbejdsmarkedet. Kønsforskelle i uddannelsesvalg afhænger i høj grad af uddannelsesretning, men selv efter justering for uddannelsesretning vælger kvinder uddannelser, der leder til lavere lønninger sammenlignet med mænd. 
+
+Dermed starter kønsuligheden observeret i arbejdsmarkedet allerede, når studenter vælger deres bacheloruddannelse. Denne konklusion betyder at policy målrettet kønsulighed skal starte allerede her: Mindre kønsforskelle i uddannelsesvalg giver mindre ulighed på arbejdsmarkedet. 
 
 Analysen af sammenhængen mellem uddannelsesvalg og lønforskelle mellem kønnene kunne gøres mere robust ved at benytte panel data og kønsopdelt løndata. På trods af disse datamangler giver analysen her en grundigt, præliminær indsigt i sammenhængen, som ikke illustreres i standard human kapital modeller af arbejdsmarkedet. Desuden kan analysen udbredes til alle uddannelser, ikke kun lange videregående uddannelser.
+
 
 \newpage
 <div id='id-section6'/> 
