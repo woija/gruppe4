@@ -33,6 +33,7 @@ library(magrittr)
 library(rpart)
 library(purrr)
 library(rpart.plot)
+
 ```
 
 ```{r include = FALSE}
@@ -405,6 +406,10 @@ ggplot(rmse.graf, aes(x=nodes, y =frequency, group = RMSE )) + geom_line(aes(col
 
 ```
 
+
+$$Kvindeandel_i=\alpha_i+\beta_1 \cdot indkomst_i+\beta_2 \cdot business_i +\beta_3 \cdot humaniora_i+\beta_4 \cdot ingeniør_i+\beta_5 \cdot jura_i$$
+$$+\beta_6 \cdot kommunikation_i +\beta_7 \cdot naturvidenskab_i+\beta_8 \cdot samfundsvidenskab_i+\beta_9 \cdot science_i$$
+$$+\beta_{10} \cdot sundshedsvidenskab_i+\beta_{11} \cdot adgangskvotient_i+\beta_{12} \cdot total optag_i + \epsilon_i$$
 
 ###Figur 6: Beslutningstræ
 ```{r echo=FALSE, warning=FALSE}
