@@ -18,13 +18,13 @@ fontsize: 11pt
 
 ```{r include = FALSE}
 library(viridis)
-library(pander)
-library(stargazer)
+#library(pander)
+#library(stargazer)
 library(dplyr)
 library(rio)
-library(splitstackshape)
-library(tonymisc)
-library(memisc)
+#library(splitstackshape)
+#library(tonymisc)
+#library(memisc)
 library(grid)
 library(gridExtra)
 library(tidyr)
@@ -38,7 +38,7 @@ library(rpart)
 ```
 
 ```{r include = FALSE}
-setwd("/Users/simonharmat/Dropbox/Studie/Data_science/Gruppe4" ) ## Skriv stien
+#setwd("/Users/simonharmat/Dropbox/Studie/Data_science/Gruppe4" ) ## Skriv stien
 
 data <- import("optagelse3.csv") # l??ser csv-filen 
 lon <- import("londata.csv") # l??ser csv-filen
@@ -78,6 +78,8 @@ data3 <-  data.2 %>%
 - [Modeller](#id-section4)
 
 - [Konklusion](#id-section5)
+
+- [Appendix](#id-section6)
 
 
 
@@ -332,14 +334,24 @@ Figur 4 viser, at dette faktisk er tilfældet: med undtagelse af business/kommun
 #Modeller
 I et forsøg på at forklare kønsfordelingen på længere videregående uddannelser udregnes andelen af kvinder optaget på alle de forskellige længere videregående uddannelser i Danmark. Disse kvindeandele benyttes herefter som afhængig variabel i en række økonometriske modeller. Først benyttes en logit-regressionsmodel, da den afhængige variabel, kvindeandele er proportionel. Dernæst anvendes en statistisk læringsmodel til at opstille et decision tree for processen bag de kønsspecifikke uddannelsesvalg.
 
+##Logit
+Da variablen, der beskriver kvindeandelen, er proportional, falder dens værdier mellem 0 og 1. Dermed bør forudsagte værdier også falde i dette interval. Dette opnås ved at anvende en generaliseret lineær model (glm) med et logit link og binomial familie, som er at foretrække, selv med en kontinuerlig afhængig variabel (Baum 2008). Estimerede logit-koefficienter er ikke lig med effektstørrelse, som ved almindelige lineære estimeringer. Derfor udregnes mere informative gennemsnitlige marginale effekter (Average Partial/Marginal Effects, APE) efter estimeringer af logit-modellerne, og de reporteres i Tabel 3. Ved estimering vægtes observationerne (data fra de forskellige uddannelser) efter uddannelsesstørrelse, i.e. optag på studierne, således at små, potentielle outlying observationer ikke vægtes i samme grad som større studier, e.g. medicin. Formålet med logit-modellen er at bestemme kausale sammenhænge mellem kvindeandelen på uddannelser og en række andre variable.
+
+Der opstilles fire modeller, hvor der indgår forskellige uafhængige variable. I den første model estimeres udelukkede effekten på kvindeandelen af forventet, gennemsnitlig indkomst efter endt uddannelse. Det skal her bemærkes, at indkomst kan være endogenous, altså afhængig af kvindeandelen. I model 2 introduceres en kategorisk variabel, der beskriver forskellige uddannelsesretninger, hvilket tydeligvis er relevant, jf. Figur 4. Kategorien business/kommunikation anvendes som basis kategori. De næste to modeller inkluderer to yderligere kontinuerlige variable: Model 3 medregner adgangskvotienten på de forskellige uddannelser, og Model 4 inddrager dernæst uddannelsesstørrelsen, i.e. det totale optag på studierne. Det fulde model med alle fire variable skrives således:
+
+$$Kvindeandel_i=\alpha_i+\beta_1 \cdot indkomst_i+\beta_2 \cdot business_i +\beta_3 \cdot humaniora_i+\beta_4 \cdot ingeniør_i+\beta_5 \cdot jura_i$$
+$$+\beta_6 \cdot kommunikation_i +\beta_7 \cdot naturvidenskab_i+\beta_8 \cdot samfundsvidenskab_i+\beta_9 \cdot science_i$$
+$$+\beta_{10} \cdot sundshedsvidenskab_i+\beta_{11} \cdot adgangskvotient_i+\beta_{12} \cdot total optag_i + \epsilon_i$$
+
+De estimerede logit-koefficienter fremgår Tabel AX1, medens de estimerede APE kan ses her, i Tabel 3:
+
+
 \newpage
 
+### Tabel 3: Logit-modeller, partiel average effects
 </center>
-|Tabel 3: Logit-modeller, marginal effekter| 
-|-------------------------|:---------:|:---------:|:---------:|:---------:|
 | **Model**                |    (1)    |    (2)    |    (3)    |    (4)    |
-| Konstant                |  0.238*** |  0.350*** |  0.271*** |  0.274*** |
-|                         |  (0.005)  |  (0.010)  |  (0.010)  |  (0.010)  |
+|-------------------------|:---------:|:---------:|:---------:|:---------:
 | Indkomst i 100.000 kr.  | -0.035*** | -0.042*** | -0.040*** | -0.039*** |
 |                         |  (0.001)  |  (0.001)  |  (0.001)  |  (0.001)  |
 | Business                |           | -0.174*** | -0.172*** | -0.157*** |
@@ -364,12 +376,16 @@ I et forsøg på at forklare kønsfordelingen på længere videregående uddanne
 |                         |           |           |  (0.000)  |  (0.000)  |
 | Totalt optag i hundrede |           |           |           | -0.009*** |
 |                         |           |           |           |  (0.001)  |
-| McFadden R-sq.          |    0.1    |    0.4    |    0.4    |    0.4    |
-| Deviance                |  19854.7  |  12942.2  |  12271.8  |  12206.5  |
+
 
 </center>
 
-# Machine learning 
+Model 1 viser en klar sammenhæng mellem kvindeandel og indkomst, en sammenhæng som er både statistik og økonomisk signifikant. Der er en klar tendens til at andelen af kvinder på uddannelser falder, når forventede lønninger stiger. Model 1 viser, at for hver 100.000 kroner forventede lønninger stiger, falder andelen af kvinder med 3,5 %. Model 2 inddrager uddannelsesretninger, som tydeligvis også er afgørende for kvindeandelen på uddannelser. Business, ingeniørvidenskab og science er domineret af mænd, medens jura og sundhedsvidenskab er domineret af kvinder. Overraskende forstærkes effekten af indkomst på kvindeandele efter introduktionen af uddannelsesretninger i modellen, og nu falder andelen af kvinder med 4,2 % per 100.000 kroner forøgelse i forventet indkomst. Model 3 viser, at uddannelsernes adgangskvotient har en lille positiv sammenhæng med kvindeandelen på studierne – kvinder lader til at have højere karakterer i deres adgangsgivende eksamen, eller i hvert fald udnytte disse karakterer ved at søge ind på studier med højere adgangskvotienter. Model 4 viser desuden en marginal effekt af uddannelsesstørrelse på kvindeandelen – mænd har en om end svag tendens til at søge ind på større studier.
+
+Model 3 og 4 giver kun lidet ekstra indsigt i forhold til Model 1 og 2 – fra Model 2 til 3 falder deviance, som er et mål for quality-of-fit, kun marginalt. Med den tilgængelige data er Model 2 derfor et godt kompromis mellem antallet af variable og modellernes forklaringskraft. Det er klart at forventet indkomst samt uddannelsesretning er variablene med den primære forklaringskraft og kausale effekter bag kvindeandelen på lange videregående uddannelser. 
+
+
+## Machine learning 
 I forrige afsnit var formålet at opstille en model, som kan give indsigt i kausale sammenhænge mellem kvindeandelen af de optagne studerende og de valgte forklarende variable. I kontrast til det, er formålet med dette afsnit at opstille en model, som kan forudsige kvindeandelen af de optagne studerende på baggrund af udvalgte inputvariable.
 
 Ved brug af en *machine learning* algoritme udarbejdes et regressionstræ. Denne type regressionstræ benytter en delmængde af de tilgængelige data, kaldet træningssættet, til at klassificere studierne ved at “lære” forskelle i strukturer mellem uddannelser, og dermed forudsige udfaldet af kvindeandel. Metoden kaldes *supervised learning*, da algoritmen udregner og dernæst viser, hvilke karakteristika, der bestemmer divergerende niveauer af kvindeandele på uddannelser i træningssættet. I dette tilfælde benyttes inputvariablene forventet gennemsnitsindkomst, studieretning, adgangskvotient samt uddannelsesstørrelse i et forsøg på at forudsige kvindeandelen af de optagene studerende på en given uddannelse.
@@ -457,3 +473,38 @@ rpart.plot(optimal.model)
 
 <div id='id-section5'/> 
 #Konklusion
+
+\newpage
+<div id='id-section6'/> 
+#Appendix 
+###Tabel 1AX: Logit koefficienter
+| Model                   |    (1)    |    (2)    |    (3)    |    (4)    |
+|-------------------------|:---------:|:---------:|:---------:|:---------:|
+| Konstant                |  0.955*** |  1.405*** |  1.088*** |  1.102*** |
+|                         |  (0.020)  |  (0.038)  |  (0.040)  |  (0.040)  |
+| Indkomst i 100.000 kr.  | -0.140*** | -0.168*** | -0.162*** | -0.158*** |
+|                         |  (0.003)  |  (0.005)  |  (0.005)  |  (0.005)  |
+| Business                |           | -0.700*** | -0.689*** | -0.632*** |
+|                         |           |  (0.033)  |  (0.033)  |  (0.034)  |
+| Humaniora               |           | -0.167*** |  -0.074*  |  -0.065*  |
+|                         |           |  (0.030)  |  (0.031)  |  (0.031)  |
+| Ingenior                |           | -1.168*** | -1.062*** | -1.086*** |
+|                         |           |  (0.036)  |  (0.036)  |  (0.036)  |
+| Jura                    |           |  0.439*** |  0.307*** |  0.446*** |
+|                         |           |  (0.042)  |  (0.042)  |  (0.045)  |
+| Kommunikation           |           | -0.342*** | -0.262*** | -0.269*** |
+|                         |           |  (0.034)  |  (0.034)  |  (0.034)  |
+| Naturvidenskab          |           | -0.229*** | -0.138*** | -0.145*** |
+|                         |           |  (0.032)  |  (0.032)  |  (0.032)  |
+| Samfundsvidenskab       |           |  -0.066*  |  -0.076*  |   -0.046  |
+|                         |           |  (0.031)  |  (0.031)  |  (0.032)  |
+| Science                 |           | -1.184*** | -1.061*** | -1.061*** |
+|                         |           |  (0.037)  |  (0.037)  |  (0.037)  |
+| Sundhedsvidenskab       |           |  0.738*** |  0.572*** |  0.633*** |
+|                         |           |  (0.040)  |  (0.040)  |  (0.041)  |
+| Adgangskvotient         |           |           |  0.043*** |  0.045*** |
+|                         |           |           |  (0.002)  |  (0.002)  |
+| Totalt optag i hundrede |           |           |           | -0.035*** |
+|                         |           |           |           |  (0.004)  |
+| McFadden R-sq.          |    0.1    |    0.4    |    0.4    |    0.4    |
+| Deviance                |  19854.7  |  12942.2  |  12271.8  |  12206.5  |
