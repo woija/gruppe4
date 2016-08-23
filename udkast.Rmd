@@ -18,13 +18,13 @@ fontsize: 11pt
 
 ```{r include = FALSE}
 library(viridis)
-#library(pander)
-#library(stargazer)
+library(pander)
+library(stargazer)
 library(dplyr)
 library(rio)
-#library(splitstackshape)
-#library(tonymisc)
-#library(memisc)
+library(splitstackshape)
+library(tonymisc)
+library(memisc)
 library(grid)
 library(gridExtra)
 library(tidyr)
@@ -38,10 +38,11 @@ library(rpart)
 ```
 
 ```{r include = FALSE}
-#setwd("/Users/simonharmat/Dropbox/Studie/Data_science/Gruppe4" ) ## Skriv stien
+setwd("/Users/simonharmat/Dropbox/Studie/Data_science/Gruppe4" ) ## Skriv stien
 
 data <- import("optagelse3.csv") # l??ser csv-filen 
 lon <- import("londata.csv") # l??ser csv-filen
+load("gnsretning.RData")
 
 data <- data %>%
   mutate(Kvotient = as.numeric(gsub(",",".",data$Kvotient))) %>%
@@ -299,7 +300,7 @@ Figur 2 viser ligeledes, at de 10 uddannelser med højest lønnede kandidater al
 ###Figur 4: Forskel i forventede, vægtede lønninger pr. studieretning
 
 ```{r echo=FALSE, warning=FALSE, fig.width=6, fig.height=3}
-load("/Users/sabineverning13/Desktop/gruppe4/gnsretning.RData")
+
 gretning = gnsretning [1:10, 1:4]
 
 
@@ -444,7 +445,7 @@ Hver knude viser
 ###Figur 6: Regressionstræ
 ```{r, echo=FALSE, warning=FALSE }
 # Statistisk læring
-optimal.model <- prune(model, model$cptable[model$cptable[, 2] == 8, 1])
+optimal.model <- prune(model, model$cptable[model$cptable[, 2] == 10, 1])
 rpart.plot(optimal.model)
 ```
 
