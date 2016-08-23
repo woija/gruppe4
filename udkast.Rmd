@@ -405,7 +405,7 @@ set.seed(300)
 trainDTM <- data3[sample(nrow(data3), dim(data3)[1]/2), ]
 testDTM <- anti_join(data3,trainDTM, by = c("Aar" = "Aar", "OptNr" = "OptNr"))
 
-model = rpart(KvindeAndOpt ~ GnsIndT  + InstNavn + Retning, data = trainDTM, cp=10^(-6) )
+model = rpart(KvindeAndOpt ~ GnsIndT  + Kvotient + Totalopt + Retning, data = trainDTM, cp=10^(-6) )
 
 cptablenodes <- model$cptable[1:12, ]
 nodes <- cptablenodes[,2]
@@ -467,7 +467,7 @@ Hver knude viser
 ###Figur 6: Regressionstræ
 ```{r, echo=FALSE, warning=FALSE }
 # Statistisk læring
-optimal.model <- prune(model, model$cptable[model$cptable[, 2] == 10, 1])
+optimal.model <- prune(model, model$cptable[model$cptable[, 2] == 8, 1])
 rpart.plot(optimal.model)
 ```
 
