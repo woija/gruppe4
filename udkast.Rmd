@@ -1,5 +1,5 @@
 ---
-title: "Eksamens projekt"
+title: ""
 geometry: margin=1in
 header-includes:
 - \usepackage{booktabs}
@@ -65,7 +65,7 @@ data3 <-  data.2 %>%
 
 
 ```
-\newpage
+
 # Indholdsfortegnelse
 
 
@@ -397,7 +397,7 @@ Der findes forskellige metoder til udvælgelsen af antallet knuder, heriblandt k
 
 Indledningsvist udtrækkes halvdelen af observationerne, på tilfældigvis, i det oprindelige datasæt. Udtrækket bliver brugt som træningsdata, mens den resterende del af data benyttes til validitets, også kaldes testdata. Dernæst udarbejdes et stort regressionstræ, som beskæres indtil det optimale under-træ opnås. Det optimale under-træ er det under-træ, som mindsker RMSE mellem forudsigelserne og observationerne i testdata. I dette tilfæde, frembringes, ved denne process, et regressionstræ som består af 8 knuder. Dette fremgår af grafen nedenfor, hvor RMSE er en funktion af knuder. For testdata har RMSE har globalt minimum i 8, mens RMSE for træningsdata konvergere mod 0, præcis som ventet. Det udtrykker altså en balancen mellem bias ved lille et træ og overfitting ved et stort træ. 
 
-###Figur 5:
+###Figur 5: RMSE for træning og test
 
 ```{r, echo=FALSE, warning=FALSE }
  #Statistisk læring
@@ -473,6 +473,9 @@ rpart.plot(optimal.model)
 
 <div id='id-section5'/> 
 #Konklusion
+Ved brug af grafisk analyse, logit-modeller og regressionstræer, viser de undersøgte data tydeligt, at uddannelsesvalg har stor betydning for fremtidige lønninger. Men lønninger har samtidig også stor betydning for uddannelsesvalg. Mænd vælger, aktivt eller passivt, uddannelser, der leder til bedre lønnet arbejde. Dermed kan kønsfordelingen på lange videregående uddannelser forklare en stor del af lønforskelle imellem kønnene, som observeres i arbejdsmarkedet. Kønsforskelle i uddannelsesvalg afhænger i høj grad af uddannelsesretning, men selv efter justering for uddannelsesretning vælger kvinder uddannelser, der leder til lavere lønninger sammenlignet med mænd. Dermed starter kønsuligheden observeret i arbejdsmarkedet allerede, når studenter vælger deres bacheloruddannelse. Denne konklusion betyder at policy målrettet kønsulighed skal starte allerede her: Mindre kønsforskelle i uddannelsesvalg giver mindre ulighed på arbejdsmarkedet. 
+
+Analysen af sammenhængen mellem uddannelsesvalg og lønforskelle mellem kønnene kunne gøres mere robust ved at benytte panel data og kønsopdelt løndata. På trods af disse datamangler giver analysen her en grundigt, præliminær indsigt i sammenhængen, som ikke illustreres i standard human kapital modeller af arbejdsmarkedet. Desuden kan analysen udbredes til alle uddannelser, ikke kun lange videregående uddannelser.
 
 \newpage
 <div id='id-section6'/> 
