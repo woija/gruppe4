@@ -35,6 +35,9 @@ library(rpart)
 library(purrr)
 library(rpart.plot)
 library(rpart)
+library(rvest)
+library(readr)
+library(stringr)
 ```
 
 ```{r include = FALSE}
@@ -114,11 +117,104 @@ Med kønsopdelt data for ansøgerantal samt optagne studerende på alle længere
 
 <div id='id-section2'/>
 # Data, metode og etik
-Danske universiteters data for antal ansøgere samt optagne på bacheloruddannelser og er offentligt tilgængeligt gennem Uddannelses- og Forskningsministeriet. Data for årene 2013-2016 benyttes for at sikre et stort, repræsentativt sample, samt for at påvise eventuelle nylige forandringer i uddannelsesvalg. Antal af ansøgere og optagne er opdelt efter køn, og desuden indeholder datasættene bachelorstudiernes adgangskvotienter.
 
-Løndata opgjort per uddannelse for alle færdige kandidater er produceret af CEPOS og ligger ligeledes offentligt tilgængeligt. CEPOS har udarbejdet et datasæt for gennemsnitlige bruttolønninger opgjort efter færdiggjort længerevarende videregående uddannelse for alle danskere mellem 25-59 år, men disse data er ikke opdelt efter køn. Da disse løndata er gennemsnitlige og inkluderer både mandlige og kvindelige kandidater fra de respektive uddannelser, mistes dimensionen af kønsforskelle i løn inden for de individuelle uddannelser. På den anden side gør dette løngennemsnit det muligt at isolere den del af lønforskelle, der opstår alene som resultat af kønsforskelle i uddannelsesvalg, hvilket netop er formålet med dette studie. 
+```{r include=FALSE}
+### Funktion der kan gøre ovenstående hvor n er antal datasæt fra den sidst tilføjede år og tilbage, og Data er det ønskede data; Ansøger, optagne og kvotienter
 
-De to datakilder er forskellige i den forstand, at universiteternes ansøgninger og optag er opgjort for bacheloruddannelser, men løndata for færdige kandidater, i.e. for færdige længerevarende videregående uddannelser. I denne analyse indgår derfor kun bacheloruddannelser, der direkte leder til en kandidatuddannelse, e.g. gennem retskrav på optagelse på en specifik kandidatuddannelse. De to datasæt er derfor forenet ved at identificere par af bachelor- og kandidatuddannelser, e.g. bachelor- og kandidatstudierne i medicin. Dette udelukker for eksempel professionsbacheloruddannelser, der kunne lede til en kandidatuddannelse, og introducerer en bias, da sammenhængen mellem disse bachelor- og kandidatuddannelser ikke er perfekt, e.g. grundet frafald og uddannelsesskift. Ydermere identificeredes 10 uddannelsesretninger, såsom sundhedsvidenskab og samfundsvidenskab. Denne kategorivariabel er essentiel for en vurdering af uddannelsesretningers indflydelse på lønforskelle.
+
+ScrapeFun = function(n, Data) {
+  if (Data == "Optaget") {
+    link = "http://ufm.dk/uddannelse-og-institutioner/statistik-og-analyser/sogning-og-optag-pa-videregaende-uddannelser/grundtal-om-sogning-og-optag/ansogere-og-optagne-fordelt-pa-kon-alder-og-adgangsgrundlag"
+    Filer = link %>% 
+      read_html() %>% 
+      html_nodes(".factbox:nth-child(6) p:nth-child(2) .internal-link") %>% 
+      html_attr(name = 'href')
+    Filer = Filer[!is.na(Filer)]
+    Filer = unique(Filer)
+    Aarstal = link %>%
+      read_html() %>%
+      html_nodes(".factbox:nth-child(6) p:nth-child(2) .internal-link") %>%
+      html_text() %>%
+      str_trim() %>% 
+      str_sub(start = 1, end = 4)
+    Aarstal = unique(Aarstal)
+    Aarstal[Aarstal == ""] = NA
+    Aarstal = Aarstal[!is.na(Aarstal)]
+    data = cbind(Aarstal, Filer)
+  }
+  else if (Data == "Ansoger") {
+    link = "http://ufm.dk/uddannelse-og-institutioner/statistik-og-analyser/sogning-og-optag-pa-videregaende-uddannelser/grundtal-om-sogning-og-optag/ansogere-og-optagne-fordelt-pa-kon-alder-og-adgangsgrundlag"
+    Filer = link %>% 
+      read_html() %>% 
+      html_nodes(".factbox:nth-child(3) p:nth-child(2) .internal-link") %>% 
+      html_attr(name = 'href')
+    Filer = Filer[!is.na(Filer)]
+    Filer = unique(Filer)
+    Aarstal = link %>%
+      read_html() %>%
+      html_nodes(".factbox:nth-child(3) p:nth-child(2) .internal-link") %>%
+      html_text() %>%
+      str_trim() %>% 
+      str_sub(start = 1, end = 4)
+    Aarstal = unique(Aarstal)
+    Aarstal[Aarstal == ""] = NA
+    Aarstal = Aarstal[!is.na(Aarstal)]
+    data = cbind(Aarstal, Filer)
+  }
+  else {
+    link = "http://ufm.dk/uddannelse-og-institutioner/statistik-og-analyser/sogning-og-optag-pa-videregaende-uddannelser/grundtal-om-sogning-og-optag/kot-hovedtal"
+    Filer = link %>% 
+      read_html() %>% 
+      html_nodes("p:nth-child(10) .internal-link") %>% 
+      html_attr(name = 'href')
+    Filer = Filer[!is.na(Filer)]
+    Filer = unique(Filer)
+    Aarstal = link %>%
+      read_html() %>%
+      html_nodes("p:nth-child(10) .internal-link") %>%
+      html_text() %>%
+      str_trim() %>% 
+      str_sub(start = 1, end = 4)
+    Aarstal = unique(Aarstal)
+    Aarstal[Aarstal == ""] = NA
+    Aarstal = Aarstal[!is.na(Aarstal)]
+    data = cbind(Aarstal, Filer)
+  } 
+  data.sub <- tail(data, n)
+  }
+  
+
+data = ScrapeFun(4,"Optaget") 
+dataA = ScrapeFun(4,"Ansoger")
+dataK = ScrapeFun(4,"Kvotient")
+
+## Data = Ansoger
+for ( i in 1:nrow(dataA)) {
+  name = paste("Ansoger", dataA[i,1], sep = "")
+  assign(name, import(dataA[i,2]))
+}
+
+## Data = Optaget
+for ( i in 1:nrow(data)) {
+  name = paste("Optaget", data[i,1], sep = "")
+  assign(name, import(data[i,2]))
+}
+
+## Data = Kvotient
+for ( i in 1:nrow(dataK)) {
+  name = paste("Kvotient", dataK[i,1], sep = "")
+  assign(name, import(dataK[i,2]))
+}
+
+```
+
+På Uddannelses- og Forskningsministeriets hjemmeside findes en række offentlig tilgængelige datasæt på forskellige parameter for universitetsoptag. Til opgavens analyse bruges henholdsvis datasæt for ansøgere og optagne fordelt på køn, samt adgangskvotienter. På hjemmesiden kan disse oplysninger hentes for forskellige år. For at automatisere hentningen af disse data konstrueres en såkaldt *scraper*, som tager følgende to argumenter; i) hvilke datasæt og ii) ønskede antal år fra den nyeste observation. Til opgaven hentes årene 2013-2016 for at sikre en stor, repræsentativ stikprøve, samt for at påvise eventuelle nylige forandringer i uddannelsesvalg. Dermed henter funktionen 12 forskellige datasæt. 
+
+Løndata opgjort per uddannelse for alle færdige kandidater er produceret af CEPOS og ligger ligeledes offentligt tilgængeligt. CEPOS har udarbejdet et datasæt for top 250 gennemsnitlige bruttolønninger opgjort efter færdiggjort længerevarende videregående uddannelse for alle danskere mellem 25-59 år, men disse data er ikke opdelt efter køn. Da disse løndata er gennemsnitlige og inkluderer både mandlige og kvindelige kandidater fra de respektive uddannelser, mistes dimensionen af kønsforskelle i løn inden for de individuelle uddannelser. På den anden side gør dette løngennemsnit det muligt at isolere den del af lønforskelle, der opstår alene som resultat af kønsforskelle i uddannelsesvalg, hvilket netop er formålet med denne analyse. 
+
+De to datakilder er forskellige i den forstand, at universiteternes ansøgninger, optag og kvotienter er opgjort for bacheloruddannelser, men løndata for færdige kandidater, i.e. for færdige længerevarende videregående uddannelser. I denne analyse indgår derfor kun bacheloruddannelser, der direkte leder til en kandidatuddannelse, e.g. gennem retskrav på optagelse på en specifik kandidatuddannelse. De to datasæt er derfor forenet ved at identificere par af bachelor- og kandidatuddannelser, e.g. bachelor- og kandidatstudierne i medicin. Dette udelukker for eksempel professionsbacheloruddannelser, der kunne lede til en kandidatuddannelse, og introducerer en bias, da sammenhængen mellem disse bachelor- og kandidatuddannelser ikke er perfekt, e.g. grundet frafald og uddannelsesskift. Desuden findes der i løndata få brede kategorier, som samler flere uddannelser, f.eks. uspecficeret civil ingeniører.  Ydermere identificeredes 10 uddannelsesretninger, såsom sundhedsvidenskab og samfundsvidenskab. Denne kategorivariabel er essentiel for en vurdering af uddannelsesretningers indflydelse på lønforskelle. 
+
+Metodisk parres løn og ansøgere kvalitativt, samt kategorieres retning for et år. Til alle uddannelser hører et unikt optagelsesnummer, som gør det muligt at forene alle 12 datasæt, således at løn og kategorier over årene passer sammen. Det kvalitative element betyder, at en del af dataarbejdet bør foretages manuelt. 
 
 De anvendte data er offentligt tilgængelige, og derfor forefindes ikke rettighedsproblemer. Etisk kan det problematiseres, at nogle uddannelser har meget få optagne, især efter opdeling af køn, således at det er muligt identificere enkelte studerende i datasæt. Dog indgår ingen data på individniveau, hverken i datasættene eller i analysen, og etiske problemer er derfor ikke eksisterende.
 
