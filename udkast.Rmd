@@ -410,19 +410,25 @@ models.test = nodes %>%
 models.train.mse = colMeans((models.train-trainDTM$KvindeAndOpt)**2)
 models.test.mse = colMeans((models.test-testDTM$KvindeAndOpt)**2)
 
-models.train.rmse = sqrt(models.train.mse)
-models.test.rmse = sqrt(models.test.mse)
+Train = sqrt(models.train.mse)
+Test = sqrt(models.test.mse)
 
 
-rmse <- data.frame(cbind(nodes, models.train.rmse, models.test.rmse))
+rmse <- data.frame(cbind(nodes, Train, Test))
 
 
 rmse.graf <- rmse %>% gather(key = RMSE, value = frequency, -nodes )
 
-ggplot(rmse.graf, aes(x=nodes, y =frequency, group = RMSE )) + geom_line(aes(colour=RMSE)) + geom_point(aes(colour=RMSE)) + theme_minimal() + scale_color_manual(values = c("#66A61E", "#E6AB02")) + 
-  ylab("RMSE") + xlab("Knuder") + 
+ggplot(rmse.graf, aes(x=nodes, y =frequency, group = RMSE )) + 
+  geom_line(aes(colour=RMSE)) + 
+  geom_point(aes(colour=RMSE)) + 
+  theme_minimal() + 
+  scale_color_manual(values = c("#66A61E", "#E6AB02")) + 
+  ylab("RMSE") + 
+  xlab("Knuder") + 
   theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7),
-          axis.text.x = element_text(size=7))
+          axis.text.x = element_text(size=7), legend.position = "bottom", legend.title=element_blank()) + 
+  scale_x_continuous(breaks=1:12) 
 ```
 
 Den alternative valideringsmetode, krydsvalidering, minder meget om ovenstående simple valideringsmetode - dog betyder krydsvalidering at træningsdata opdeles i flere undersæt, og derved skal flere modeller estimeres og beskæres.  Denne process er beregningstung, og derfor opstilles en cost-funktion for RMSE, hvori et kompleksitetsled formuleres. Kompleksitetsleddet er produktet af en positiv strafkoefficient og antal af knuder. Givet en række udvalgte strafkoefficienter estimeres blot en sekvens af de ellers mange kombinationer af modeller. Gennem en rekursiv krydsningsprocess vælges efterfølgende den strafkoefficient, der minimerer cost-funktionen for modellen i træningssættet. En fordel ved krydsvalidering er en lavere risiko for stikprøve-bias,  da træningsdata opsplittes i flere tilfældige undersæt. Udover krydsvalidering kunne bootstraaping også benyttes til at lave syntetetiske stikprøver. Den grafiske fortolkning bag model- eller knudevalg - som vist i Figur X7 -  er dog kun mulig ved simpel validering.
