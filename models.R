@@ -3,19 +3,20 @@ cat("\014") # Sletter consol teksten
 
 library(dplyr)
 library(rio)
-install.packages("splitstackshape")
+#install.packages("splitstackshape")
 library(splitstackshape)
 library(tonymisc)
-install.packages("pander")
+#install.packages("pander")
 library(pander)
-install.packages("memisc")
+#install.packages("memisc")
 library(memisc)
 library("devtools")
-install_github("cran/tonymisc")
+#install_github("cran/tonymisc")
 library(tonymisc)
 library("rio")
 library("magrittr")
 library("dplyr")
+library("stargazer")
 
 
 setwd("/Users/Mathias/OneDrive/KU/Social Data Science/gruppe4" ) ## Skriv stien
@@ -83,6 +84,24 @@ modell4<-glm(KvindeAndOpt ~ GnsIndkomstHT + Retning + Kvotient + TotalOptH, data
 logit4 <- mfx_me(modell4) ## Create "mfx" object to trick mtable()
 
 
+Model <- mtable("(1)"=modell1,"(2)"=modell2,"(3)"=modell3,"(4)"=modell4, summary.stats = c("McFadden R-sq.", "Deviance")) ## produces a table with nice output
+Model <- relabel(Model,
+                 "(Intercept)" = "Konstant",
+                 GnsIndkomstHT = "Indkomst i 100.000 kr.",
+                 TotalOptH = "Totalt optag i hundrede",
+                 Kvotient = "Adgangskvotient",
+                 "Retning: Business/Bus/kom" = "Business",
+                 "Retning: Hum/Bus/kom" = "Humaniora",
+                 "Retning: Ing/Bus/kom" = "Ingenior",
+                 "Retning: Jur/Bus/kom" = "Jura",
+                 "Retning: Kom/Bus/kom" ="Kommunikation",
+                 "Retning: Natur/Bus/kom" = "Naturvidenskab",
+                 "Retning: Samf/Bus/kom" = "Samfundsvidenskab",
+                 "Retning: Science/Bus/kom" = "Science",
+                 "Retning: Sund/Bus/kom" = "Sundhedsvidenskab")
+write.mtable(Model)                 
+write.mtable(Model, file = "delim2", format = "delim")
+stargazer(Model)
 Logit<- mtable("(1)"=logit1,"(2)"=logit2,"(3)"=logit3,"(4)"=logit4, summary.stats = c("McFadden R-sq.", "Deviance")) ## produces a table with nice output
 Logit <- relabel(Logit,
                       "(Intercept)" = "Konstant",
