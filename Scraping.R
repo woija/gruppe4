@@ -121,6 +121,7 @@ for ( i in 1:nrow(data.kvotienter)) {
 ### Funktion der kan gøre ovenstående, hvor n er antal år fra 2016 og tilbage og Data er
 ### det ønskede data 
 
+
 ScrapeFun = function(n, Data) {
   if (Data == "Optaget") {
     link = "http://ufm.dk/uddannelse-og-institutioner/statistik-og-analyser/sogning-og-optag-pa-videregaende-uddannelser/grundtal-om-sogning-og-optag/ansogere-og-optagne-fordelt-pa-kon-alder-og-adgangsgrundlag"
@@ -180,15 +181,17 @@ ScrapeFun = function(n, Data) {
     data = cbind(Aarstal, Filer)
   } 
   data.sub <- tail(data, n)
-}
+  }
+  
 
-
-data = ScrapeFun(4, "Kvotient")
+data = ScrapeFun(4,"Optaget") 
+dataA = ScrapeFun(4,"Ansoger")
+dataK = ScrapeFun(4,"Kvotient")
 
 ## Data = Ansoger
-for ( i in 1:nrow(data)) {
-  name = paste("Ansoger", data[i,1], sep = "")
-  assign(name, import(data[i,2]))
+for ( i in 1:nrow(dataA)) {
+  name = paste("Ansoger", dataA[i,1], sep = "")
+  assign(name, import(dataA[i,2]))
 }
 
 ## Data = Optaget
@@ -198,7 +201,7 @@ for ( i in 1:nrow(data)) {
 }
 
 ## Data = Kvotient
-for ( i in 1:nrow(data)) {
-  name = paste("Kvotient", data[i,1], sep = "")
-  assign(name, import(data[i,2]))
+for ( i in 1:nrow(dataK)) {
+  name = paste("Kvotient", dataK[i,1], sep = "")
+  assign(name, import(dataK[i,2]))
 }
