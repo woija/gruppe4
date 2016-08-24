@@ -69,6 +69,10 @@ data3 <-  data.2 %>%
 
 ```
 
+Følgende dele af eksamensopgave er 
+
+\newpage
+
 # Indholdsfortegnelse
 
 
@@ -91,7 +95,7 @@ data3 <-  data.2 %>%
 <div id='id-section1'/>
 # Indledning
 
-Investeringer i human kapital sker med forventninger til afkast i arbejdsmarkedet (Becker 1964). Grundet direkte samt indirekte diskrimination, i.e. lønforskelle, kønnene imellem, er kønnenes traditionelle specialisering, mænd i lønnet arbejde og kvinder i hjemmet, fremhævet som økonomisk optimal (Becker 1991; Becker 1985). Med forventning om denne kønsspecialisering forventes det yderligere, at kvinder investerer mindre i human kapital, i.e. løndiskrimination er cirkulær og selvforstærkende fra et human kapitalsynspunkt (Blackburn et al. 2002). På trods af den forudsete cirkularitet, er der gennem de seneste årtier sket dramatiske kønsforandringer i human kapital investeringer: Kvinder udgør nu majoriteten af studerende på lange videregående uddannelser (se nedenfor). Igen, fra et human kapital perspektiv burde kvinders øgede investeringer i human kapital betyde mindre lønforskelle mellem kvinder og mænd. Markante lønforskelle kønnene imellem er dog fortsat observeret, endda også imellem kvinder og mænd med lange videregående uddannelser, hvor mænd i 2014 havde en bruttoindkomst 36,54 % højere end kvinder, jf. Tabel 1.
+Investeringer i human kapital sker med forventninger til afkast i arbejdsmarkedet (Becker 1964). Grundet direkte samt indirekte diskrimination, i.e. lønforskelle, kønnene imellem, er kønnenes traditionelle specialisering, mænd i lønnet arbejde og kvinder i hjemmet, fremhævet som økonomisk optimal (Becker 1991; Becker 1985). Med forventning om denne kønsspecialisering forventes det yderligere, at kvinder investerer mindre i human kapital, i.e. løndiskrimination er cirkulær og selvforstærkende fra et human kapitalsynspunkt (Blackburn et al. 2002). På trods af den forudsete cirkularitet, er der gennem de seneste årtier sket dramatiske kønsforandringer i human kapital investeringer: Kvinder udgør nu majoriteten af studerende på lange videregående uddannelser (se side 5). Igen, fra et human kapital perspektiv burde kvinders øgede investeringer i human kapital betyde mindre lønforskelle mellem kvinder og mænd. Markante lønforskelle kønnene imellem er dog fortsat observeret, endda også imellem kvinder og mænd med lange videregående uddannelser, hvor mænd i 2014 havde en bruttoindkomst 36,54 % højere end kvinder, jf. Tabel 1.
 
 \begin{ThreePartTable}
  \begin{TableNotes}[para,flushleft]Kilde: Danmarks Statistik\end{TableNotes}
@@ -108,16 +112,16 @@ Lange videregående uddannelser & 670.133 & 490.782
  \end{longtable}
 \end{ThreePartTable}
 
-En mulig forklaring for disse lønforskelle er divergerende afkast på investeringer i forskellige lange uddannelser. Uddannelsesvalg er præget af segregering: Kun få videregående uddannelser har et optag af studerende med lige andele af mænd og kvinder. Kønsforskelle i uddannelsesvalg kunne skyldes divergerende præferencer kønnene imellem (Hakim 2000), men *‘… individual preferences (and thus choices) are always socially embedded and constrained, and may be shaped by unjust background conditions, as well as by habit and engrained normative assumptions.’* (Crompton 2007: 234). Socialt determinerede kønspræferencer i forhold til uddannelse har potentiale til at cementere lønforskelle kønnene imellem på trods af samme resulterende niveau af human kapital. Derfor bør det undersøges, hvorvidt der foreligger en tendens blandt kvinder til at søge mod lange videregående uddannelser, der leder til relativt lavere lønninger, og en tendens blandt mænd til at søge mod lange videregående uddannelser, der resulterer i relativt højere lønninger. 
+En mulig forklaring på disse lønforskelle er divergerende afkast på investeringer i forskellige lange uddannelser. Uddannelsesvalg er præget af segregering: Kun få videregående uddannelser har et optag af studerende med lige andele af mænd og kvinder. Kønsforskelle i uddannelsesvalg kunne skyldes divergerende præferencer kønnene imellem (Hakim 2000), men *‘… individual preferences (and thus choices) are always socially embedded and constrained, and may be shaped by unjust background conditions, as well as by habit and engrained normative assumptions.’* (Crompton 2007: 234). Socialt determinerede kønspræferencer i forhold til uddannelse har potentiale til at cementere lønforskelle kønnene imellem på trods af samme resulterende niveau af human kapital. Derfor bør det undersøges, hvorvidt der foreligger en tendens blandt kvinder til at søge mod lange videregående uddannelser, der leder til relativt lavere lønninger, og en tendens blandt mænd til at søge mod lange videregående uddannelser, der resulterer i relativt højere lønninger. 
 \newline
 
 Hvis uddannelser med overrepræsentation af kvinder generelt leder til lavere lønninger, kan det både skyldes kønsforskelle i socialt afgrænsede præferencer, i.e. kvinder søger aktivt mod disse lavere lønnet uddannelser, eller lønforskelle opstået grundet feminisering af bestemte faggrupper. Øget feminisering af faggrupper resulterer ofte i lavere lønninger for disse grupper, grundet for eksempel diskrimination eller over-crowding (Rubery 2015; Bergmann 1974). Sagt på en anden måde, kan lavere lønninger for kandidater fra uddannelser med en overrepræsentation af kvinder skyldes, at kvinder søger mod uddannelser med lavere lønninger, samt at kvinder generelt modtager lavere løn, og lønniveauet for uddannelser med overrepræsentation af kvinder derfor er faldet. Uanset forklaringen, er det klart at lønulighed kønnene imellem allerede initieres ved kvinder og mænds valg af uddannelse.
 \newline
 
-Som det bevises nedenfor, kan uddannelsesvalg alene forklare omkring en fjerdedel af lønforskellen blandt kvinder og mænd med lange videregående uddannelser. Dette kan skyldes en række faktorer, blandt andet kønspræferencer for uddannelsesretninger. Specifikke uddannelsesretninger leder til arbejde i højtlønnede faggrupper, såsom mandsdominerede business og tekniske uddannelser. Uddannelsesretninger kan forklare en del af lønforskellen kvinder og mænd imellem, men selv inden for disse specifikke uddannelsesretninger segregeres kønnene – mænd søger også her i højere grad mod uddannelser med højere lønafkast.
+Som analysen i opgaven viser, kan uddannelsesvalg alene forklare omkring en fjerdedel af lønforskellen blandt kvinder og mænd med lange videregående uddannelser. Dette kan skyldes en række faktorer, blandt andet kønspræferencer for uddannelsesretninger. Specifikke uddannelsesretninger leder til arbejde i højtlønnede faggrupper, såsom mandsdominerede business og tekniske uddannelser. Uddannelsesretninger kan forklare en del af lønforskellen kvinder og mænd imellem, men selv inden for disse specifikke uddannelsesretninger segregeres kønnene – mænd søger også her i højere grad mod uddannelser med højere lønafkast.
 \newline
 
-Med kønsopdelt data for ansøgerantal samt optagne studerende på alle lange videregående uddannelser i Danmark er det muligt at bestemme omfanget af kønssegregering i uddannelsesvalg. Ydermere, gør løndata for færdige kandidater det muligt at bestemme, hvilken rolle forventede lønforskelle imellem kvindelige og mandelige kandidater spiller for kønsfordelingen på lange videregående uddannelser. 
+Med kønsopdelt data for ansøgerantal samt optagne studerende på alle lange videregående uddannelser i Danmark er det muligt at bestemme omfanget af kønssegregering i uddannelsesvalg. Opgavens centrale problemstilling er at bestemme, hvilken rolle forventede lønforskelle imellem kvindelige og mandelige kandidater spiller for kønsfordelingen på lange videregående uddannelser. Denne analyse foretages ved hjælp af løndata for færdige kandidater
 
 
 
@@ -128,128 +132,172 @@ Med kønsopdelt data for ansøgerantal samt optagne studerende på alle lange vi
 ### Funktion der kan gøre ovenstående hvor n er antal datasæt fra den sidst tilføjede år og tilbage, og Data er det ønskede data; Ansøger, optagne og kvotienter
 
 
-ScrapeFun = function(n, Data) {
-  if (Data == "Optaget") {
-    link = "http://ufm.dk/uddannelse-og-institutioner/statistik-og-analyser/sogning-og-optag-pa-videregaende-uddannelser/grundtal-om-sogning-og-optag/ansogere-og-optagne-fordelt-pa-kon-alder-og-adgangsgrundlag"
-    Filer = link %>% 
-      read_html() %>% 
-      html_nodes(".factbox:nth-child(6) p:nth-child(2) .internal-link") %>% 
-      html_attr(name = 'href')
-    Filer = Filer[!is.na(Filer)]
-    Filer = unique(Filer)
-    Aarstal = link %>%
-      read_html() %>%
-      html_nodes(".factbox:nth-child(6) p:nth-child(2) .internal-link") %>%
-      html_text() %>%
-      str_trim() %>% 
-      str_sub(start = 1, end = 4)
-    Aarstal = unique(Aarstal)
-    Aarstal[Aarstal == ""] = NA
-    Aarstal = Aarstal[!is.na(Aarstal)]
-    data = cbind(Aarstal, Filer)
-  }
-  else if (Data == "Ansoger") {
-    link = "http://ufm.dk/uddannelse-og-institutioner/statistik-og-analyser/sogning-og-optag-pa-videregaende-uddannelser/grundtal-om-sogning-og-optag/ansogere-og-optagne-fordelt-pa-kon-alder-og-adgangsgrundlag"
-    Filer = link %>% 
-      read_html() %>% 
-      html_nodes(".factbox:nth-child(3) p:nth-child(2) .internal-link") %>% 
-      html_attr(name = 'href')
-    Filer = Filer[!is.na(Filer)]
-    Filer = unique(Filer)
-    Aarstal = link %>%
-      read_html() %>%
-      html_nodes(".factbox:nth-child(3) p:nth-child(2) .internal-link") %>%
-      html_text() %>%
-      str_trim() %>% 
-      str_sub(start = 1, end = 4)
-    Aarstal = unique(Aarstal)
-    Aarstal[Aarstal == ""] = NA
-    Aarstal = Aarstal[!is.na(Aarstal)]
-    data = cbind(Aarstal, Filer)
-  }
-  else {
-    link = "http://ufm.dk/uddannelse-og-institutioner/statistik-og-analyser/sogning-og-optag-pa-videregaende-uddannelser/grundtal-om-sogning-og-optag/kot-hovedtal"
-    Filer = link %>% 
-      read_html() %>% 
-      html_nodes("p:nth-child(10) .internal-link") %>% 
-      html_attr(name = 'href')
-    Filer = Filer[!is.na(Filer)]
-    Filer = unique(Filer)
-    Aarstal = link %>%
-      read_html() %>%
-      html_nodes("p:nth-child(10) .internal-link") %>%
-      html_text() %>%
-      str_trim() %>% 
-      str_sub(start = 1, end = 4)
-    Aarstal = unique(Aarstal)
-    Aarstal[Aarstal == ""] = NA
-    Aarstal = Aarstal[!is.na(Aarstal)]
-    data = cbind(Aarstal, Filer)
-  } 
-  data.sub <- tail(data, n)
-  }
+#ScrapeFun = function(n, Data) {
+ # if (Data == "Optaget") {
+  #  link = "http://ufm.dk/uddannelse-og-institutioner/statistik-og-analyser/sogning-og-optag-pa-videregaende-uddannelser/grundtal-om-sogning-og-optag/ansogere-og-optagne-fordelt-pa-kon-alder-og-adgangsgrundlag"
+   # Filer = link %>% 
+    #  read_html() %>% 
+     # html_nodes(".factbox:nth-child(6) p:nth-child(2) .internal-link") %>% 
+    #  html_attr(name = 'href')
+  #  Filer = Filer[!is.na(Filer)]
+  #  Filer = unique(Filer)
+  #  Aarstal = link %>%
+  #    read_html() %>%
+  #    html_nodes(".factbox:nth-child(6) p:nth-child(2) .internal-link") %>%
+  #    html_text() %>%
+  #    str_trim() %>% 
+  #    str_sub(start = 1, end = 4)
+  #  Aarstal = unique(Aarstal)
+  #  Aarstal[Aarstal == ""] = NA
+  #  Aarstal = Aarstal[!is.na(Aarstal)]
+  #  data = cbind(Aarstal, Filer)
+  #}
+  #else if (Data == "Ansoger") {
+  #  link = "http://ufm.dk/uddannelse-og-institutioner/statistik-og-analyser/sogning-og-optag-pa-videregaende-uddannelser/grundtal-om-sogning-og-optag/ansogere-og-optagne-fordelt-pa-kon-alder-og-adgangsgrundlag"
+   # Filer = link %>% 
+  #    read_html() %>% 
+   #   html_nodes(".factbox:nth-child(3) p:nth-child(2) .internal-link") %>% 
+    #  html_attr(name = 'href')
+  #  Filer = Filer[!is.na(Filer)]
+   # Filer = unique(Filer)
+  #  Aarstal = link %>%
+   #   read_html() %>%
+    #  html_nodes(".factbox:nth-child(3) p:nth-child(2) .internal-link") %>%
+     # html_text() %>%
+    #  str_trim() %>% 
+    #  str_sub(start = 1, end = 4)
+  #  Aarstal = unique(Aarstal)
+  #  Aarstal[Aarstal == ""] = NA
+   # Aarstal = Aarstal[!is.na(Aarstal)]
+  #  data = cbind(Aarstal, Filer)
+  #}
+  #else {
+   # link = "http://ufm.dk/uddannelse-og-institutioner/statistik-og-analyser/sogning-og-optag-pa-videregaende-uddannelser/grundtal-om-sogning-og-optag/kot-hovedtal"
+  #  Filer = link %>% 
+  #    read_html() %>% 
+  #    html_nodes("p:nth-child(10) .internal-link") %>% 
+  #    html_attr(name = 'href')
+  #  Filer = Filer[!is.na(Filer)]
+  #  Filer = unique(Filer)
+  #  Aarstal = link %>%
+   #   read_html() %>%
+  #    html_nodes("p:nth-child(10) .internal-link") %>%
+   #   html_text() %>%
+  #    str_trim() %>% 
+  #    str_sub(start = 1, end = 4)
+   # Aarstal = unique(Aarstal)
+  #  Aarstal[Aarstal == ""] = NA
+  #  Aarstal = Aarstal[!is.na(Aarstal)]
+  #  data = cbind(Aarstal, Filer)
+  #} 
+  #data.sub <- tail(data, n)
+  #}
   
 
-data = ScrapeFun(4,"Optaget") 
-dataA = ScrapeFun(4,"Ansoger")
-dataK = ScrapeFun(4,"Kvotient")
+#data = ScrapeFun(4,"Optaget") 
+#dataA = ScrapeFun(4,"Ansoger")
+#dataK = ScrapeFun(4,"Kvotient")
 
 ## Data = Ansoger
-for ( i in 1:nrow(dataA)) {
-  name = paste("Ansoger", dataA[i,1], sep = "")
-  assign(name, import(dataA[i,2]))
-}
+#for ( i in 1:nrow(dataA)) {
+ # name = paste("Ansoger", dataA[i,1], sep = "")
+  #assign(name, import(dataA[i,2]))
+#}
 
 ## Data = Optaget
-for ( i in 1:nrow(data)) {
-  name = paste("Optaget", data[i,1], sep = "")
-  assign(name, import(data[i,2]))
-}
+#for ( i in 1:nrow(data)) {
+#  name = paste("Optaget", data[i,1], sep = "")
+#  assign(name, import(data[i,2]))
+#}
 
 ## Data = Kvotient
-for ( i in 1:nrow(dataK)) {
-  name = paste("Kvotient", dataK[i,1], sep = "")
-  assign(name, import(dataK[i,2]))
-}
+#for ( i in 1:nrow(dataK)) {
+ # name = paste("Kvotient", dataK[i,1], sep = "")
+#  assign(name, import(dataK[i,2]))
+#}
 
 ```
 
-På Uddannelses- og Forskningsministeriets hjemmeside findes en række offentlig tilgængelige datasæt på forskellige parametre for universitetsoptag. Til opgavens analyse bruges henholdsvis datasæt for ansøgere og optagne fordelt på køn, samt adgangskvotienter. På hjemmesiden kan disse oplysninger hentes for forskellige år. For at automatisere hentningen af disse data konstrueres en såkaldt *scraper*, som tager følgende to argumenter; i) hvilke datasæt og ii) ønskede antal år fra den nyeste observation. Til opgaven hentes årene 2013-2016 for at sikre en stor, repræsentativ stikprøve, samt for at påvise eventuelle nylige forandringer i uddannelsesvalg. Dermed henter funktionen 12 forskellige datasæt. 
+På Uddannelses- og Forskningsministeriets hjemmeside findes en række offentlig tilgængelige datasæt der beskriver forskellige parametre for universitetsoptag. Til opgavens analyse bruges henholdsvis datasæt for ansøgere og optagne fordelt på køn, samt adgangskvotienter. På hjemmesiden kan disse oplysninger hentes for forskellige år. For at automatisere datalæsningen konstrueres en såkaldt *scraper*, som tager følgende to argumenter; i) hvilken type datasæt og ii) ønskede antal år fra den nyeste observation. Til opgaven hentes data for årene 2013-2016 for at sikre en stor, repræsentativ stikprøve, samt for at påvise eventuelle nylige forandringer i uddannelsesvalg. Dermed henter funktionen 12 forskellige datasæt. 
 \newline
 
-Løndata opgjort per uddannelse for alle færdige kandidater er produceret af CEPOS og ligger ligeledes offentligt tilgængeligt. CEPOS har udarbejdet et datasæt for top 250 gennemsnitlige bruttolønninger opgjort efter færdiggjort lange videregående uddannelse for alle danskere mellem 25-59 år, men disse data er ikke opdelt efter køn. Da disse løndata er gennemsnitlige og inkluderer både mandlige og kvindelige kandidater fra de respektive uddannelser, mistes dimensionen af kønsforskelle i løn inden for de individuelle uddannelser. På den anden side gør dette løngennemsnit det muligt at isolere den del af lønforskelle, der opstår alene som resultat af kønsforskelle i uddannelsesvalg, hvilket netop er formålet med denne analyse. 
+Løndata opgjort per uddannelse for alle færdige kandidater er produceret af CEPOS og ligger ligeledes offentligt tilgængeligt. CEPOS har udarbejdet et datasæt for top 250 gennemsnitlige bruttolønninger opgjort efter færdiggjort lang videregående uddannelse for alle danskere mellem 25-59 år, men disse data er ikke opdelt efter køn. Da disse løndata er gennemsnitlige og inkluderer både mandlige og kvindelige kandidater fra de respektive uddannelser, mistes dimensionen af kønsforskelle i løn inden for de individuelle uddannelser. På den anden side gør dette løngennemsnit det muligt at isolere den del af lønforskelle, der opstår alene som resultat af kønsforskelle i uddannelsesvalg, hvilket netop er formålet med denne analyse. 
 \newline
 
-De to datakilder er forskellige i den forstand, at universiteternes ansøgninger, optag og kvotienter er opgjort for bacheloruddannelser, men løndata for færdige kandidater, i.e. for færdige lange videregående uddannelser. I denne analyse indgår derfor kun bacheloruddannelser, der direkte leder til en kandidatuddannelse, e.g. gennem retskrav på optagelse på en specifik kandidatuddannelse. De to datasæt er derfor forenet ved at identificere par af bachelor- og kandidatuddannelser, e.g. bachelor- og kandidatstudierne i medicin. Dette udelukker for eksempel professionsbacheloruddannelser, der kunne lede til en kandidatuddannelse, og introducerer en bias, da sammenhængen mellem disse bachelor- og kandidatuddannelser ikke er perfekt, e.g. grundet frafald og uddannelsesskift. Desuden findes der i løndata få brede kategorier, som samler flere uddannelser, f.eks. uspecficeret civil ingeniører.  Ydermere identificeredes 10 uddannelsesretninger, såsom sundhedsvidenskab og samfundsvidenskab. Denne kategorivariabel er essentiel for en vurdering af uddannelsesretningers indflydelse på lønforskelle. 
+De to datakilder er forskellige i den forstand, at universiteternes antal ansøgninger, optag og adgangskvotienter er opgjort for bacheloruddannelser, men løndata for færdige kandidater, i.e. for færdige lange videregående uddannelser. I denne analyse indgår derfor kun bacheloruddannelser, der direkte leder til en kandidatuddannelse, e.g. gennem retskrav på optagelse på en specifik kandidatuddannelse. De to datasæt er derfor forenet ved at identificere par af bachelor- og kandidatuddannelser, e.g. bachelor- og kandidatstudierne i medicin. Dette udelukker for eksempel professionsbacheloruddannelser, der kunne lede til en kandidatuddannelse. Ydermere, introducerer en bias, da sammenhængen mellem parrene af bachelor- og kandidatuddannelser ikke er perfekt, e.g. grundet frafald og uddannelsesskift. En anden databegrænsning er, at der i løndata også findes en lille række brede kategorier, som samler flere uddannelser, e.g. uspecficeret civilingeniører. Ydermere identificeres kvalitativt 10 uddannelsesretninger, såsom sundhedsvidenskab og samfundsvidenskab. Denne kategorivariabel er essentiel for en vurdering af uddannelsesretningers indflydelse på lønforskelle. 
 \newline
 
-Kvalitativt parres løn og ansøgere, samt kategorieres retning for et år. Til alle uddannelser hører et unikt optagelsesnummer, som gør det muligt at forene alle 12 datasæt, således at løn og kategorier over årene passer sammen. Det kvalitative element betyder, at en del af dataarbejdet bør foretages manuelt. 
+Den manuelle parring af løn og ansøgere, samt kategoriseringen af uddannelsesretninger, foretages for et enkelt år af data. Til alle uddannelser hører et unikt optagelsesnummer, som gør det muligt at forene alle 12 datasæt, således at løn og uddannelsesretninger programmeres for de restende år.  
 \newline
 
-De anvendte data er offentligt tilgængelige, og derfor forefindes ikke rettighedsproblemer. Etisk kan det problematiseres, at nogle uddannelser har meget få optagne, især efter opdeling af køn, således at det er muligt identificere enkelte studerende i datasæt. Dog indgår ingen data på individniveau, hverken i datasættene eller i analysen, og etiske problemer er derfor ikke eksisterende.
+De anvendte data er offentligt tilgængelige, derfor forefindes ikke rettighedsproblemer. Etisk kan det problematiseres, at nogle uddannelser har meget få optagne, især efter opdeling af køn, således at det er muligt at identificere enkelte studerende i det endelige datasæt. Da ingen data er på individniveau, hverken i datasættene eller i analysen, er etiske problemer derfor ikke eksisterende.
 
 <div id='id-section3'/> 
 #Analyse
 
-For perioden 2013-2016 viser data fra de danske universitet klart, at kvinder nu udgør majoriteten af både ansøgere (54,22 %) og optagne (53,10 %) på bacheloruddannelser, der giver direkte adgang til en kandidatuddannelse. På trods af dette, findes der i arbejdsmarkedet fortsat store lønforskelle kønnene imellem, og uddannelsesvalg alene kan forklare en stor del af disse lønforskelle. Det er muligt at forudsige gennemsnitlige lønninger for optagne kvinder og mænd i perioden 2013-2016, ved hjælp af antallet af optagne kvinder og mænd på de individuelle uddannelser samt forventede lønninger efter endt uddannelse. 
+```{r include=FALSE}
+#KvindeAndOpt <- sum(data3$OptKvinder, na.rm = TRUE)/sum(data3$TotalOpt, na.rm = TRUE)
+#KvindeAndAng <- sum(data3$AngKvinder, na.rm = TRUE)/sum(data3$TotalAng, na.rm = TRUE)
 
-\begin{TableNotes}[para,flushleft]\end{TableNotes}
-\begin{longtable}[c]{@{}crrrr@{}}
-\caption{Vægtede, forventede lønninger pr. køn og år, 2013-2016}\\
+#Optagne=KvindeAndOpt
+#Angsoegere=KvindeAndAng
+#Kategori="Andel kvinder"
+#andel= data.frame(Kategori, Angsoegere, Optagne)
+#andel
+
+```
+
+
+For perioden 2013-16 viser data fra de danske universiteter klart, at kvinder nu udgør majoriteten af både ansøgere (54,22 %) og optagne (53,10 %) på bacheloruddannelser, der giver direkte adgang til en kandidatuddannelse. På trods af dette, findes der på arbejdsmarkedet fortsat store lønforskelle kønnene imellem, og uddannelsesvalg alene kan forklare en stor del af disse lønforskelle. Ved hjælp af antallet af optagne kvinder og mænd på de individuelle uddannelser samt forventede lønninger efter endt uddannelse, er det muligt at forudsige gennemsnitlige lønninger for optagne kvinder og mænd i perioden 2013-16. 
+
+```{r include=FALSE}
+#install.packages("plyr")
+#library(plyr)
+
+#udregner vaegtede, forventede lonninger per kon og aar
+
+#aarm <- ddply(data.2, .(Aar),function(x) data.frame(Kvinder=weighted.mean(x$GnsIndkomst, x$OptKvinder, na.rm = TRUE)))
+#aark <- ddply(data.2, .(Aar),function(x) data.frame(Maend=weighted.mean(x$GnsIndkomst, x$OptMaend, na.rm = TRUE)))
+#gnsaar <- aark %>% left_join(aarm, by = "Aar")
+#gnsaar[5,1]="I alt"
+#gnsaar[5,2]=weighted.mean(data.2$GnsIndkomst, data.2$OptKvinder, na.rm = TRUE)
+#gnsaar[5,1]=weighted.mean(data.2$GnsIndkomst, data.2$OptMaend, na.rm = TRUE)
+#gnsaar$Forskel <- gnsaar$Maend - gnsaar$Kvinder 
+#save(gnsaar, file = "gnsaar.RData")
+
+#udregner vaegtede, forventede lonninger per kon og studieretning
+#retningm <- ddply(data.2, .(Retning),function(x) data.frame(Kvinder=weighted.mean(x$GnsIndkomst, x$OptKvinder, na.rm = TRUE)))
+#retningk <- ddply(data.2, .(Retning),function(x) data.frame(Maend=weighted.mean(x$GnsIndkomst, x$OptMaend, na.rm = TRUE)))
+#gnsretning <- retningk %>% left_join(retningm, by = "Retning")
+#gnsretning[11,1]="I alt"
+#gnsretning[11,3]=weighted.mean(data.2$GnsIndkomst, data.2$OptKvinder, na.rm = TRUE)
+#gnsretning[11,2]=weighted.mean(data.2$GnsIndkomst, data.2$OptMaend, na.rm = TRUE)
+#gnsretning$Forskel <- gnsretning$Maend - gnsretning$Kvinder 
+#save(gnsretning, file = "gnsretning.RData")
+
+```
+
+
+\begin{TableNotes}[para,flushleft]Kilder: Egne beregninger, UFM og CEPOS\end{TableNotes}
+\begin{longtable}[c]{@{}lrrrr@{}}
+\caption{Vægtede gennemsnitlige forventede lønninger fordelt på køn, 2013-2016}\\
 \toprule\addlinespace
  & 2013 & 2014 & 2015 & 2016 
 \\\addlinespace
 \midrule\endhead
-Mænd & 612.272 & 614.439 & 617.768 & 619.243 
-\\
 Kvinder & 567.313 & 568.562 & 572.960 & 572.933 
+\\
+Mænd & 612.272 & 614.439 & 617.768 & 619.243  
 \\
 Forskel & 44.959 & 45.877 & 44.809 & 46.310 
 \\\addlinespace
 \bottomrule
+\insertTableNotes
 \end{longtable}
-De vægtede gennemsnit er vist i Tabel 2. Der er stor forskel i de forudsagte gennemsnitslønninger for kvinder og mænd, og uddannelsesvalg alene har derfor stor betydning for senere lønforskelle i arbejdsmarkedet. Ydermere viser Tabel 2, at de forudsagte lønforskelle har været meget stabile gennem de seneste fire år. 
+De vægtede gennemsnit er vist i Tabel 2. Der er stor forskel i de forudsagte gennemsnitslønninger for kvinder og mænd, og uddannelsesvalg alene har derfor stor betydning for senere lønforskelle på arbejdsmarkedet. Ydermere viser Tabel 2, at de forudsagte lønforskelle har været meget stabile gennem de seneste fire år. 
+\newline
 
+Nedenfor viser Figur 1 de absolutte antal af kvindelige og mandlige ansøgere fordelt på de relevante uddannelsesinstitutioner. Kvinder udgør majoriteten på de fleste traditionelle universiteter, men billedet er anderledes på CBS, DTU og ITU. Desuden kan det også ses, at uddannelsesretninger som ingeniør, science og business er domineret af mandlige ansøgere. Dette giver sig  også til udtryk i de gennemsnitlige antal af kvindelige og mandlige ansøger på det højest lønnede uddannelser, Figur 2. 
 
 ###Figur 1: Gennemsnitlig antal ansøgere fordelt på køn ved danske uddannelse institutioner og retninger, 2013-16
 
@@ -291,12 +339,16 @@ retning = ggplot(data=Uni.7gather, aes(x=reorder(Retning, frequency), y=frequenc
 # Samler de to ovenstående plots
 
 grid.arrange(institution, retning, ncol=2)
+grid.text("Kilde: Egne beregninger og UFM.dk", 
+           x = .01, y = .01,
+         just = "left",
+         draw = TRUE)
 
 ```
 
-Figur 1 viser de absolutte antal af kvindelige og mandlige ansøgere fordelt på de relevante uddannelsesinstitutioner. Kvinder udgør majoriteten på de fleste traditionelle universiteter, men billedet er anderledes på CBS, DTU og ITU. Desuden kan det også ses, at studieretninger som ingeniør, science og business er domineret af mandlige ansøgere. Dette giver sig  også til udtryk i de gennemsnitlige antal af kvindelige og mandlige ansøger på det højest lønnede uddannelser, Figur 2. 
+De højest lønnede uddannelser er alle dominerede af mandlige ansøgere, med undtagelse af to: professionerne lægevidenskab og jura. Dette replicerer det velkendte – og internationale – billede af kvinders koncentration på lange videregående uddannelser, der giver adgang til professioner (Connolly and Gregory 2007). Inden for professionerne, såsom lægevidenskab, jura og psykologi, er det klart defineret, hvilke niveauer af human kapital, der er nødvendige for at praktisere. I professionerne er kvinder og mænd med de samme kvalifikationer derfor i høj grad ansat i lignende stillinger – der er mindre plads til diskrimination (Connolly and Gregory 2007). 
 
-###Figur 2: Gennemsnitlige antal ansøgere fordelt på køn for top 10 uddannelser målt på bruttoløn, kr. og top 10 gennemsntlig højst kvotient, 2013-16
+###Figur 2: Gennemsnitligt antal ansøgere fordelt på køn for top 10 uddannelser målt på hhv. bruttoløn, kr. og højeste kvotienter, 2013-16
 
 ```{r, echo=FALSE, warning=FALSE, fig.width=15, fig.height=8 }
 #Plot af køn på institutioner 
@@ -354,11 +406,14 @@ scale_x_discrete(breaks=c("10.825", "10.85", "10.975", "11", "11.05", "11.15", "
 #Samler de to ovenstående plots
 
 grid.arrange(indkomst, kvotient, ncol=2)
+grid.text("Kilde: Egne beregninger, UFM.dk og CEPOS", 
+           x = .01, y = .01,
+         just = "left",
+         draw = TRUE)
 ```
+Denne søgen mod professionerne afspejler sig tydeligt i kvinders uddannelsesvalg, både i forhold til de top 10 mest søgte uddannelser og i forhold til de 10 uddannelser med de højeste adgangskvotienter, Figur 3. Her ses en tydelig tendens: Mænd søger mod højtlønnede businessuddannelser, hvor kvinder i langt højere grad søger mod professionerne lægevidenskab, psykologi, jura samt veterinærmedicin. 
 
-De højest lønnede uddannelser er alle dominerede af mandlige ansøgere, med undtagelse af to: professionerne lægevidenskab og jura. Dette replicerer det velkendte – og internationale – billede af kvinders koncentration på lange videregående uddannelser, der giver adgang til professioner (Connolly and Gregory 2007). Inden for professionerne, såsom lægevidenskab, jura og psykologi, er det klart defineret, hvilke niveauer af human kapital, der er nødvendige for at praktisere. I professionerne er kvinder og mænd med de samme kvalifikationer derfor i høj grad ansat i lignende stillinger – der er mindre rum for diskrimination (Connolly and Gregory 2007). 
-
-###Figur 3: Top 10 gennemsnitlig mest søgte uddannelse for kønnene, 2013-2016
+###Figur 3: De 10 mest søgte uddannelser for kvinder og mænd, 2013-16
 ```{r, echo=FALSE, warning=FALSE, fig.width=15, fig.height=8 }
 #Top 10 for mænd
 Uni.5 = data3 %>%
@@ -398,16 +453,20 @@ scale_x_discrete(breaks=c("22415", "16020", "22420", "17115", "10140", "22010", 
           axis.text.x = element_text(size=20))
 
 grid.arrange(Maend, Kvinder, ncol=2)
+grid.text("Kilde: Egne beregninger og UFM.dk", 
+           x = .01, y = .01,
+         just = "left",
+         draw = TRUE)
 ```
 
-Denne søgen mod professionerne afspejler sig tydeligt i kvinders uddannelsesvalg, både i forhold til de top 10 mest søgte uddannelser og i forhold til de 10 uddannelser med de højeste adgangskvotienter, Figur 3. Her ses en tydelig tendens: mænd søger mod højtlønnede businessuddannelser, hvor kvinder i langt højere grad søger mod professionerne lægevidenskab, psykologi, jura samt veterinærvidenskab. 
-\newline
+Figur 2 viser ligeledes, at de 10 uddannelser med højest lønnede kandidater alle er tekniske og matematiske, med undtagelse af de to professioner, lægevidenskab og jura, hvor kvinder udgør majoriteten af ansøgerne. Mænds dominans i de højest lønnede tekniske og matematiske fag, beviser at kønsstereotype antagelser bliver cementeret i både i uddannelsesvalg og på arbejdsmarkedet: Traditionelle, mandsdominerede faggrupper oplever højere lønninger, og disse faggrupper tiltrækker en stor overvægt af mandelige ansøgere – lønulighed er dermed med en cirkulær proces. Grundet store lønforskelle på tværs uddannelsesretninger, e.g. ingeniørvidenskab og jura, kan lønforskelle kønnene imellem derfor potentielt forklares gennem divergerende kønspræferencer for uddannelsesretninger, e.g. flere mænd søger mod de højtlønnede uddannelsesretninger business og ingeniørvidenskab. På den anden side er det muligt, at mænd også koncentrerer sig i de højest lønnede uddannelser inden for de forskellige uddannelsesretninger, og uddannelsesretninger dermed kun er en mindre del af forklaringen. 
+\newline 
 
-Figur 2 viser ligeledes, at de 10 uddannelser med højest lønnede kandidater alle er tekniske og matematiske, med undtagelse af de to professioner, lægevidenskab og jura, hvor kvinder udgør majoriteten af ansøgerne. Mænds dominans i de højest lønnede tekniske og matematiske fag, beviser at kønsstereotype antagelser bliver cementeret i både i uddannelsesvalg og i arbejdsmarkedet: traditionelle, mandsdominerede faggrupper oplever højere lønninger, og disse faggrupper tiltrækker en stor overvægt af mandelige ansøgere – lønulighed er dermed med en cirkulær proces. Grundet store lønforskelle på tværs uddannelsesretninger, e.g. ingeniørvidenskab og jura, kan lønforskelle kønnene imellem derfor potentielt forklares gennem divergerende kønspræferencer for uddannelsesretninger, e.g. flere mænd søger mod de højtlønnede uddannelsesretninger business og ingeniørvidenskab. På den anden side er det muligt, at mænd også koncentrerer sig i de højest lønnede uddannelser inden for de forskellige uddannelsesretninger, og uddannelsesretning dermed kun er en lille del af forklaringen. 
+I følge Figur 4 er dette faktisk tilfældet: Med undtagelse af business/kommunikation samt ingeniørvidenskab koncentrerer mænd sig i de bedst lønnede uddannelser, også inden for specifikke uddannelsesretninger. Dermed er kønsspecialisering og -koncentration i specifikke uddannelsesretninger kun en delvis forklaring af lønforskelle mellem kvinder og mænd med lange videregående uddannelser.
+ 
+###Figur 4: Forskel i forventede, vægtede lønninger fordelt på uddannelsesretning
 
-###Figur 4: Forskel i forventede, vægtede lønninger pr. studieretning
-
-```{r echo=FALSE, warning=FALSE, fig.width=6, fig.height=3}
+```{r echo=FALSE, warning=FALSE, fig.width=15, fig.height=8}
 
 gretning = gnsretning [1:10, 1:4]
 
@@ -422,35 +481,134 @@ ggplot(data=gretning.gather, aes(x=reorder(Retning, Forskel), y=Forskel)) +
   scale_fill_manual(values = c("#1B9E77", "#D95F02") ) +
   coord_flip() + ylab("Forskel i forventede løn") + xlab("") + guides(fill=FALSE) + 
   expand_limits(y=-50000) +
-  theme_minimal() +theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7), axis.text.x = element_text(size=7)) +
+  theme_minimal() +theme(axis.title=element_text(size=20), axis.text.y = element_text(size=15), axis.text.x = element_text(size=20)) +
   scale_x_discrete(breaks=c("Ing", "Bus/kom", "Jur", "Natur", "Kom", "Business", "Hum", "Science", "Sund", "Samf"),
                    labels=c("Ingeniør", "Business/Kommunikation", "Jura", "Naturvidenskab", "Kommunikation", "Business", 
                             "Humaniora", "Science", "Sundhedsvidenskab", "Samfundsvidenskab")) +
-   theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7),
-          axis.text.x = element_text(size=7))
+   theme(axis.title=element_text(size=15), axis.text.y = element_text(size=15),
+          axis.text.x = element_text(size=15))
 
- 
+grid.text("Kilde: Egne beregninger og UFM.dk", 
+           x = .01, y = .01,
+         just = "left",
+         draw = TRUE) 
 
 ```
 
 
-Figur 4 viser, at dette faktisk er tilfældet: med undtagelse af business/kommunikation samt ingeniørvidenskab koncentrerer mænd sig i de bedst lønnede uddannelser, også inden for specifikke uddannelsesretninger. Dermed er kønsspecialisering og -koncentration i specifikke uddannelsesretninger kun en delvis forklaring af lønforskelle mellem kvinder og mænd med videregående uddannelser. For at finde et mere robust billede af kønsforskelle i uddannelsesvalg, introduceres udvidede modeller i det følgende afsnit.
+ 
+For at finde et mere robust billede af kønsforskelle i uddannelsesvalg, introduceres udvidede modeller i det følgende afsnit.
 
 <div id='id-section4'/> 
 #Modeller
-I et forsøg på at forklare kønsfordelingen på lange videregående uddannelser udregnes andelen af kvinder optaget på alle de forskellige lange videregående uddannelser i Danmark. Disse kvindeandele benyttes herefter som afhængig variabel i en række økonometriske modeller. Først benyttes en logit-regressionsmodel, da den afhængige variabel, kvindeandele er proportionel. Dernæst anvendes en statistisk læringsmodel til at opstille et decision tree for processen bag de kønsspecifikke uddannelsesvalg.
+I et forsøg på at forklare kønsfordelingen på lange videregående uddannelser udregnes andelen af kvinder optaget på alle de forskellige lange videregående uddannelser i Danmark. Disse kvindeandele benyttes herefter som afhængig variabel i en række økonometriske modeller. Først benyttes en logit-regressionsmodel, da den afhængige variabel, kvindeandele er proportionel. Dernæst anvendes en statistisk læringsmodel til at opstille et regressionstræ for processen bag de kønsspecifikke uddannelsesvalg. Dermed vurderes både kausale effekter, samt forudsigelseskraften af de uafhængige variable. 
 
 ##Logit
-Da variablen, der beskriver kvindeandelen, er proportional, falder dens værdier mellem 0 og 1. Dermed bør forudsagte værdier også falde i dette interval. Dette opnås ved at anvende en generaliseret lineær model (glm) med et logit link og binomial familie, som er at foretrække, selv med en kontinuerlig afhængig variabel (Baum 2008). Estimerede logit-koefficienter er ikke lig med effektstørrelse, som ved almindelige lineære estimeringer. Derfor udregnes mere informative gennemsnitlige marginale effekter (Average Partial/Marginal Effects, APE) efter estimeringer af logit-modellerne, og de reporteres i Tabel 3. Ved estimering vægtes observationerne (data fra de forskellige uddannelser) efter uddannelsesstørrelse, i.e. optag på studierne, således at små, potentielle outlying observationer ikke vægtes i samme grad som større studier, e.g. medicin. Formålet med logit-modellen er at bestemme kausale sammenhænge mellem kvindeandelen på uddannelser og en række andre variable.
+```{r include=FALSE}
+#Expander per frequency i stedet for at vaegte - logit kan ikke regne vaegtede Marginal Effects
+
+#data.3 <- expandRows(data.2, "TotalOpt") %>%
+ # mutate(TotalOpt = OptMaend + OptKvinder)
+
+
+#Linear Probability Model
+#Linear Probability Model, Model 1
+
+#model1 <- lm(KvindeAndOpt ~ GnsIndkomstHT, data = data.3)
+#robust1 <- coeftest(model1, vcov = vcovHC(model1, "HC1"))    # robust; HC1 (Stata default)
+
+#Linear Probability Model, Model 2
+
+#model2 <- lm(KvindeAndOpt ~ GnsIndkomstHT + Retning, data = data.3)
+#coeftest(model2, vcov = vcovHC(model2, "HC1"))    # robust; HC1 (Stata default)
+
+
+#Linear Probability Model, Model 3
+
+#model3 <- lm(KvindeAndOpt ~ GnsIndkomstHT + Retning + Kvotient, data = data.3)
+#coeftest(model3, vcov = vcovHC(model3, "HC1"))    # robust; HC1 (Stata default)
+
+#Linear Probability Model, Model 4
+
+#model4 <- lm(KvindeAndOpt ~ GnsIndkomstHT + Retning + Kvotient + TotalOpt, data = data.3)
+#coeftest(model4, vcov = vcovHC(model4, "HC1"))    # robust; HC1 (Stata default)
+
+
+
+#LOGIT
+#Estimerer logit marginal effects for model 1
+
+#modell1<-glm(KvindeAndOpt ~ GnsIndkomstHT, data = data.3, family=binomial(link=logit), x=TRUE)
+#logit1 <- mfx_me(modell1) ## Create "mfx" object to trick mtable()
+
+#Estimerer logit marginal effects for model 2
+
+#modell2<-glm(KvindeAndOpt ~ GnsIndkomstHT + Retning, data = data.3, family=binomial(link=logit), x=TRUE)
+#logit2 <- mfx_me(modell2) ## Create "mfx" object to trick mtable()
+
+#Estimerer logit marginal effects for model 3
+
+#modell3<-glm(KvindeAndOpt ~ GnsIndkomstHT + Retning + Kvotient, data = data.3, family=binomial(link=logit), x=TRUE)
+#logit3 <- mfx_me(modell3) ## Create "mfx" object to trick mtable()
+
+#Estimerer logit marginal effects for model 4
+
+#modell4<-glm(KvindeAndOpt ~ GnsIndkomstHT + Retning + Kvotient + TotalOptH, data = data.3, family=binomial(link=logit), x=TRUE)
+#logit4 <- mfx_me(modell4) ## Create "mfx" object to trick mtable()
+
+
+#Model <- mtable("(1)"=modell1,"(2)"=modell2,"(3)"=modell3,"(4)"=modell4, summary.stats = c("McFadden R-sq.", "Deviance")) ## produces a table with nice output
+#Model <- relabel(Model,
+                 #"(Intercept)" = "Konstant",
+                # GnsIndkomstHT = "Indkomst i 100.000 kr.",
+                # TotalOptH = "Totalt optag i hundrede",
+                 #Kvotient = "Adgangskvotient",
+                # "Retning: Business/Bus/kom" = "Business",
+                # "Retning: Hum/Bus/kom" = "Humaniora",
+                # "Retning: Ing/Bus/kom" = "Ingenior",
+                # "Retning: Jur/Bus/kom" = "Jura",
+                # "Retning: Kom/Bus/kom" ="Kommunikation",
+                 #"Retning: Natur/Bus/kom" = "Naturvidenskab",
+                # "Retning: Samf/Bus/kom" = "Samfundsvidenskab",
+                 #"Retning: Science/Bus/kom" = "Science",
+                # "Retning: Sund/Bus/kom" = "Sundhedsvidenskab")
+#write.mtable(Model)                 
+#write.mtable(Model, file = "delim2", format = "delim")
+#stargazer(Model)
+#Logit<- mtable("(1)"=logit1,"(2)"=logit2,"(3)"=logit3,"(4)"=logit4, summary.stats = c("McFadden R-sq.", "Deviance")) ## produces a table with nice output
+#Logit <- relabel(Logit,
+                     # "(Intercept)" = "Konstant",
+                     # GnsIndkomstHT = "Indkomst i 100.000 kr.",
+                     # TotalOptH = "Totalt optag i hundrede",
+                     # Kvotient = "Adgangskvotient",
+#"Retning: Business/Bus/kom" = "Business",
+                 #"Retning: Hum/Bus/kom" = "Humaniora",
+                # "Retning: Ing/Bus/kom" = "Ingenior",
+                # "Retning: Jur/Bus/kom" = "Jura",
+                # "Retning: Kom/Bus/kom" ="Kommunikation",
+                # "Retning: Natur/Bus/kom" = "Naturvidenskab",
+                # "Retning: Samf/Bus/kom" = "Samfundsvidenskab",
+                # "Retning: Science/Bus/kom" = "Science",
+                # "Retning: Sund/Bus/kom" = "Sundhedsvidenskab"                 
+                # )
+# write.mtable(Logit, file = "delim", format = "delim")
+
+
+
+
+```
+
+
+Da variablen, der beskriver kvindeandelen, er proportional, falder dens værdier mellem 0 og 1. Dermed bør forudsagte værdier også falde i dette interval. Dette opnås ved at anvende en generaliseret lineær model (glm) med et logit link og en binomial familie, som er at foretrække, selv med en kontinuert afhængig variabel (Baum 2008). Estimerede logit-koefficienter er ikke lig med effektstørrelse, som ved almindelige lineære estimeringer. Derfor udregnes mere informative gennemsnitlige marginale effekter (Average Partial/Marginal Effects, APE) efter estimeringer af logit-modellerne, og disse rapporteres i Tabel 3. Ved estimering vægtes observationerne efter uddannelsesstørrelse, i.e. antal optagne på studierne. I modellen vægtes uddannelser dermed proportionelt med deres størrelse. Formålet med logit-modellen er at bestemme kausale sammenhænge mellem kvindeandelen på uddannelser og en række andre variable.
 \newline
 
-Der opstilles fire modeller, hvor der indgår forskellige uafhængige variable. I den første model estimeres udelukkede effekten på kvindeandelen af forventet, gennemsnitlig indkomst efter endt uddannelse. Det skal her bemærkes, at indkomst kan være endogenous, altså afhængig af kvindeandelen. I model 2 introduceres en kategorisk variabel, der beskriver forskellige uddannelsesretninger, hvilket tydeligvis er relevant, jf. Figur 4. Kategorien business/kommunikation anvendes som basis kategori. De næste to modeller inkluderer to yderligere kontinuerlige variable: Model 3 medregner adgangskvotienten på de forskellige uddannelser, og Model 4 inddrager dernæst uddannelsesstørrelsen, i.e. det totale optag på studierne. Det fulde model med alle fire variable skrives således:
+Der opstilles fire modeller, hvori der indgår forskellige uafhængige variable. I den første model estimeres udelukkede effekten på kvindeandelen af forventet gennemsnitlig indkomst efter endt uddannelse. Det skal her bemærkes, at indkomst kan være endogen, altså afhængig af kvindeandelen, hvormed der kan være omvendt kausalitet. I model 2 introduceres en kategorisk variabel, der beskriver de 10 forskellige uddannelsesretninger, hvilket tydeligvis er relevant, jf. Figur 4. Kategorien business/kommunikation anvendes som reference kategori. De næste to modeller inkluderer to yderligere kontinuerte variable: Model 3 medregner adgangskvotienten på de forskellige uddannelser, og Model 4 inddrager dernæst uddannelsesstørrelsen, i.e. det totale optag på studierne. Det fulde model med alle fire variable skrives således:
 
-$$Kvindeandel_i=\alpha_i+\beta_1 \cdot indkomst_i+\beta_2 \cdot business_i +\beta_3 \cdot humaniora_i+\beta_4 \cdot ingeniør_i+\beta_5 \cdot jura_i$$
+$$logit(kvindeandel_i)=\alpha_i+\beta_1 \cdot indkomst_i+\beta_2 \cdot business_i +\beta_3 \cdot humaniora_i+\beta_4 \cdot ingenioer_i+\beta_5 \cdot jura_i$$
 $$+\beta_6 \cdot kommunikation_i +\beta_7 \cdot naturvidenskab_i+\beta_8 \cdot samfundsvidenskab_i+\beta_9 \cdot science_i$$
 $$+\beta_{10} \cdot sundshedsvidenskab_i+\beta_{11} \cdot adgangskvotient_i+\beta_{12} \cdot total optag_i + \epsilon_i$$
 
-De estimerede logit-koefficienter fremgår Tabel AX1, medens de estimerede APE kan ses her, i Tabel 3:
+De estimerede logit-koefficienter fremgår i appendix, Tabel A1, medens de estimerede APE kan ses her, i Tabel 3:
 
 
 \newpage
@@ -487,32 +645,33 @@ De estimerede logit-koefficienter fremgår Tabel AX1, medens de estimerede APE k
 
 </center>
 
-Model 1 viser en klar sammenhæng mellem kvindeandel og indkomst, en sammenhæng som er både statistik og økonomisk signifikant. Der er en klar tendens til at andelen af kvinder på uddannelser falder, når forventede lønninger stiger. Model 1 viser, at for hver 100.000 kroner forventede lønninger stiger, falder andelen af kvinder med 3,5 %. Model 2 inddrager uddannelsesretninger, som tydeligvis også er afgørende for kvindeandelen på uddannelser. Business, ingeniørvidenskab og science er domineret af mænd, medens jura og sundhedsvidenskab er domineret af kvinder. Overraskende forstærkes effekten af indkomst på kvindeandele efter introduktionen af uddannelsesretninger i modellen, og nu falder andelen af kvinder med 4,2 % per 100.000 kroner forøgelse i forventet indkomst. Model 3 viser, at uddannelsernes adgangskvotient har en lille positiv sammenhæng med kvindeandelen på studierne – kvinder lader til at have højere karakterer i deres adgangsgivende eksamen, eller i hvert fald udnytte disse karakterer ved at søge ind på studier med højere adgangskvotienter. Model 4 viser desuden en marginal effekt af uddannelsesstørrelse på kvindeandelen – mænd har en om end svag tendens til at søge ind på større studier.
+Model 1 viser en klar sammenhæng mellem kvindeandel og indkomst; en sammenhæng som er både statistik og økonomisk signifikant. Der er en klar tendens til at andelen af kvinder på uddannelser falder, når forventede lønninger stiger. Model 1 viser, at for hver 100.000 kroner forventede lønninger stiger, falder andelen af kvinder med 3,5 %. Model 2 inddrager uddannelsesretninger, som tydeligvis også er afgørende for kvindeandelen på uddannelser. Business, ingeniørvidenskab og science er domineret af mænd, medens jura og sundhedsvidenskab er domineret af kvinder. Overraskende forstærkes effekten af indkomst på kvindeandele efter introduktionen af uddannelsesretninger i modellen, og nu falder andelen af kvinder med 4,2 % per 100.000 kroner forøgelse i forventet gennemsnitlig indkomst. Model 3 viser, at uddannelsernes adgangskvotient har en lille positiv sammenhæng med kvindeandelen på studierne – kvinder lader til at have højere karakterer i deres adgangsgivende eksamen, eller i hvert fald udnytte disse karakterer ved at søge ind på studier med højere adgangskvotienter. Model 4 viser desuden en lille effekt af uddannelsesstørrelse på kvindeandelen – mænd har en omend svag tendens til at søge ind på større studier.
 \newline
-Model 3 og 4 giver kun lidet ekstra indsigt i forhold til Model 1 og 2 – fra Model 2 til 3 falder deviance, som er et mål for quality-of-fit, kun marginalt. Med den tilgængelige data er Model 2 derfor et godt kompromis mellem antallet af variable og modellernes forklaringskraft. Det er klart at forventet indkomst samt uddannelsesretning er variablene med den primære forklaringskraft og kausale effekter bag kvindeandelen på lange videregående uddannelser. 
+
+Model 3 og 4 giver kun lidt ekstra indsigt i forhold til Model 1 og 2 – fra Model 2 til 3 falder deviance (Tabel A1), som er et mål for goodness-of-fit, kun marginalt. Med den tilgængelige data er Model 2 derfor et godt kompromis mellem antallet af variable og modellernes forklaringskraft. Det er klart at forventet indkomst samt uddannelsesretning er variablene med den primære forklaringskraft og kausale effekter bag kvindeandelen på lange videregående uddannelser. 
 
 
 ## Machine learning 
 I forrige afsnit var formålet at opstille en model, som kan give indsigt i kausale sammenhænge mellem kvindeandelen af de optagne studerende og de valgte forklarende variable. I kontrast til det, er formålet med dette afsnit at opstille en model, som kan forudsige kvindeandelen af de optagne studerende på baggrund af udvalgte inputvariable.
 \newline
 
-Ved brug af en *machine learning* algoritme udarbejdes et regressionstræ. Denne type regressionstræ benytter en delmængde af de tilgængelige data, kaldet træningssættet, til at klassificere studierne ved at “lære” forskelle i strukturer mellem uddannelser, og dermed forudsige udfaldet af kvindeandel. Metoden kaldes *supervised learning*, da algoritmen udregner og dernæst viser, hvilke karakteristika, der bestemmer divergerende niveauer af kvindeandele på uddannelser i træningssættet. I dette tilfælde benyttes inputvariablene forventet gennemsnitsindkomst, studieretning, adgangskvotient samt uddannelsesstørrelse i et forsøg på at forudsige kvindeandelen af de optagene studerende på en given uddannelse.
+Ved brug af en *machine learning* algoritme udarbejdes et regressionstræ. Denne type regressionstræ benytter en delmængde af de tilgængelige data, kaldet træningssættet, til at klassificere studierne ved at “lære” forskelle i strukturer mellem uddannelser, og dermed forudsige udfaldet af kvindeandel. Metoden kaldes *supervised learning*, da algoritmen udregner og dernæst viser, hvilke karakteristika, der bestemmer divergerende niveauer af kvindeandele på uddannelser i træningssættet. I dette tilfælde benyttes inputvariablene forventet gennemsnitsindkomst, uddannelsesretning, adgangskvotient samt uddannelsesstørrelse i et forsøg på at forudsige kvindeandelen af de optagene studerende på en given uddannelse. 
 \newline
 
 Intuitionen bag regressionstræet er, at træningsdata gentagne gange opdeles i mindre dele. De enkelte knuder i træet illustrerer denne opdelingsproces. Til de enkelte knuder hører en mindre model, som igen splitter data op i mindre dele ved at fremsætte nye “spørgsmål”, der besvares binært. Processen kaldes segmentering og er relativ simpel ift. andre algoritmer, dermed kan segmenteringsmodellen fortolkes intuitivt og nemt illustreres grafisk. 
 \newline
 
-Det muligt at udarbejde et beslutningstræ med lige så mange knuder, som der findes observationer i træningsdatasættet og derved lade kvadratroden af kvardatafvigelsesgennemsnittet (RMSE) konvergere mod 0. Mange knuder gør modellens beskrivelse af træningsdata meget nøjagtig, men de gør samtidig modellen ude af stand til at give præcise forudsigelser på nye data på grund af overfit. Derfor er valget af et optimalt antal knuder centralt.
+Det muligt at udarbejde et beslutningstræ med lige så mange knuder, som der findes observationer i træningsdatasættet og derved lade kvadratroden af kvardatafvigelsesgennemsnittet (RMSE) konvergere mod 0. Mange knuder gør modellens beskrivelse af træningsdata meget nøjagtig, men de gør samtidig modellen ude af stand til at give præcise forudsigelser på nye data på grund af overfit. Derfor er valget af et optimalt antal knuder centralt. (Friedman et al, 2001)
 
 ##Validering
-Der findes forskellige metoder til udvælgelsen af antallet knuder, heriblandt kryds-valideringsmetoden, som ofte giver mere robuste resultater end simpel validering. På trods af dette, og at kryds-validering er standardmetoden i algoritmepakken, benyttes her simpel validering. Årsagen til dette er, at simpel validering giver mulighed for grafisk, at forstå udvælgelsen af knuder. 
+Der findes forskellige metoder til udvælgelsen af antallet knuder, heriblandt kryds-valideringsmetoden, som ofte giver mere robuste resultater end simpel validering. På trods af dette, samt at kryds-validering er standardmetoden i algoritmepakken, benyttes her simpel validering. Årsagen til dette er, at simpel validering giver mulighed for grafisk at forstå udvælgelsen af knuder. 
 \newline
 
-Indledningsvist udtrækkes halvdelen af observationerne, på tilfældigvis, i det oprindelige datasæt. Udtrækket bliver brugt som træningsdata, mens den resterende del af data benyttes til validitets, også kaldes testdata. Dernæst udarbejdes et stort regressionstræ, som beskæres indtil det optimale under-træ opnås. Det optimale under-træ er det under-træ, som mindsker RMSE mellem forudsigelserne og observationerne i testdata. I dette tilfæde, frembringes, ved denne process, et regressionstræ som består af 8 knuder. Dette fremgår af grafen nedenfor, hvor RMSE er en funktion af knuder. For testdata har RMSE har globalt minimum i 8, mens RMSE for træningsdata konvergere mod 0, præcis som ventet. Det udtrykker altså en balancen mellem bias ved lille et træ og overfitting ved et stort træ. 
+Indledningsvist udtrækkes halvdelen af observationerne, på tilfældigvis, i det oprindelige datasæt. Udtrækket bliver brugt som træningsdata, mens den resterende del af data benyttes til validering, også kaldes testdata. Dernæst udarbejdes et stort regressionstræ, som beskæres indtil det optimale undertræ opnås. Det optimale undertræ er det undertræ, som mindsker RMSE mellem forudsigelserne og observationerne i testdata. Ved denne proces frembringes i dette tilfælde et regressionstræ, som består af 8 knuder. Dette fremgår af grafen nedenfor, hvor RMSE er en funktion af knuder. For testdata har RMSE globalt minimum i 8, mens RMSE for træningsdata konvergere mod 0, præcis som ventet. Det udtrykker altså balancen mellem bias ved lille et træ og overfitting ved et stort træ. 
 
 ###Figur 5: Kvadratroden af kvardatafvigelsesgennemsnittet for træning- og testdata 
 
-```{r, echo=FALSE, warning=FALSE }
+```{r, echo=FALSE, warning=FALSE, fig.width=15, fig.height=8 }
  #Statistisk læring
 set.seed(300)
 trainDTM <- data3[sample(nrow(data3), dim(data3)[1]/2), ]
@@ -555,18 +714,22 @@ ggplot(rmse.graf, aes(x=nodes, y =frequency, group = RMSE )) +
   scale_color_manual(values = c("#66A61E", "#E6AB02")) + 
   ylab("RMSE") + 
   xlab("Knuder") + 
-  theme(axis.title=element_text(size=7), axis.text.y = element_text(size=7),
-          axis.text.x = element_text(size=7), legend.position = "bottom", legend.title=element_blank()) + 
+  theme(axis.title=element_text(size=15), axis.text.y = element_text(size=15),
+          axis.text.x = element_text(size=15), legend.position = "bottom", legend.title=element_blank()) + 
   scale_x_continuous(breaks=1:12) 
+grid.text("Kilde: Egne beregninger, UFM.dk og CEPOS", 
+           x = .01, y = .01,
+         just = "left",
+         draw = TRUE)
 ```
 
-Den alternative valideringsmetode, krydsvalidering, minder meget om ovenstående simple valideringsmetode - dog betyder krydsvalidering at træningsdata opdeles i flere undersæt, og derved skal flere modeller estimeres og beskæres.  Denne process er beregningstung, og derfor opstilles en cost-funktion for RMSE, hvori et kompleksitetsled formuleres. Kompleksitetsleddet er produktet af en positiv strafkoefficient og antal af knuder. Givet en række udvalgte strafkoefficienter estimeres blot en sekvens af de ellers mange kombinationer af modeller. Gennem en rekursiv krydsningsprocess vælges efterfølgende den strafkoefficient, der minimerer cost-funktionen for modellen i træningssættet. En fordel ved krydsvalidering er en lavere risiko for stikprøve-bias,  da træningsdata opsplittes i flere tilfældige undersæt. Udover krydsvalidering kunne bootstraaping også benyttes til at lave syntetetiske stikprøver. Den grafiske fortolkning bag model- eller knudevalg - som vist i Figur X7 -  er dog kun mulig ved simpel validering.
+Den alternative valideringsmetode, krydsvalidering, minder meget om ovenstående simple valideringsmetode - dog betyder krydsvalidering at træningsdata opdeles i flere undersæt, og derved skal flere modeller estimeres og beskæres.  Denne process er beregningstung, og derfor opstilles en cost-funktion for RMSE, hvori et kompleksitetsled formuleres. Kompleksitetsleddet er produktet af en positiv strafkoefficient og antal af knuder. Givet en række udvalgte strafkoefficienter estimeres blot en sekvens af de ellers mange kombinationer af modeller. Gennem en rekursiv krydsningsprocess vælges efterfølgende den strafkoefficient, der minimerer cost-funktionen for modellen i træningssættet. En fordel ved krydsvalidering er en lavere risiko for stikprøve-bias,  da træningsdata opsplittes i flere tilfældige undersæt. Udover krydsvalidering kunne bootstrapping også benyttes til at lave syntetiske stikprøver. Den grafiske fortolkning bag model- eller knudevalg - som vist i Figur 5 -  er dog kun mulig ved simpel validering. Således estmimeres regressionstræet med 8 knuder, som beskrives og illusteres i næste afsnit. 
 
 ## Regressionstræ
-Ved den første knude i træet tages udgangspunkt i hele datasættet. Det ses her, at modellen på baggrund af alle data for de fire inputvariable beregner et gennemsnit for kvindeandelen af optagede til 0,53. Modellen fremsætter i første knude spørgsmålet ”Retning = business, ingeniør eller science”, og data opdeles dernæst efter svaret på dette spørgsmål. Efterfølgende beregnes en ny værdi for den forventede kvindeandel af de optagne studerende med de nye oplysninger om uddannelsesretninger under de to undertræer in mente. Allerede ved dette skridt i træet er modellens forudsigelser interessante. Det fremgår, at i tilfældet, hvor retningen for uddannelserne er business, ingeniør eller science, vil den forventede kvindeandel af de optagne studerende falde fra 0,53 til 0,32. Er der derimod tale om de resterende uddannelsesretninger, såsom samfundsvidenskab, sundhed eller humaniora, vil den forventede kvindeandel stige til 0,61. 
+Ved den første knude i træet tages udgangspunkt i hele datasættet. Det ses her, at modellen på baggrund af alle data beregner et gennemsnit for kvindeandelen af optagne til 0,53. Modellen fremsætter i første knude spørgsmålet *”Retning = business, ingeniør eller science”*, og data opdeles dernæst efter svaret på dette spørgsmål. Efterfølgende beregnes en ny værdi for den forventede kvindeandel af de optagne studerende med de nye oplysninger om uddannelsesretninger under de to undertræer in mente. Allerede ved dette skridt i træet er modellens forudsigelser interessante. Det fremgår, at i tilfældet, hvor retningen for uddannelserne er business, ingeniør eller science, vil den forventede kvindeandel af de optagne studerende falde fra 0,53 til 0,32. Er der derimod tale om de resterende uddannelsesretninger, såsom samfundsvidenskab, sundhed eller humaniora, vil den forventede kvindeandel stige til 0,61. Ved at indskrænke fokus til bestemte uddannelsesretninger ses dermed store variationer i fordelingen af mænd og kvinder i uddannelsessystemet. Ud fra de 26 % af data, hvor retningen er business, ingeniør eller science, vil modellen forudsige kvindeandelen af de optagne studerende til at være 0,41, hvis retningen er business, og 0,28, hvis den er ingeniør eller science. Dermed ser vi, at retningerne ingeniør og science umiddelbart er nogle af de uddannelsesretninger med meget lave kvindeandele. 
 \newline
 
-Ved at indskrænke fokus til bestemte uddannelsesretninger ses dermed en store variationer i fordelingen af mænd og kvinder i uddannelsessystemet. Ud fra de 26 % af data, hvor retningen er business, ingeniør eller science, vil modellen forudsige kvindeandelen af de optagne studerende til at være 0,41, hvis retningen er business, og 0,28, hvis den er ingeniør eller science. Dermed ser vi, at retningerne ingeniør og science umiddelbart er nogle af de uddannelsesretninger med meget lave kvindeandele. I den modsatte side af træet ses vigtigheden af forventede lønninger. Kvindeandelen falder fra 0.61 til 0.51 på uddannelser med forventede lønninger over 600.000 kroner, og stiger fra 0.61 til 0.64 på uddannelser med forventede lønninger under 600.000 kroner. Efter spørgsmålet om forventet lønniveau fokuseres på uddannelsesretninger og adgangskvotienter i træet. Her falder kvindeandele for uddannelser med lavere adgangskvotienter. 
+I den modsatte side af træet ses vigtigheden af forventede lønninger. Kvindeandelen falder fra 0.61 til 0.51 på uddannelser med forventede lønninger over 600.000 kroner, og stiger fra 0.61 til 0.64 på uddannelser med forventede lønninger under 600.000 kroner. Efter spørgsmålet om forventet lønniveau fokuseres på uddannelsesretninger og adgangskvotienter i træet. Her falder kvindeandele for uddannelser der har med lavere adgangskvotienter. 
 
 ###Figur 6: Regressionstræ
 ```{r, echo=FALSE, warning=FALSE }
@@ -574,25 +737,28 @@ Ved at indskrænke fokus til bestemte uddannelsesretninger ses dermed en store v
 optimal.model <- prune(model, model$cptable[model$cptable[, 2] == 8, 1])
 rpart.plot(optimal.model)
 ```
+\newline
 
-Regressionstræet bekræfter dermed resultaterne fra logit-modellerne; inputvariablerne uddannelsesretning og gennemsnitsindkomst har den største betydning for variation i kønsfordeling på de forskellige uddannelser. 
+Regressionstræet bekræfter dermed resultaterne fra logit-modellerne; inputvariablene uddannelsesretning og gennemsnitsindkomst har den største betydning for variation i kønsfordeling på de forskellige uddannelser. 
 
 
 <div id='id-section5'/> 
 #Konklusion
-De undersøgte data viser tydeligt, at uddannelsesvalg har stor betydning for fremtidige lønninger. Men lønninger har samtidig også stor betydning for uddannelsesvalg. Mænd vælger, aktivt eller passivt, uddannelser, der leder til bedre lønnet arbejde. Dermed kan kønsfordelingen på lange videregående uddannelser forklare en stor del af lønforskelle imellem kønnene, som observeres i arbejdsmarkedet. Kønsforskelle i uddannelsesvalg afhænger i høj grad af uddannelsesretning, men selv efter justering for uddannelsesretning vælger kvinder uddannelser, der leder til lavere lønninger sammenlignet med mænd. 
+
+De undersøgte data viser tydeligt, at uddannelsesvalg har stor betydning for fremtidige lønninger. Men lønninger har samtidig også stor betydning for uddannelsesvalg. Mænd vælger, aktivt eller passivt, uddannelser, der leder til bedre lønnet arbejde. Dermed kan kønsfordelingen på lange videregående uddannelser forklare en stor del af lønforskelle imellem kønnene, som observeres på arbejdsmarkedet. Kønsforskelle i uddannelsesvalg afhænger i høj grad af uddannelsesretning, men selv efter justering for uddannelsesretning vælger kvinder uddannelser, der leder til lavere lønninger sammenlignet med mænd. 
 \newline
 
-Dermed starter kønsuligheden observeret i arbejdsmarkedet allerede, når studenter vælger deres bacheloruddannelse. Denne konklusion betyder at policy målrettet kønsulighed skal starte allerede her: Mindre kønsforskelle i uddannelsesvalg giver mindre ulighed på arbejdsmarkedet. 
+Dermed starter kønsuligheden observeret på arbejdsmarkedet allerede når studenter vælger deres bacheloruddannelse. Denne konklusion betyder at policy målrettet kønsulighed skal starte allerede her: Mindre kønsforskelle i uddannelsesvalg giver mindre ulighed på arbejdsmarkedet.  Policy bør derfor takle socialt determinerede kønspræferencer i forhold til uddannelse, da disse på nuværende tidspunkt cementerer lønforskelle kønnene imellem på trods af samme resulterende niveau af human kapital. På arbejdsmarkedet bør policy fokusere på at begrænse negative konsekvenser af feminisering, i.e. lavere lønninger i faggrupper domineret af kvinder – dette er specielt vigtig i professionerne, hvor kvinder nu udgør størstedelen af optagne studerende.
 \newline
 
-Analysen af sammenhængen mellem uddannelsesvalg og lønforskelle mellem kønnene kunne gøres mere robust ved at benytte panel data og kønsopdelt løndata. På trods af disse datamangler giver analysen her en grundigt, præliminær indsigt i sammenhængen, som ikke illustreres i standard human kapital modeller af arbejdsmarkedet. Desuden kan analysen udbredes til alle uddannelser, ikke kun lange videregående uddannelser.
+Analysen af sammenhænge mellem uddannelsesvalg og lønforskelle mellem kønnene kunne gøres mere robust ved at benytte panel data og kønsopdelt løndata. På trods af disse datamangler giver analysen her en grundig, præliminær indsigt i sammenhængen, som ikke illustreres i standard human kapital-modeller af arbejdsmarkedet. Desuden kan analysen udbredes til alle uddannelser, ikke kun lange videregående uddannelser.
+\newline
 
 
 \newpage
 <div id='id-section6'/> 
 #Appendix 
-###Tabel 1AX: Logit koefficienter
+###Tabel A1: Logit koefficienter
 | Model                   |    (1)    |    (2)    |    (3)    |    (4)    |
 |-------------------------|:---------:|:---------:|:---------:|:---------:|
 | Konstant                |  0.955*** |  1.405*** |  1.088*** |  1.102*** |
