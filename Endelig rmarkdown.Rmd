@@ -18,13 +18,13 @@ fontsize: 11pt
 
 ```{r include = FALSE}
 library(viridis)
-#library(pander)
-#library(stargazer)
+library(pander)
+library(stargazer)
 library(dplyr)
 library(rio)
-#library(splitstackshape)
-#library(tonymisc)
-#library(memisc)
+library(splitstackshape)
+library(tonymisc)
+library(memisc)
 library(grid)
 library(gridExtra)
 library(tidyr)
@@ -41,7 +41,6 @@ library(stringr)
 ```
 
 ```{r include = FALSE}
-#setwd("/Users/simonharmat/Dropbox/Studie/Data_science/Gruppe4" ) ## Skriv stien
 
 data <- import("optagelse3.csv") # l??ser csv-filen 
 lon <- import("londata.csv") # l??ser csv-filen
