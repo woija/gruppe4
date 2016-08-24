@@ -69,24 +69,50 @@ data3 <-  data.2 %>%
 
 ```
 
-Følgende dele af eksamensopgave er 
+#Eksamensopgavens dele er besvaret af følgende gruppemedlemmer:
+
+
+
+
+* __Sabine V.L Hansen:__
+    - Indledning
+    - Modeller: Validering
+
+
+* __Olivia T.G. Helmersen:__
+    - Data, metode og etik
+    - Modeller: Regressionstræ
+
+
+* __Mathias F. Jensen:__
+    - Analyse
+    - Modeller: Logit
+
+
+* __Simon K. Harmat:__
+    - Konklusion
+    - Modeller: Machine learning
+
+
 
 \newpage
 
 # Indholdsfortegnelse
 
 
-- [Indledning](#id-section1)
+- [Indledning](#id-section1)......................................................................3 
 
-- [Data, metode og etik](#id-section2)
+- [Data, metode og etik](#id-section2)............................................................4
 
-- [Analyse](#id-section3)
+- [Analyse](#id-section3).........................................................................6
 
-- [Modeller](#id-section4)
+- [Modeller](#id-section4).......................................................................10
 
-- [Konklusion](#id-section5)
+- [Konklusion](#id-section5).....................................................................17
 
-- [Appendix](#id-section6)
+- [Litteraturliste](#id-section6)................................................................19
+
+- [Appendix](#id-section7).......................................................................21
 
 
 
@@ -280,7 +306,7 @@ For perioden 2013-16 viser data fra de danske universiteter klart, at kvinder nu
 
 \begin{TableNotes}[para,flushleft]Kilder: Egne beregninger, UFM og CEPOS\end{TableNotes}
 \begin{longtable}[c]{@{}lrrrr@{}}
-\caption{Vægtede gennemsnitlige forventede lønninger fordelt på køn, 2013-2016}\\
+\caption{Vægtede gennemsnitlige forventede lønninger fordelt på køn, 2013-16}\\
 \toprule\addlinespace
  & 2013 & 2014 & 2015 & 2016 
 \\\addlinespace
@@ -348,7 +374,7 @@ grid.text("Kilde: Egne beregninger og UFM.dk",
 
 De højest lønnede uddannelser er alle dominerede af mandlige ansøgere, med undtagelse af to: professionerne lægevidenskab og jura. Dette replicerer det velkendte – og internationale – billede af kvinders koncentration på lange videregående uddannelser, der giver adgang til professioner (Connolly and Gregory 2007). Inden for professionerne, såsom lægevidenskab, jura og psykologi, er det klart defineret, hvilke niveauer af human kapital, der er nødvendige for at praktisere. I professionerne er kvinder og mænd med de samme kvalifikationer derfor i høj grad ansat i lignende stillinger – der er mindre plads til diskrimination (Connolly and Gregory 2007). 
 
-###Figur 2: Gennemsnitligt antal ansøgere fordelt på køn for top 10 uddannelser målt på hhv. bruttoløn, kr. og højeste kvotienter, 2013-16
+###Figur 2: Gennemsnitlige antal ansøgere fordelt på køn for top 10 uddannelser målt på hhv. bruttoløn (kr.) og højeste adgangskvotienter, 2013-16
 
 ```{r, echo=FALSE, warning=FALSE, fig.width=15, fig.height=8 }
 #Plot af køn på institutioner 
@@ -613,10 +639,10 @@ De estimerede logit-koefficienter fremgår i appendix, Tabel A1, medens de estim
 
 \newpage
 
-### Tabel 3: Logit-modeller, partiel average effects
+### Tabel 3: Logit-modeller, Average Partial Effects
 </center>
-| **Model**                |    (1)    |    (2)    |    (3)    |    (4)    |
-|-------------------------|:---------:|:---------:|:---------:|:---------:
+| **Model**               |    (1)    |    (2)    |    (3)    |    (4)    |
+|-------------------------|:---------:|:---------:|:---------:|:---------:| 
 | Indkomst i 100.000 kr.  | -0.035*** | -0.042*** | -0.040*** | -0.039*** |
 |                         |  (0.001)  |  (0.001)  |  (0.001)  |  (0.001)  |
 | Business                |           | -0.174*** | -0.172*** | -0.157*** |
@@ -641,9 +667,11 @@ De estimerede logit-koefficienter fremgår i appendix, Tabel A1, medens de estim
 |                         |           |           |  (0.000)  |  (0.000)  |
 | Totalt optag i hundrede |           |           |           | -0.009*** |
 |                         |           |           |           |  (0.001)  |
-
-
 </center>
+
+Kilde: Egne beregninger, UFM.dk og CEPOS. Standardfejl i parenteser.
+\newline 
+\newline
 
 Model 1 viser en klar sammenhæng mellem kvindeandel og indkomst; en sammenhæng som er både statistik og økonomisk signifikant. Der er en klar tendens til at andelen af kvinder på uddannelser falder, når forventede lønninger stiger. Model 1 viser, at for hver 100.000 kroner forventede lønninger stiger, falder andelen af kvinder med 3,5 %. Model 2 inddrager uddannelsesretninger, som tydeligvis også er afgørende for kvindeandelen på uddannelser. Business, ingeniørvidenskab og science er domineret af mænd, medens jura og sundhedsvidenskab er domineret af kvinder. Overraskende forstærkes effekten af indkomst på kvindeandele efter introduktionen af uddannelsesretninger i modellen, og nu falder andelen af kvinder med 4,2 % per 100.000 kroner forøgelse i forventet gennemsnitlig indkomst. Model 3 viser, at uddannelsernes adgangskvotient har en lille positiv sammenhæng med kvindeandelen på studierne – kvinder lader til at have højere karakterer i deres adgangsgivende eksamen, eller i hvert fald udnytte disse karakterer ved at søge ind på studier med højere adgangskvotienter. Model 4 viser desuden en lille effekt af uddannelsesstørrelse på kvindeandelen – mænd har en omend svag tendens til at søge ind på større studier.
 \newline
@@ -661,7 +689,7 @@ Ved brug af en *machine learning* algoritme udarbejdes et regressionstræ. Denne
 Intuitionen bag regressionstræet er, at træningsdata gentagne gange opdeles i mindre dele. De enkelte knuder i træet illustrerer denne opdelingsproces. Til de enkelte knuder hører en mindre model, som igen splitter data op i mindre dele ved at fremsætte nye “spørgsmål”, der besvares binært. Processen kaldes segmentering og er relativ simpel ift. andre algoritmer, dermed kan segmenteringsmodellen fortolkes intuitivt og nemt illustreres grafisk. 
 \newline
 
-Det muligt at udarbejde et beslutningstræ med lige så mange knuder, som der findes observationer i træningsdatasættet og derved lade kvadratroden af kvardatafvigelsesgennemsnittet (RMSE) konvergere mod 0. Mange knuder gør modellens beskrivelse af træningsdata meget nøjagtig, men de gør samtidig modellen ude af stand til at give præcise forudsigelser på nye data på grund af overfit. Derfor er valget af et optimalt antal knuder centralt. (Friedman et al, 2001)
+Det muligt at udarbejde et beslutningstræ med lige så mange knuder, som der findes observationer i træningsdatasættet og derved lade kvadratroden af kvardatafvigelsesgennemsnittet (RMSE) konvergere mod 0. Mange knuder gør modellens beskrivelse af træningsdata meget nøjagtig, men de gør samtidig modellen ude af stand til at give præcise forudsigelser på nye data på grund af overfit. Derfor er valget af et optimalt antal knuder centralt. (Friedman et a.l. 2001)
 
 ##Validering
 Der findes forskellige metoder til udvælgelsen af antallet knuder, heriblandt kryds-valideringsmetoden, som ofte giver mere robuste resultater end simpel validering. På trods af dette, samt at kryds-validering er standardmetoden i algoritmepakken, benyttes her simpel validering. Årsagen til dette er, at simpel validering giver mulighed for grafisk at forstå udvælgelsen af knuder. 
@@ -732,10 +760,14 @@ Ved den første knude i træet tages udgangspunkt i hele datasættet. Det ses he
 I den modsatte side af træet ses vigtigheden af forventede lønninger. Kvindeandelen falder fra 0.61 til 0.51 på uddannelser med forventede lønninger over 600.000 kroner, og stiger fra 0.61 til 0.64 på uddannelser med forventede lønninger under 600.000 kroner. Efter spørgsmålet om forventet lønniveau fokuseres på uddannelsesretninger og adgangskvotienter i træet. Her falder kvindeandele for uddannelser der har med lavere adgangskvotienter. 
 
 ###Figur 6: Regressionstræ
-```{r, echo=FALSE, warning=FALSE }
+```{r, echo=FALSE, warning=FALSE, fig.width=15, fig.height=8 }
 # Statistisk læring
 optimal.model <- prune(model, model$cptable[model$cptable[, 2] == 8, 1])
 rpart.plot(optimal.model)
+grid.text("Kilde: Egne beregninger, UFM.dk og CEPOS", 
+           x = .01, y = .01,
+         just = "left",
+         draw = TRUE)
 ```
 \newline
 
@@ -756,7 +788,50 @@ Analysen af sammenhænge mellem uddannelsesvalg og lønforskelle mellem kønnene
 
 
 \newpage
-<div id='id-section6'/> 
+<div id='id-section6'/>
+#Litteraturliste
+
+Baum, C.F., 2008. Modelling proportions. *Stata Journal,* 8(2), pp.299–303.
+\newline
+
+Becker, G., 1964. *Human capital; a theoretical and empirical analysis, with special reference to education,*   New York: National Bureau of Economic Research; distributed by Columbia University Press.
+\newline 
+
+Becker, G.S., 1985. Human Capital, Effort, and the Sexual Division of Labor. *Journal of Labour Economics,*     3(1), pp.S33–S58.
+\newline 
+
+
+Becker, G.S., 1991. *Treatise on the family,* Enl. ed., Cambridge, MA: Harvard University Press.
+\newline 
+
+Bergmann, B.R., 1974. Occupational Segregation, Wages and Profits When Employers Discriminate by Race or Sex.   *Eastern Economic Journal,* 1(2), pp.103–110.
+\newline 
+
+
+Blackburn, R.M. et al., 2002. Explaining gender segregation. *British Journal of Sociology,* 53(4), pp.513–36.
+\newline 
+
+Connolly, S. og Gregory, M., 2007. Women and Work since 1970. I N. Crafts, I. Gazeley, & A. Newell, eds. *Work and Pay in 20th Century Britain.* Oxford: Oxford University Press, pp. 142–167.
+\newline 
+
+
+Crompton, R., 2007. Gender inequality and the gendered division of labour. I J. Browne, ed. *The Future of Gender.* Cambridge: Cambridge University Press, pp. 228–249.
+\newline 
+
+
+Friedman, J., Hastie, T. og Tibshirani, R. 2001. *Introduction to statistical learning. Vol. 1.,* Berlin: Springer Series in Statistics.
+\newline 
+
+
+Hakim, C., 2000. *Work-lifestyle choices in the 21st century: preference theory,* Oxford: Oxford University Press.
+\newline 
+
+
+Rubery, J., 2015. Change at work: feminisation, flexibilisation, fragmentation and financialisation. *Employee Relations,* 37(6), pp.633–644.
+
+
+\newpage
+<div id='id-section7'/> 
 #Appendix 
 ###Tabel A1: Logit koefficienter
 | Model                   |    (1)    |    (2)    |    (3)    |    (4)    |
@@ -789,3 +864,5 @@ Analysen af sammenhænge mellem uddannelsesvalg og lønforskelle mellem kønnene
 |                         |           |           |           |  (0.004)  |
 | McFadden R-sq.          |    0.1    |    0.4    |    0.4    |    0.4    |
 | Deviance                |  19854.7  |  12942.2  |  12271.8  |  12206.5  |
+
+Kilde: Egne beregninger, UFM.dk og CEPOS. Standardfejl i parenteser.
